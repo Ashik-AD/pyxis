@@ -1,0 +1,20 @@
+.dashboard {
+  display: grid;
+  grid-template-columns: 248px auto 350px;
+  container: main_content / inline-size;
+
+  .main__content {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    padding: 24px 34px;
+    overflow-x: hidden;
+  }
+}
+@container main_content (inline-size > 1400px) {
+  .dashboard {
+    .main__content {
+      padding: 48px 68px;
+    }
+  }
+}
