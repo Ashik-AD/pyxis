@@ -1,0 +1,73 @@
+@import '../../app/variables';
+
+.nav__wrapper {
+  width: 248px;
+  max-width: 248px;
+  background: $gray;
+  display: flex;
+  min-height: 100dvh;
+  flex-direction: column;
+  row-gap: 69px;
+  padding-left: 38px;
+  padding-block: 47px;
+  border-right: 2px solid $border;
+  box-sizing: border-box;
+  overflow-x: hidden;
+
+  .logo {
+    font-size: 36px;
+    font-weight: 600;
+  }
+
+  .nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+    gap: 56px;
+    overflow-y: auto;
+
+    .nav_group {
+      display: flex;
+      flex-direction: column;
+      row-gap: 16px;
+
+      .group__name {
+        font-size: $text-medium;
+        color: $low-op-title;
+      }
+
+      .nav__list__active {
+        color: $teal;
+        position: relative;
+
+        &::after {
+          position: absolute;
+          content: '';
+          width: 2px;
+          height: 100%;
+          background: $teal;
+          top: 0;
+          right: 0;
+        }
+      }
+
+      .nav__list {
+        display: flex;
+        align-items: center;
+        -moz-column-gap: 14px;
+        column-gap: 14px;
+      }
+    }
+  }
+  @media (min-width: 100px) {
+    & {
+      padding-block: 24px;
+      row-gap: 24px;
+
+      .nav {
+        row-gap: 32px;
+      }
+    }
+  }
+}

@@ -1,6 +1,5 @@
 import nextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import GoogleProvider from 'next-auth/providers/google';
 
 import type { NextApiResponse, NextApiRequest } from 'next/types';
 ('next');
@@ -17,9 +16,9 @@ async function auth(req: NextApiRequest, res: NextApiResponse) {
         },
         password: { label: 'Password', type: 'password' },
       },
-      // async authorize(credential, req) {
-      //   return { ...credential };
-      // },
+      async authorize(credential, req) {
+        return true;
+      },
     }),
   ];
 
