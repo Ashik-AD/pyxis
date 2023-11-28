@@ -1,54 +1,21 @@
-import { Carousel, CarouselItem, CarouselImage } from '@/components/carousel';
+import movieClient from '@/lib/tmdb';
+import SlideShowMain from '@/components/slide-show/slide-show-main';
 
-export default function HomePage() {
+export default async function HomePage() {
+  const movieList = (await movieClient.movieNowPlaying()).results
+    ?.splice(0, 5)
+    .map((movie) => ({
+      id: movie.id,
+      title: movie.title,
+      banner: `https://image.tmdb.org/t/p/original${movie.backdrop_path}`,
+      mediaType: movie.media_type,
+      category: movie.genre_ids,
+      vote: movie.vote_average,
+    }));
+
   return (
     <main>
-      <Carousel interval={5000} infinite>
-        <CarouselItem>
-          <CarouselImage src='https://images.pexels.com/photos/402028/pexels-photo-402028.jpeg' />
-          <div>
-            <h1>Carousel 1</h1>
-          </div>
-        </CarouselItem>
-        <CarouselItem>
-          <CarouselImage src='https://images.pexels.com/photos/402018/pexels-photo-402018.jpeg' />
-          <div>
-            <h1>Carousel 2</h1>
-          </div>
-        </CarouselItem>
-        <CarouselItem>
-          <CarouselImage src='https://images.pexels.com/photos/18925513/pexels-photo-18925513.jpeg' />
-          <div>
-            <h1>Carousel 3</h1>
-          </div>
-        </CarouselItem>
-      </Carousel>
-      <Carousel
-        interval={5000}
-        progressVariant='line'
-        controls={false}
-        progress={false}
-        fade
-        infinite>
-        <CarouselItem>
-          <CarouselImage src='https://images.pexels.com/photos/402028/pexels-photo-402028.jpeg' />
-          <div>
-            <h1>Carousel 1</h1>
-          </div>
-        </CarouselItem>
-        <CarouselItem>
-          <CarouselImage src='https://images.pexels.com/photos/402018/pexels-photo-402018.jpeg' />
-          <div>
-            <h1>Carousel 2</h1>
-          </div>
-        </CarouselItem>
-        <CarouselItem>
-          <CarouselImage src='https://images.pexels.com/photos/18925513/pexels-photo-18925513.jpeg' />
-          <div>
-            <h1>Carousel 3</h1>
-          </div>
-        </CarouselItem>
-      </Carousel>
+      <SlideShowMain list={movieList} />
     </main>
   );
 }
