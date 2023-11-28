@@ -1,0 +1,44 @@
+@import '../../app/variables';
+
+.item_height {
+  min-height: 350px !important;
+}
+
+.content {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px;
+
+  .content__title {
+    font-size: $text-title;
+    font-weight: 600;
+    line-height: 47px;
+  }
+  .btn_wrapper {
+    display: inline-flex;
+    justify-content: space-between;
+
+    & > button {
+      padding: 16px 42px;
+      font-size: $text-medium;
+      font-weight: 700;
+      border-color: transparent;
+      border-radius: 1rem;
+      cursor: pointer;
+
+      &.btn__watchlist {
+        background: $low-op-btn;
+        color: $white;
+        -webkit-backdrop-filter: blur(5px);
+        backdrop-filter: blur(5px);
+      }
+
+      &.btn__watch {
+        background: $teal;
+        color: $gray;
+      }
+    }
+  }
+}
