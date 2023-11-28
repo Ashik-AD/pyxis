@@ -4,8 +4,8 @@
   container: main_content / inline-size;
 
   .main__content {
-    min-height: 100dvh;
     display: flex;
+    height: 100dvh;
     flex-direction: column;
     padding: 24px 34px;
     overflow-x: hidden;
