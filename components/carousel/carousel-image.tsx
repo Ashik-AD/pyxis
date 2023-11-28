@@ -1,19 +1,25 @@
 import Image from 'next/image';
 import style from './style.module.scss';
 
-export default function CImage({ src }: { src: string }) {
+export default function CImage({
+  src,
+  alt,
+  height,
+  width,
+}: {
+  src: string;
+  alt?: string;
+  height?: string | number;
+  width?: string | number;
+}) {
   return (
     <Image
-      src={src}
-      alt='carousel image'
       className={style.carousel__banner}
+      src={src}
+      alt={alt || 'carousel image'}
       fill={true}
-      style={{
-        height: '100%',
-        width: '100%',
-        objectFit: 'cover',
-        objectPosition: 'center',
-      }}
+      objectFit='cover'
+      objectPosition='center'
     />
   );
 }
