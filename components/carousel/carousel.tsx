@@ -1,5 +1,6 @@
 'use client';
 import {
+  CSSProperties,
   Children,
   ReactNode,
   cloneElement,
@@ -20,6 +21,8 @@ export interface CarouselProps {
   activeIndex?: number;
   interval?: number;
   infinite?: boolean;
+  className?: string;
+  css?: CSSProperties;
   onSelect?: (activeIndex: number) => void;
   onSlide?: (activeIndex: number) => void;
 }
@@ -33,6 +36,8 @@ export default function Carousel(props: CarouselProps) {
     progressVariant = 'dot',
     infinite,
     interval,
+    className,
+    css,
   } = props;
 
   const [activeIndex, setActiveIndex] = useState(props.activeIndex ?? 0);
@@ -82,25 +87,29 @@ export default function Carousel(props: CarouselProps) {
   }, [interval, handleSideNext]);
 
   return (
-    <section className={style.carousel}>
+    <section className={`${style.carousel}`}>
       <div
-        className={`${style.carousel__list} ${
-          fade ? style.carousel__list_fade : ''
-        }`}
-        style={
-          !fade ? { transform: `translateX(-${activeIndex * 100}%)` } : {}
-        }>
-        {!fade
-          ? children
-          : Children.map(children, (item: any, idx) => {
-              if (activeIndex == idx) {
-                let el = cloneElement(item, {
-                  className: `${style.carousel__item_active}`,
-                });
-                return el;
-              }
-              return item;
-            })}
+        className={`${style.carousel__list__wrapper} ${className ?? className}`}
+        style={css}>
+        <div
+          className={`${style.carousel__list} ${
+            fade ? style.carousel__list_fade : ''
+          }`}
+          style={
+            !fade ? { transform: `translateX(-${activeIndex * 100}%)` } : {}
+          }>
+          {!fade
+            ? children
+            : Children.map(children, (item: any, idx) => {
+                if (activeIndex == idx) {
+                  let el = cloneElement(item, {
+                    className: `${style.carousel__item_active}`,
+                  });
+                  return el;
+                }
+                return item;
+              })}
+        </div>
       </div>
       <CControl
         handleNextClick={handleSideNext}
