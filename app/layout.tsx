@@ -3,9 +3,9 @@ import { Lato } from 'next/font/google';
 import './globals.scss';
 import NextAuthProvider from '@/components/nextauth-provider';
 
-const inter = Lato({
-  weight: ['400', '700'],
-  subsets: ['latin'],
+const lato = Lato({
+  weight: ['400', '900', '700'],
+  subsets: ['latin', 'latin-ext'],
 });
 
 export const metadata: Metadata = {
@@ -20,7 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body className={inter.className}>
+      <body className={lato.className}>
         <NextAuthProvider>{children}</NextAuthProvider>
       </body>
     </html>
