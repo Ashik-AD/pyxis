@@ -5,16 +5,17 @@
 
   & &_trigger {
     display: flex;
+    z-index: 0;
   }
   .dropdown__list {
-    position: absolute;
+    position: fixed;
     background: $gray;
     min-width: 96px;
     display: flex;
     flex-direction: column;
-    right: 0;
     padding: 4px 6px;
     border-radius: 12px;
+    z-index: 3;
 
     .dropdown__item {
       display: flex;
@@ -48,5 +49,13 @@
       opacity: 0;
       z-index: -1;
     }
+  }
+  & &__overlay {
+    position: fixed;
+    min-height: 100dvh;
+    min-width: 100dvw;
+    top: 0;
+    left: 0;
+    z-index: 4;
   }
 }

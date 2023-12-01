@@ -1,4 +1,4 @@
-import { SyntheticEvent, useCallback, useEffect, useState } from 'react';
+import { SyntheticEvent, useCallback, useState, useEffect } from 'react';
 
 export default function useToggle(open?: boolean) {
   const [show, setShow] = useState(open || false);
@@ -8,15 +8,11 @@ export default function useToggle(open?: boolean) {
       setShow((prevShow) => !prevShow);
       ev.stopPropagation();
       ev.preventDefault();
-      window.addEventListener('click', onToggle);
     },
     []
   );
 
   useEffect(() => {
-    if (!show) {
-      window.removeEventListener('click', onToggle);
-    }
     return () => {
       window.removeEventListener('click', onToggle);
     };
