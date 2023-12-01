@@ -7,6 +7,7 @@ export default function useToggle(open?: boolean) {
     (ev: SyntheticEvent<HTMLElement> | MouseEvent): void => {
       setShow((prevShow) => !prevShow);
       ev.stopPropagation();
+      ev.preventDefault();
       window.addEventListener('click', onToggle);
     },
     []
