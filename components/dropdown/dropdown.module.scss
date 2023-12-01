@@ -3,12 +3,16 @@
 .dropdown {
   position: relative;
 
+  & &_trigger {
+    display: flex;
+  }
   .dropdown__list {
     position: absolute;
     background: $gray;
     min-width: 96px;
     display: flex;
     flex-direction: column;
+    right: 0;
     padding: 4px 6px;
     border-radius: 12px;
 
@@ -31,6 +35,18 @@
         display: flex;
         font-size: 24px;
       }
+    }
+
+    &_show {
+      visibility: visible;
+      opacity: 1;
+      z-index: 999;
+    }
+
+    &_hide {
+      visibility: hidden;
+      opacity: 0;
+      z-index: -1;
     }
   }
 }

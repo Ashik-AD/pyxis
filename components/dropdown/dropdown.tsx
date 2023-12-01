@@ -13,11 +13,18 @@ export default function Dropdown<D>({
   renderItem: (item: D) => ReactNode;
 }) {
   const { show, onToggle } = useToggle();
+  const className = show
+    ? style.dropdown__list_show
+    : style.dropdown__list_hide;
   return (
     <div className={style.dropdown}>
-      <div onClick={onToggle}>{trigger}</div>
+      <div className={style.dropdown__trigger} onClick={onToggle}>
+        {trigger}
+      </div>
       {show && (
-        <div className={style.dropdown__list}>{list.map(renderItem)}</div>
+        <div className={`${style.dropdown__list} ${className}`}>
+          {list.map(renderItem)}
+        </div>
       )}
     </div>
   );
