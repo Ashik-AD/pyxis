@@ -3,9 +3,9 @@ import { useCallback, useEffect, useState } from 'react';
 export default function useToggle(open?: boolean) {
   const [show, setShow] = useState(open || false);
 
-  const onToggle = useCallback((event: MouseEvent) => {
+  const onToggle = useCallback((ev: MouseEvent): void => {
     setShow((prevShow) => !prevShow);
-    event.stopPropagation();
+    ev.stopPropagation();
     window.addEventListener('click', onToggle);
   }, []);
 
