@@ -16,6 +16,7 @@ export default function useToggle(open?: boolean) {
     return () => {
       window.removeEventListener('click', onToggle);
     };
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [onToggle]);
 
   return { show, onToggle } as const;
