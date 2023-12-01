@@ -16,7 +16,6 @@
     row-gap: 1rem;
     background: linear-gradient(180deg, #16181e3c 0%, #16181ec2 56.28%);
     padding: 21px 10px 10px 10px;
-    z-index: 999;
 
     .card__details {
       overflow: hidden;
@@ -80,5 +79,6 @@
 
   .card__poster {
     transition: transform 300ms;
+    z-index: -1;
   }
 }

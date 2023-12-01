@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import RatingStar from '../rating/rating-star';
-import IIcon from '../icon';
 
 import style from './regular-card.module.scss';
 import { tmdb_src } from '@/lib/resolve-image';
+import RegularCardDropdown from './regular-card-dropdown';
 
 export type RegularCardProps = {
   id: string;
@@ -32,16 +32,16 @@ export default function RegularCard({
               <span className={style.card__type}>{media_type}</span>
               <RatingStar rating={rating!!} />
             </div>
-            <button className={style.btn__action_add}>
-              <IIcon icon='majesticons:plus' />
-            </button>
+            <RegularCardDropdown id={id} />
           </div>
         </div>
         <Image
           src={`${tmdb_src}${poster}`}
           alt={title!!}
           layout='fill'
-          objectFit='cover'
+          fill={true}
+          // sizes=''
+          // objectFit='cover'
           className={style.card__poster}
         />
       </article>
