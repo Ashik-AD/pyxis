@@ -1,13 +1,16 @@
-import { useCallback, useEffect, useState } from 'react';
+import { SyntheticEvent, useCallback, useEffect, useState } from 'react';
 
 export default function useToggle(open?: boolean) {
   const [show, setShow] = useState(open || false);
 
-  const onToggle = useCallback((ev: MouseEvent): void => {
-    setShow((prevShow) => !prevShow);
-    ev.stopPropagation();
-    window.addEventListener('click', onToggle);
-  }, []);
+  const onToggle = useCallback(
+    (ev: SyntheticEvent<HTMLElement> | MouseEvent): void => {
+      setShow((prevShow) => !prevShow);
+      ev.stopPropagation();
+      window.addEventListener('click', onToggle);
+    },
+    []
+  );
 
   useEffect(() => {
     if (!show) {
