@@ -3,6 +3,7 @@
 .card {
   position: relative;
   width: 237px;
+  min-width: 230px;
   height: 280px;
   border-radius: 20px;
   overflow: hidden;
@@ -25,9 +26,10 @@
       padding-inline: 4px;
 
       .card__title {
+        max-width: 90%;
         color: $white;
-        font-size: 20px;
-        font-weight: 900;
+        font-size: 18px;
+        font-weight: 600;
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow-x: hidden;
@@ -46,8 +48,8 @@
         background: $low-op-btn;
         margin-bottom: 6px;
         padding: 6px;
-        font-size: 10px;
-        font-weight: 700;
+        font-size: 8px;
+        font-weight: 500;
         letter-spacing: 1.2px;
         border-radius: 3px;
         text-transform: uppercase;
@@ -59,8 +61,8 @@
         background: $low-op-btn;
         text-align: center;
         color: $white;
-        height: 48px;
-        width: 48px;
+        height: 36px;
+        width: 36px;
         line-height: 100%;
         font-size: 20px;
         border-color: transparent;

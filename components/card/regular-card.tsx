@@ -10,18 +10,19 @@ export type RegularCardProps = {
   id: string;
   poster: string;
   title: string;
-  media_type: 'movie' | 'tv-show';
+  mediaType: 'movie' | 'tv-show';
   rating: number;
 };
+
 export default function RegularCard({
   id,
   title,
-  media_type,
+  mediaType,
   rating,
   poster,
 }: RegularCardProps) {
   return (
-    <Link href={`/details/${media_type}/${id}`} key={id}>
+    <Link href={`/${mediaType}/${id}`} key={id}>
       <article key={id} className={style.card} title={title}>
         <div className={style.card__content}>
           <div className={style.card__details}>
@@ -29,7 +30,7 @@ export default function RegularCard({
           </div>
           <div className={style.card__action}>
             <div className={style.card__meta}>
-              <span className={style.card__type}>{media_type}</span>
+              <span className={style.card__type}>{mediaType}</span>
               <RatingStar rating={rating!!} />
             </div>
             <RegularCardDropdown id={id} />
@@ -41,7 +42,7 @@ export default function RegularCard({
           layout='fill'
           fill={true}
           // sizes=''
-          // objectFit='cover'
+          objectFit='cover'
           className={style.card__poster}
         />
       </article>
