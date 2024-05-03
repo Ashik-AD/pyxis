@@ -8,12 +8,24 @@ import { ax } from "../../config/default";
 import FullPage from "../mainSlide/FullPage";
 import FullPagePropsType from "../types/fullpage";
 const SkeletonFullSlideHeading = React.lazy(
-  () => import("../skeleton/SkeletonFullSlideHeading")
+  () => import("../skeleton/SkeletonFullSlideHeading"),
 );
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+
+var settings = {
+  dots: true,
+  autoplay: true,
+  autoplaySpeed: 5000,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  fade: true,
+  arrows: false,
+};
 
 const FullPageSlide: FC<PropTypes> = ({ url, store_key, media_type }) => {
   const { store, dispatch } = useContext(StoreContext);
@@ -34,17 +46,6 @@ const FullPageSlide: FC<PropTypes> = ({ url, store_key, media_type }) => {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  var settings = {
-    dots: true,
-    autoplay: true,
-    autoplaySpeed: 5000,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    fade: true,
-    arrows: false,
-  };
   if (!store[store_key]) {
     return <SkeletonFullSlideHeading />;
   }
@@ -75,7 +76,7 @@ const FullPageSlide: FC<PropTypes> = ({ url, store_key, media_type }) => {
 const getDetailUrl = (
   id: number | string,
   media_type: string,
-  title: string
+  title: string,
 ): string => {
   return `${media_type}/info/${id}-${title.replaceAll(" ", "-")}`;
 };
