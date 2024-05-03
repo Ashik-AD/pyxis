@@ -1,7 +1,12 @@
-// import dotenv from 'dotenv';
-// dotenv.config();
+import mongoose from "mongoose";
 
-// import postgres from 'pg';
-// const {Pool} = postgres;
-// const pool = new Pool({connectionString: process.env.DATABASE_URL});
-// export default pool;
+export function initDatabaseConnection() {
+  try {
+    mongoose.connect(process.env.DATABASE_URL);
+    console.log("Database connection established sucessfull");
+  } catch (e) {
+    console.log(e.message);
+  }
+}
+
+export { mongoose };
