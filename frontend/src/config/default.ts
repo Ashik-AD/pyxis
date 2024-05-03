@@ -1,8 +1,10 @@
-import axios from 'axios';
-import { storage } from '../utils/storage';
+import axios from "axios";
+import { storage } from "../utils/storage";
 export const AxiosConfig = () => {
-  axios.defaults.baseURL = import.meta.env.DEV ? import.meta.env.VITE_SERVER_DEVELOPMENT : import.meta.env.VITE_SERVER_PRODUCTION;
-  
+  axios.defaults.baseURL = import.meta.env.DEV
+    ? import.meta.env.VITE_SERVER_DEVELOPMENT_URL
+    : import.meta.env.VITE_SERVER_PRODUCTION_URL;
+
   axios.interceptors.request.use(
     (config) => {
       const localStore = storage.getItems();
@@ -13,7 +15,7 @@ export const AxiosConfig = () => {
     },
     (error) => {
       return Promise.reject(error);
-    }
+    },
   );
 };
 export const ax = axios;
