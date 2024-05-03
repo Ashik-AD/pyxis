@@ -3,7 +3,7 @@ export interface CardPropTypes {
   title: string;
   poster?: string;
   backdrop?: string;
-  vote_average?: number;
+  vote_average: number;
   url: string;
   containerStyle?: string;
   imageStyle?: string;

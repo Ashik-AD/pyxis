@@ -1,12 +1,12 @@
-import React from "react";
 import { CardPropTypes } from "../types/movie";
 import { Link } from "react-router-dom";
 import { noImage } from "../../utils/noImage";
 import { imageUrlWithSize } from "../../utils/imageUrl";
-import ProgressCircle from "../progress/ProgressCircle";
 import formatDate from "../../utils/formatDate";
 import BackgroundImage from "../img/BackgroundImage";
-const CardLarge: React.FC<CardPropTypes> = (props) => {
+import Rating from "../rating/rating";
+
+const CardLarge = (props: CardPropTypes) => {
   const { title, url, backdrop, release_date, vote_average } = props;
   return (
     <Link
@@ -31,16 +31,11 @@ const CardLarge: React.FC<CardPropTypes> = (props) => {
           }}
         >
           <div className="flex w-full flex-col sm:flex-row  sm:align-center">
-            <ProgressCircle
-              radius={40}
-              strokeWidth={15}
-              value={vote_average ? vote_average : 0}
-              labelStyles="text-xsm"
-            />
             <div className="flex flex-col sm:px-10 overflow-hidden">
               <span className="text-regular font-medium py-6 truncate sm:text-medium">
                 {title}
               </span>
+              <Rating rating={vote_average} />
               <span className="capitalize font-bold color-gray text-xsm sm:text-sm">
                 {formatDate(release_date)}
               </span>

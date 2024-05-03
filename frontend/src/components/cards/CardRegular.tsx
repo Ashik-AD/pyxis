@@ -1,12 +1,12 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { imageUrl } from "../../utils/imageUrl";
 import { noImage } from "../../utils/noImage";
 import { CardPropTypes } from "../types/movie";
-import ProgressCircle from "../progress/ProgressCircle";
 import formatDate from "../../utils/formatDate";
 import Image from "../img/Image";
-const CardRegular: React.FC<CardPropTypes> = (props) => {
+import Rating from '../rating/rating'
+
+const CardRegular = (props: CardPropTypes) => {
   const {
     title,
     poster,
@@ -36,12 +36,6 @@ const CardRegular: React.FC<CardPropTypes> = (props) => {
           className="h-full w-full rounded-lg"
         />
 
-        <ProgressCircle
-          radius={40}
-          strokeWidth={10}
-          value={vote_average ? vote_average : 0}
-          styles="absolute bottom-0 left-0"
-        />
         <span
           className="absolute left-0 w-full h-100 z-0"
           style={{
@@ -54,6 +48,7 @@ const CardRegular: React.FC<CardPropTypes> = (props) => {
         <span className="font-medium truncate sm:text-sm text-xsm">
           {title}
         </span>
+        <Rating rating={vote_average} />
         <span className="text-xsm font-semibold color-gray">
           {formatDate(release_date)}
         </span>
