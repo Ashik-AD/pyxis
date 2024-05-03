@@ -1,11 +1,9 @@
 import React from "react";
 import { imageUrlWithSize } from "../../utils/imageUrl";
 
-import { RiPlayFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import formatDate from "../../utils/formatDate";
 import FullPagePropsType from "../types/fullpage";
-import { ellipsisText } from "../../utils/ellipsisText";
 import BackgroundImage from "../img/BackgroundImage";
 
 const FullPageHeading: React.FC<FullPagePropsType> = (props) => {
@@ -14,7 +12,6 @@ const FullPageHeading: React.FC<FullPagePropsType> = (props) => {
     release_date,
     backdrop,
     detail_url,
-    trailer_url,
     media_type,
     desc,
   } = props;
