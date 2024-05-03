@@ -44,11 +44,11 @@ const FullPageHeading: React.FC<FullPagePropsType> = (props) => {
                 <div className="flex flex-col gap-20 lg:gap-40">
                   <span className="text-heading font-semibold">{title}</span>
                   <p className="font-medium text-sm" style={{ width: "90%" }}>
-                    {ellipsisText(desc, 270)}
+                    {desc}
                   </p>
-                  <div className="flex gap-40 align-bottom">
+                  <div className="flex flex-col gap-40">
                     <div className="flex gap-20">
-                      <span className="text-medium lg:text-medium font-bold">
+                      <span className="text-medium lg:text-medium font-medium">
                         {formatDate(new Date(release_date))}
                       </span>
                       <span
@@ -60,26 +60,14 @@ const FullPageHeading: React.FC<FullPagePropsType> = (props) => {
                     </div>
                     <Link
                       to={detail_url}
-                      className="color-white flex align-center text-regular font-semibold gap-10 px-16 py-10 rounded-xxlg"
-                      style={{ background: "#AB075A" }}
+                      className="color-white align-center text-regular font-semibold gap-10 px-20 py-14 border-1 rounded-xxlg"
+                      style={{width: 'fit-content'}}
                     >
-                      View Info
+                      View Details 
                     </Link>
                   </div>
                 </div>
               </div>
-              {/* Trailer button */}
-              <span className="flex content-center w-full py-20">
-                <Link
-                  to={trailer_url}
-                  className="flex align-center gap-20 lg:gap-40 bg-light border-1 border-gray color-white font-medium lg:text-lg px-20 py-10 lg:px-20  rounded-xxlg hover-bg-fade transition letter-space-1 uppercase"
-                >
-                  <span className="flex text-lg lg:text-xlg">
-                    <RiPlayFill style={{ color: "#AB075A" }} />
-                  </span>
-                  Trailer
-                </Link>
-              </span>
             </div>
           </div>
         </div>
