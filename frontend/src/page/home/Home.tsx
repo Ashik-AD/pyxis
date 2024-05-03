@@ -1,6 +1,5 @@
 import React, { FC, useEffect, useContext, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
-import SideNav from "../../components/nav/SideNav";
 const AllMovieTv = React.lazy(() => import("../all/AllMovieTv"));
 const Movie = React.lazy(() => import("../details/Movie"));
 const Person = React.lazy(() => import("../details/Person"));
@@ -9,10 +8,10 @@ import Index from "./pages/Index";
 const Search = React.lazy(() => import("../search/Search"));
 const DiscoverByGenre = React.lazy(() => import("../discover/DiscoverByGenre"));
 const CollectionInfo = React.lazy(
-  () => import("../../components/collection/CollectionInfo")
+  () => import("../../components/collection/CollectionInfo"),
 );
 const Collections = React.lazy(
-  () => import("../../components/collection/Collections")
+  () => import("../../components/collection/Collections"),
 );
 import { StoreContext } from "../../store/Store";
 import { ax } from "../../config/default";
@@ -20,9 +19,10 @@ const Like = React.lazy(() => import("../liked/Like"));
 const WatchList = React.lazy(() => import("../watchList/WatchList"));
 const Profile = React.lazy(() => import("../profile/Profile"));
 import isConnectionAvailable from "../../utils/isConnAvailable";
-import MobileNav from "../../components/nav/MobileNav";
+
 const Home: FC = () => {
   const { store, dispatch } = useContext(StoreContext);
+
   useEffect(() => {
     let initialFetch = null;
     if (store.user) {
@@ -36,14 +36,10 @@ const Home: FC = () => {
       initialFetch = null;
     };
   }, [store.user, dispatch]);
+
   return (
     <section className="home flex">
-      <SideNav />
-      <div className="sm:hidden">
-        <MobileNav />
-      </div>
-      {store.user && (
-        <section className="content_container h-screen overflow-y-scroll w-full">
+        <div className="content_container h-screen overflow-y-scroll w-full">
           {isConnectionAvailable() && (
             <Routes>
               <Route path="/*" element={<Index />} />
@@ -137,8 +133,7 @@ const Home: FC = () => {
               />
             </Routes>
           )}
-        </section>
-      )}
+        </div>
     </section>
   );
 };
