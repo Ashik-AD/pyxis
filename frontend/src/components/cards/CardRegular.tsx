@@ -4,7 +4,7 @@ import { noImage } from "../../utils/noImage";
 import { CardPropTypes } from "../types/movie";
 import formatDate from "../../utils/formatDate";
 import Image from "../img/Image";
-import Rating from '../rating/rating'
+import Rating from "../rating/rating";
 
 const CardRegular = (props: CardPropTypes) => {
   const {
@@ -26,14 +26,14 @@ const CardRegular = (props: CardPropTypes) => {
       title={title}
     >
       <div
-        className={`relative poster_wrapper w-full rounded-lg overflow-hidden ${
+        className={`relative poster_wrapper w-full  overflow-hidden ${
           imageStyle && imageStyle
         }`}
       >
         <Image
           src={poster ? imageUrl(poster) : noImage.default}
           alt={title}
-          className="h-full w-full rounded-lg"
+          className="h-full w-full"
         />
 
         <span
