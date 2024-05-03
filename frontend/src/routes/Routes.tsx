@@ -1,7 +1,6 @@
 import React, { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import NotFound from "../page/404/NotFound";
-import Auth from "../auth/Auth";
 import Store from "../store/Store";
 import Spinner from "../components/loading/Spinner";
 const Home = React.lazy(() => import("../page/home/Home"));
@@ -42,11 +41,9 @@ const AppRoutes: React.FC = () => {
         path="/*"
         element={
           <Store>
-            <Auth>
-              <Suspense>
-                <Home />
-              </Suspense>
-            </Auth>
+            <Suspense>
+              <Home />
+            </Suspense>
           </Store>
         }
       />
