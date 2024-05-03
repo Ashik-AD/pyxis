@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 app.use(express.static("public"));
 route(app);
 const server = http.createServer(app);
-const PORT = process.env.PORT || 9000;
+const PORT = process.env.PORT || 6969;
 server.listen(PORT, console.log(`Server is running on Port: ${PORT}`));
 
 try {
