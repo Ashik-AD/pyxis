@@ -1,0 +1,24 @@
+{
+  "name": "pyxis",
+  "version": "1.0.0",
+  "description": "monorepo for pyxis",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "cd server && npm run dev",
+    "client": "cd frontend && npm run dev",
+    "start": "concurrently \" npm run server\" \"npm run client\" "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ashik-ad/pyxis.git"
+  },
+  "author": "lazyduck",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ashik-ad/pyxis/issues"
+  },
+  "homepage": "https://github.com/ashik-ad/pyxis#readme",
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
