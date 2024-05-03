@@ -7,7 +7,7 @@ import FullPageHeading from "../heading/FullpageHeading";
 const FullPage: React.FC<FullPagePropsType> = (props) => {
   const { id, detail_url, media_type } = props;
   return (
-    <div className="relative flex bg-cover bg-center w-full h-screen sm:max-h-600">
+    <div className="relative flex bg-cover bg-center w-screen h-screen">
       <div className="hidden sm:visible w-full">
         <FullPageHeading {...props} />
       </div>
