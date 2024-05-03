@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import formatDate from "../../utils/formatDate";
 import FullPagePropsType from "../types/fullpage";
 import BackgroundImage from "../img/BackgroundImage";
+import Rating from "../rating/rating";
 
 const FullPageHeading: React.FC<FullPagePropsType> = (props) => {
   const {
@@ -14,6 +15,7 @@ const FullPageHeading: React.FC<FullPagePropsType> = (props) => {
     detail_url,
     media_type,
     desc,
+    vote_average,
   } = props;
   return (
     <div className="relative flex bg-cover  w-full h-full">
@@ -40,6 +42,7 @@ const FullPageHeading: React.FC<FullPagePropsType> = (props) => {
               >
                 <div className="flex flex-col gap-20 lg:gap-40">
                   <span className="text-heading font-semibold">{title}</span>
+                  <Rating rating={vote_average} />
                   <p className="font-medium text-sm" style={{ width: "90%" }}>
                     {desc}
                   </p>
@@ -57,7 +60,7 @@ const FullPageHeading: React.FC<FullPagePropsType> = (props) => {
                     </div>
                     <Link
                       to={detail_url}
-                      className="color-white align-center text-regular font-semibold gap-10 px-20 py-14 border-1 rounded-xxlg"
+                      className="color-white align-center text-regular font-semibold gap-10 px-50 py-14 border-1 rounded-xxlg"
                       style={{width: 'fit-content'}}
                     >
                       View Details 
