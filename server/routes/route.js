@@ -105,51 +105,49 @@ const routes = (app) => {
   app.get('/country/all', allCountry);
   app.get('/country/search/:c_name', searchCountry);
 
-  app.get('/latest-movie', authenticate, latestMovie);
-  app.get('/movie/popular', authenticate, popularMovies);
-  app.get('/movie/top/:page?', authenticate, topRatedMovie);
-  app.get('/movie/now-playing/:page?', authenticate, playingMovie);
-  app.get('/movie/upcoming/:page?', authenticate, upcomingMovie);
-  app.get('/movie/similar/:movie_id', authenticate, similarMovie);
-  app.get('/movie/credit/:movie_id/:credit_type?', authenticate, movieCredit);
-  app.get('/movie/:movie_id/images', authenticate, movieImages);
-  app.get('/movie/recommended/:page?', authenticate, recommendedMovie);
-  app.get('/movie/:movie_id/details', authenticate, movieDetails);
-  app.get('/movie/:movie_id/video', authenticate, movieVideo);
-  app.get('/movie/:movie_id/lists', authenticate, movieLists);
-  app.get('/movie/:movie_id/external-ids', authenticate, movieExternalIds);
-  app.get('/movie/:movie_id/keywords', authenticate, movieKeywords);
+  app.get('/latest-movie', latestMovie);
+  app.get('/movie/popular', popularMovies);
+  app.get('/movie/top/:page?', topRatedMovie);
+  app.get('/movie/now-playing/:page?', playingMovie);
+  app.get('/movie/upcoming/:page?', upcomingMovie);
+  app.get('/movie/similar/:movie_id', similarMovie);
+  app.get('/movie/credit/:movie_id/:credit_type?', movieCredit);
+  app.get('/movie/:movie_id/images', movieImages);
+  app.get('/movie/recommended/:page?', recommendedMovie);
+  app.get('/movie/:movie_id/details', movieDetails);
+  app.get('/movie/:movie_id/video', movieVideo);
+  app.get('/movie/:movie_id/lists', movieLists);
+  app.get('/movie/:movie_id/external-ids', movieExternalIds);
+  app.get('/movie/:movie_id/keywords', movieKeywords);
 
-  app.get('/tv/:tv_id/details', authenticate, tvDetails);
-  app.get('/tv/credit/:tv_id/:credit_type?', authenticate, tvCredit);
-  app.get('/tv/:tv_id/images', authenticate, tvImages);
-  app.get('/tv/:tv_id/recommended', authenticate, recommendedTv);
-  app.get('/tv/similar/:tv_id/:page?', authenticate, similarTv);
-  app.get('/tv/:tv_id/video', authenticate, tvVideos);
-  app.get('/tv/top/:page?', authenticate, topRatedTv);
-  app.get('/tv/popular/:page?', authenticate, popularTv);
-  app.get('/tv/on-air/:page?', authenticate, tvOnTheAir);
-  app.get('/tv/:tv_id/keywords/:page?', authenticate, tvKeywords);
-  app.get('/tv/:tv_id/external-ids', authenticate, tvKeywords);
-  app.get('/tv/season/:tv_id/:season_id', authenticate, tvSeasons);
+  app.get('/tv/:tv_id/details', tvDetails);
+  app.get('/tv/credit/:tv_id/:credit_type?', tvCredit);
+  app.get('/tv/:tv_id/images', tvImages);
+  app.get('/tv/:tv_id/recommended', recommendedTv);
+  app.get('/tv/similar/:tv_id/:page?', similarTv);
+  app.get('/tv/:tv_id/video', tvVideos);
+  app.get('/tv/top/:page?', topRatedTv);
+  app.get('/tv/popular/:page?', popularTv);
+  app.get('/tv/on-air/:page?', tvOnTheAir);
+  app.get('/tv/:tv_id/keywords/:page?', tvKeywords);
+  app.get('/tv/:tv_id/external-ids', tvKeywords);
+  app.get('/tv/season/:tv_id/:season_id', tvSeasons);
 
-  app.get('/single-trailer/:type/:id', authenticate, singleTrailer);
-  app.get('/tv/:tv_id/:se_num/:ep_num/cast', authenticate, episodeCast);
+  app.get('/single-trailer/:type/:id', singleTrailer);
+  app.get('/tv/:tv_id/:se_num/:ep_num/cast', episodeCast);
 
-  app.get('/person/:person_id', authenticate, personDetails);
+  app.get('/person/:person_id', personDetails);
   app.get(
     '/person/credits/:person_id/:type',
-    authenticate,
     personCombineCredits
   );
 
-  app.get('/discover/genre/', authenticate, movieAndTvGenres);
-  app.get('/search/:key/', authenticate, searchAll);
-  app.get('/search/people/:key/', authenticate, searchForPeople);
-  app.get('/search/collection/:key/', authenticate, searchForCollection);
+  app.get('/discover/genre/', movieAndTvGenres);
+  app.get('/search/:key/', searchAll);
+  app.get('/search/people/:key/', searchForPeople);
+  app.get('/search/collection/:key/', searchForCollection);
   app.get(
     '/discover/:type/by_genre/:genre_id/:page?',
-    authenticate,
     discoverMovieTvByGenres
   );
 
