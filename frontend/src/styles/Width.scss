@@ -1,0 +1,341 @@
+@import 'variables';
+
+@mixin w-screen {
+  min-width: 100%;
+}
+
+
+@mixin w-full {
+  width: 100%;
+}
+
+@mixin w-25 {
+  width: 25%;
+}
+
+@mixin w-33 {
+  width: 33.33%;
+}
+
+@mixin w-40 {
+  width: 40%;
+}
+
+@mixin w-50 {
+  width: 50%;
+}
+
+@mixin w-60 {
+  width: 60%;
+}
+
+@mixin w-75 {
+  width: 75%;
+}
+
+@mixin w-50px {
+  width: 50px;
+}
+
+@mixin w-60px {
+  width: 60px;
+}
+
+@mixin w-70px {
+  width: 70px;
+}
+
+@mixin w-100px {
+  width: 100px;
+}
+
+@mixin w-150 {
+  width: 150px;
+}
+
+@mixin w-200 {
+  width: 200px;
+}
+
+@mixin w-250 {
+  width: 250px;
+}
+
+@mixin w-300 {
+  width: 300px;
+}
+
+@mixin w-400 {
+  width: 400px;
+}
+
+.w-screen {
+  @include w-screen();
+}
+
+.max-w-1250 {
+  max-width: 1250px;
+  margin: 0 auto;
+}
+
+.w-full {
+  @include w-full();
+}
+
+.w-25 {
+  @include w-25();
+}
+
+.w-33 {
+  @include w-33();
+}
+
+.w-40 {
+  @include w-40();
+}
+
+.w-50 {
+  @include w-50();
+}
+
+.w-60 {
+  @include w-60();
+}
+
+.w-75 {
+  @include w-75();
+}
+
+.w-50px {
+  @include w-50px();
+}
+
+.w-60px {
+  @include w-60px();
+}
+
+.w-70px {
+  @include w-70px();
+}
+
+.w-100 {
+  @include w-100px();
+}
+
+.w-150 {
+  @include w-150();
+}
+
+.w-200 {
+  @include w-200();
+}
+
+.w-250 {
+  @include w-250();
+}
+
+.w-300 {
+  @include w-300();
+}
+
+.w-400 {
+  @include w-400();
+}
+
+@media (min-width: $mobile-width) {
+  .sm\:w-screen {
+    @include w-screen();
+  }
+
+  .sm\:w-full {
+    @include w-full();
+  }
+
+  .sm\:w-25 {
+    @include w-25();
+  }
+
+  .sm\:w-33 {
+    @include w-33();
+  }
+
+  .sm\:w-40 {
+    @include w-40();
+  }
+
+  .sm\:w-50 {
+    @include w-50();
+  }
+
+  .sm\:w-60 {
+    @include w-60();
+  }
+
+  .sm\:w-75 {
+    @include w-75();
+  }
+
+  .sm\:w-100 {
+    @include w-100px();
+  }
+
+  .sm\:w-150 {
+    @include w-150();
+  }
+
+  .sm\:w-200 {
+    @include w-200();
+  }
+
+  .sm\:w-250 {
+    @include w-250();
+  }
+
+  .sm\:w-300 {
+    @include w-300();
+  }
+
+  .sm\:w-400 {
+    @include w-400();
+  }
+
+  .sm\:w-auto {
+    width: auto !important;
+  }
+}
+
+@media (min-width: $tablet-width) {
+  .md\:w-screen {
+    @include w-screen();
+  }
+
+  .md\:w-full {
+    @include w-full();
+  }
+
+  .md\:w-25 {
+    @include w-25();
+  }
+
+  .md\:w-33 {
+    @include w-33();
+  }
+
+  .sm\:w-40 {
+    @include w-40();
+  }
+
+  .md\:w-50 {
+    @include w-50();
+  }
+
+  .sm\:w-60 {
+    @include w-60();
+  }
+
+  .md\:w-75 {
+    @include w-75();
+  }
+
+  .md\:w-200 {
+    @include w-200();
+  }
+
+  .md\:w-300 {
+    @include w-300();
+  }
+
+  // Width in pixel
+  .md\:w-40px {
+    width: 40px;
+  }
+}
+
+@media (min-width: $desktop-width) {
+  .lg\:w-screen {
+    @include w-screen();
+  }
+
+  .lg\:w-full {
+    @include w-full();
+  }
+
+  .lg\:w-25 {
+    @include w-25();
+  }
+
+  .lg\:w-33 {
+    @include w-33();
+  }
+
+  .lg\:w-40 {
+    @include w-40();
+  }
+
+  .lg\:w-50 {
+    @include w-50();
+  }
+
+  .lg\:w-60 {
+    @include w-60();
+  }
+
+  .lg\:w-75 {
+    @include w-75();
+  }
+
+  .lg\:w-200 {
+    @include w-200();
+  }
+
+  .lg\:w-300 {
+    @include w-300();
+  }
+
+  // width in pixesl
+  .lg\:w-70px {
+    width: 70px;
+  }
+}
+
+@media (min-width: $large-desktop-width) {
+  .xl\:w-screen {
+    @include w-screen();
+  }
+
+  .xl\:w-full {
+    @include w-full();
+  }
+
+  .xl\:w-25 {
+    @include w-25();
+  }
+
+  .xl\:w-33 {
+    @include w-33();
+  }
+
+  .xl\:w-40 {
+    @include w-40();
+  }
+
+  .xl\:w-50 {
+    @include w-50();
+  }
+
+  .xl\:w-60 {
+    @include w-60();
+  }
+
+  .xl\:w-75 {
+    @include w-75();
+  }
+
+  .xl\:w-200 {
+    @include w-200();
+  }
+
+  .xl\:w-300 {
+    @include w-300();
+  }
+}

@@ -1,0 +1,174 @@
+@import './variables';
+
+@mixin flex {
+    display: flex;
+}
+
+@mixin flex-row {
+    flex-direction: row;
+}
+
+@mixin flex-col {
+    flex-direction: column;
+}
+
+@mixin wrap {
+    flex-wrap: wrap;
+}
+
+@mixin nowrap {
+    flex-wrap: nowrap;
+}
+
+@mixin content-center {
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+}
+
+@mixin content-right {
+    justify-content: right;
+    align-items: flex-end;
+    justify-items: right;
+}
+
+@mixin item-center {
+    align-items: center;
+}
+
+@mixin items-center {
+    align-items: center;
+}
+
+@mixin content-bottom {
+    align-items: flex-end;
+}
+
+@mixin align-center {
+    align-items: center;
+}
+
+@mixin align-bottom {
+    align-items: flex-end;
+}
+
+@mixin space-between {
+    justify-content: space-between;
+}
+
+@mixin space-around {
+    justify-content: space-around;
+}
+
+@mixin space-evenly {
+    justify-content: space-evenly;
+}
+
+
+.flex {
+    @include flex();
+}
+
+.flex-row {
+    @include flex-row();
+}
+
+.flex-col {
+    @include flex-col();
+}
+
+.nowrap {
+    @include nowrap();
+}
+
+.wrap {
+    @include wrap();
+}
+
+.content-center {
+    @include content-center();
+}
+
+.content-right {
+    @include content-right();
+}
+
+.item-center {
+    @include item-center();
+}
+
+.items-center {
+    @include items-center();
+}
+
+.content-bottom {
+    @include content-bottom();
+}
+
+.align-center {
+    @include align-center();
+}
+
+.align-bottom {
+    @include align-bottom();
+}
+
+.space-between {
+    @include space-between();
+}
+
+.space-around {
+    @include space-around();
+}
+
+.space-evenly {
+    @include space-evenly();
+}
+
+@media (min-width: 640px) {
+    .sm\:flex {
+        @include flex();
+    }
+
+    .sm\:flex-col {
+        @include flex-col();
+    }
+
+    .sm\:flex-row {
+        @include flex-row();
+    }
+
+    .sm\:content-normal {
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+
+    .sm\:content-center {
+        @include content-center();
+    }
+
+    .sm\:align-bottom {
+        @include align-bottom();
+    }
+}
+
+@media (min-width: $tablet-width) {
+    .md\:flex-col {
+        @include flex-col();
+    }
+
+    .md\:nowrap {
+        @include nowrap();
+    }
+}
+
+@media (min-width: $desktop-width) {
+    .lg\:flex-row {
+        @include flex-row();
+    }
+
+    .lg\:wrap {
+        @include wrap();
+    }
+
+}

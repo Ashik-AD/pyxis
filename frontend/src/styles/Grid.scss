@@ -1,0 +1,183 @@
+@import 'variables';
+
+.grid {
+  display: grid;
+}
+
+.col-1 {
+  grid-template-columns: 1fr;
+}
+
+.col-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.col-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.col-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.col-5 {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.col-6 {
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.col-7 {
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.col-8 {
+  grid-template-columns: repeat(8, 1fr);
+}
+
+.span-2 {
+  grid-column: span 2;
+}
+
+.span-3 {
+  grid-column: span 3;
+}
+
+.span-4 {
+  grid-column: span 4;
+}
+
+.span-5 {
+  grid-column: span 5;
+}
+
+@media (min-width: $mobile-width) {
+  .sm\:grid {
+    display: grid;
+  }
+
+  .sm\:col-1 {
+    grid-template-columns: 1fr;
+  }
+
+  .sm\:col-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sm\:col-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .sm\:col-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .sm\:col-5 {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .sm\:col-6 {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .sm\:col-7 {
+    grid-template-columns: repeat(7, 1fr);
+  }
+
+  .sm\:col-8 {
+    grid-template-columns: repeat(8, 1fr);
+  }
+
+  .sm\:span-3 {
+    grid-column: span 3;
+  }
+}
+
+@media (min-width: $tablet-width) {
+  .md\:grid {
+    display: grid;
+  }
+
+  .md\:col-1 {
+    grid-template-columns: 1fr;
+  }
+
+  .md\:col-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .md\:col-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .md\:col-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .md\:col-5 {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .md\:col-6 {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .md\:col-7 {
+    grid-template-columns: repeat(7, 1fr);
+  }
+
+  .md\:col-8 {
+    grid-template-columns: repeat(8, 1fr);
+  }
+
+  .md\:span-3 {
+    grid-column: span 3;
+  }
+
+  .md\:span-4 {
+    grid-column: span 4;
+  }
+}
+
+@media (min-width: $desktop-width) {
+  .lg\:grid {
+    display: grid;
+  }
+
+  .lg\:col-1 {
+    grid-template-columns: 1fr;
+  }
+
+  .lg\:col-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .lg\:col-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .lg\:col-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .lg\:col-5 {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .lg\:col-6 {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .lg\:col-7 {
+    grid-template-columns: repeat(7, 1fr);
+  }
+
+  .lg\:col-8 {
+    grid-template-columns: repeat(8, 1fr);
+  }
+
+  .lg\:span-3 {
+    grid-column: span 3;
+  }
+}

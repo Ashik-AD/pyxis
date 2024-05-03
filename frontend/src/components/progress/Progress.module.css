@@ -1,0 +1,17 @@
+.Progress_container {
+  height: 40px;
+  width: 40px;
+  overflow: initial;
+  transform: rotate(-90deg);
+  z-index: 0;
+}
+.Progress_one {
+  fill: #000;
+  stroke: #e8373785;
+}
+.Progress_two {
+  fill: transparent;
+  stroke-dasharray: 250;
+  stroke-linecap: round;
+    transition: stroke-dasharray 2s linear;
+}

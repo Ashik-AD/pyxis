@@ -1,0 +1,221 @@
+@import './variables';
+
+@mixin text-msm {
+    font-size: 10px;
+}
+
+@mixin text-xsm {
+    font-size: 12px;
+}
+
+@mixin text-sm {
+    font-size: 14px;
+}
+
+@mixin text-regular {
+    font-size: 15px;
+}
+
+@mixin text-semi {
+    font-size: 16.5px;
+}
+
+@mixin text-medium {
+    font-size: 18px;
+}
+
+@mixin text-lg {
+    font-size: 22px;
+}
+
+@mixin text-xlg {
+    font-size: 26px;
+}
+
+@mixin text-heading {
+    font-size: 40px;
+}
+
+@mixin text-heading-lg {
+    font-size: 60px;
+}
+
+@mixin text-center {
+    text-align: center;
+}
+
+@mixin text-right {
+    text-align: right;
+}
+
+@mixin text-left {
+    text-align: left;
+}
+
+@mixin uppercase {
+    text-transform: uppercase;
+}
+
+@mixin capitalize {
+    text-transform: capitalize;
+}
+
+@mixin font-medium {
+    font-weight: 500;
+}
+
+@mixin font-semibold {
+    font-weight: 600;
+}
+
+@mixin font-bold {
+    font-weight: 700;
+}
+
+@mixin line-space-2 {
+    line-height: 2;
+}
+
+
+
+.text-msm {
+    @include text-msm();
+}
+
+.text-xsm {
+    @include text-xsm();
+}
+
+.text-sm {
+    @include text-sm();
+}
+
+.text-regular {
+    @include text-regular();
+}
+
+.text-semi {
+    @include text-semi();
+}
+
+.text-medium {
+    @include text-medium();
+}
+
+.text-lg {
+    @include text-lg();
+}
+
+.text-xlg {
+    @include text-xlg();
+}
+
+.text-heading {
+    @include text-heading();
+}
+
+.text-heading-lg {
+    @include text-heading-lg();
+}
+
+.text-center {
+    @include text-center();
+}
+
+.text-right {
+    @include text-right();
+}
+
+.text-left {
+    @include text-left();
+}
+
+.uppercase {
+    @include uppercase();
+}
+
+.capitalize {
+    @include capitalize();
+}
+
+.font-medium {
+    @include font-medium();
+}
+
+.font-semibold {
+    @include font-semibold();
+}
+
+.font-bold {
+    @include font-bold();
+}
+
+.line-space-2 {
+    @include line-space-2();
+}
+
+.letter-space-1 {
+    letter-spacing: 1px;
+}
+
+.truncate {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+
+@media (min-width: 640px) {
+
+    .sm\:text-sm {
+        @include text-sm();
+    }
+
+    .sm\:text-regular {
+        @include text-regular();
+    }
+
+    .sm\:text-medium {
+        @include text-medium();
+    }
+
+    .sm\:text-lg {
+        @include text-lg();
+    }
+
+    .sm\:text-heading-lg {
+        @include text-heading-lg();
+    }
+
+    .sm\:text-heading {
+        @include text-heading();
+    }
+
+    .sm\:text-center {
+        @include text-center();
+    }
+
+    .sm\:text-left {
+        @include text-left();
+    }
+
+    .sm\:text-right {
+        @include text-right();
+    }
+
+    .sm\:font-medium {
+        @include font-medium();
+    }
+}
+
+@media (min-width: $desktop-width) {
+
+    .lg\:text-heading-lg {
+        @include text-heading-lg();
+    }
+
+    .lg\:text-lg {
+        @include text-lg();
+    }
+
+}

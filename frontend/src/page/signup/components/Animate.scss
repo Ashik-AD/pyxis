@@ -1,0 +1,87 @@
+@-webkit-keyframes loading {
+  to {
+    transform: rotate(0deg);
+  }
+  from {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loading {
+  to {
+    transform: rotate(0deg);
+  }
+  from {
+    transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes success {
+  from {
+    transform: scale(0.4);
+  }
+  from {
+    transform: scale(1);
+  }
+}
+@keyframes success {
+  from {
+    transform: scale(0.4);
+    opacity: 0.5;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+#check-mark {
+  -webkit-animation-name: checkUp;
+  animation-name: checkUp;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-iteration-count: 1;
+  animation-iteration-count: 1;
+}
+
+@-webkit-keyframes checkUp {
+  0% {
+    margin-left: -10px;
+  }
+}
+
+@keyframes checkUp {
+  0% {
+    opacity: 0;
+    transform: scaleX(0.2);
+  }
+  50% {
+    opacity: 0;
+    transform: scaleY(0.5);
+  }
+}
+
+.fade-up {
+  -webkit-animation: fade-up 0.7s linear;
+  animation: fade-up 0.7s linear;
+}
+
+@-webkit-keyframes fade-up {
+  from {
+    opacity: 0;
+    margin-top: 100px;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    margin-top: 150px;
+  }
+  to {
+    opacity: 1;
+  }
+}

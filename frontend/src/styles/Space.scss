@@ -1,0 +1,59 @@
+@import "./variables";
+
+.gap-5 {
+    gap: 5px;
+}
+
+.gap-10 {
+    gap: 10px;
+}
+
+.gap-20 {
+    gap: 20px;
+}
+
+.gap-30 {
+    gap: 30px;
+}
+
+.gap-40 {
+    gap: 40px;
+}
+
+.col-gap-50 {
+    -moz-column-gap: 50px;
+    column-gap: 50px;
+}
+
+.row-gap-10 {
+    row-gap: 10px;
+}
+
+.row-gap-20 {
+    row-gap: 20px;
+}
+
+.space-y-10>* {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.space-y-15>* {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.space-y-20>* {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+@media (min-width: $mobile-width) {
+    .sm\:gap-20 {
+        gap: 20px;
+    }
+
+    .sm\:gap-10 {
+        gap: 10px;
+    }
+}

@@ -1,0 +1,12 @@
+.Container_Bg {
+  background: linear-gradient(322deg, rgba(21, 87, 153, 0.2392156863), rgba(21, 153, 87, 0.2784313725));
+}
+
+.GredientText {
+  /* Created with https://www.css-gradient.com */
+  background: #5DF7DE;
+  background: linear-gradient(to bottom right, #5DF7DE, #C3F27D);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}/*# sourceMappingURL=GredientText.module.css.map */

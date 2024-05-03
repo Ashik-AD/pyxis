@@ -1,0 +1,58 @@
+.animate-fade {
+  -webkit-animation-name: float;
+          animation-name: float;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-delay: 0;
+          animation-delay: 0;
+  position: relative;
+}
+
+@-webkit-keyframes float {
+  0% {
+    opacity: 0;
+    top: 50px;
+  }
+  100% {
+    top: 0px;
+  }
+}
+
+@keyframes float {
+  0% {
+    opacity: 0;
+    top: 50px;
+  }
+  100% {
+    top: 0px;
+  }
+}
+.animate-scaleup {
+  -webkit-animation-name: scaleUp;
+          animation-name: scaleUp;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-delay: 0;
+          animation-delay: 0;
+  position: relative;
+}
+
+@-webkit-keyframes scaleUp {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes scaleUp {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}/*# sourceMappingURL=Doddle.css.map */

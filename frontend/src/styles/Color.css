@@ -1,0 +1,100 @@
+.bg-black {
+  background: #000;
+}
+
+.bg-transparent {
+  background: transparent;
+}
+
+.bg-primary {
+  background: #0e0e0e;
+}
+
+.bg-secondary {
+  background: #131313;
+}
+
+.bg-dark {
+  background: #2d2d2d;
+}
+
+.bg-info {
+  background: #019ac0;
+}
+
+.bg-success {
+  background: #09c83f;
+}
+
+.bg-warn {
+  background: #f3ac22;
+}
+
+.bg-pink-light {
+  background: #e47fe7;
+}
+
+.bg-white {
+  background: #cacaca;
+}
+
+.bg-fade {
+  background: rgba(218, 218, 218, 0.5137254902);
+}
+
+.bg-purple {
+  background: #9c27b0;
+}
+
+.bg-dark-fade {
+  background: rgba(23, 36, 25, 0.4941176471);
+}
+
+.color-light-gray {
+  color: rgba(199, 199, 199, 0.6784313725);
+}
+
+.color-white {
+  color: #cacaca;
+}
+
+.color-gray {
+  color: #8b8b8b;
+}
+
+.color-fade {
+  color: rgba(218, 218, 218, 0.5137254902);
+}
+
+.color-teal {
+  color: #49c297;
+}
+
+.color-info {
+  color: #019ac0;
+}
+
+.color-success {
+  color: #09c83f;
+}
+
+.color-warn {
+  color: #f3ac22;
+}
+
+.color-red {
+  color: #fd7d85;
+}
+
+.color-purple {
+  color: #9c27b0;
+}
+
+@media (min-width: 640px) {
+  .sm\:bg-primary {
+    background: #0e0e0e;
+  }
+  .sm\:bg-secondary {
+    background: #131313;
+  }
+}/*# sourceMappingURL=Color.css.map */

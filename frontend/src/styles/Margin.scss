@@ -1,0 +1,364 @@
+@import 'variables';
+$m-6: 6px;
+$m-10: 10px;
+$m-12: 12px;
+$m-16: 16px;
+$m-20: 20px;
+$m-50: 50px;
+$m-100: 100px;
+
+@mixin m-6 {
+  margin: $m-6;
+}
+
+@mixin m-10 {
+  margin: $m-10;
+}
+
+@mixin m-12 {
+  margin: $m-12;
+}
+
+@mixin m-16 {
+  margin: $m-16;
+}
+
+@mixin m-20 {
+  margin: $m-20;
+}
+
+@mixin mx-6 {
+  margin-right: $m-6;
+  margin-left: $m-6;
+}
+
+@mixin mx-10 {
+  margin-right: $m-10;
+  margin-left: $m-10;
+}
+
+@mixin mx-16 {
+  margin-right: $m-16;
+  margin-left: $m-16;
+}
+
+@mixin mx-20 {
+  margin-right: $m-20;
+  margin-left: $m-20;
+}
+
+@mixin mx-50 {
+  margin-right: $m-50;
+  margin-left: $m-50;
+}
+
+@mixin mx-100 {
+  margin-right: $m-100;
+  margin-left: $m-100;
+}
+
+@mixin my-6 {
+  margin-top: $m-6;
+  margin-bottom: $m-6;
+}
+
+@mixin my-10 {
+  margin-top: $m-10;
+  margin-bottom: $m-10;
+}
+
+@mixin my-14 {
+  margin-top: $m-16;
+  margin-bottom: $m-16;
+}
+
+@mixin my-16 {
+  margin-top: $m-16;
+  margin-bottom: $m-16;
+}
+
+@mixin my-20 {
+  margin-top: $m-20;
+  margin-bottom: $m-20;
+}
+
+@mixin my-50 {
+  margin-top: $m-50;
+  margin-bottom: $m-50;
+}
+
+@mixin mb-50 {
+  margin-bottom: $m-50;
+}
+
+@mixin my-100 {
+  margin-top: $m-100;
+  margin-bottom: $m-100;
+}
+
+.m-6 {
+  @include m-6();
+}
+
+.m-10 {
+  @include m-10();
+}
+
+.m-12 {
+  @include m-12();
+}
+
+.m-16 {
+  @include m-16();
+}
+
+.m-20 {
+  @include m-20();
+}
+
+.mx-6 {
+  @include mx-6();
+}
+
+.mx-10 {
+  @include mx-10();
+}
+
+.mx-20 {
+  @include mx-20();
+}
+
+.mx-50 {
+  @include mx-50();
+}
+
+.mx-100 {
+  @include mx-100();
+}
+
+.my-6 {
+  @include my-6();
+}
+
+.my-10 {
+  @include my-10();
+}
+
+.my-14 {
+  @include my-14();
+}
+
+.my-20 {
+  @include my-20();
+}
+
+.my-50 {
+  @include my-50();
+}
+
+.my-100 {
+  @include my-100();
+}
+
+.mb-50 {
+  @include mb-50();
+}
+
+@media (min-width: $mobile-sm-width) {
+  .xsm\:mx-6 {
+    @include mx-6();
+  }
+
+  .xsm\:mx-10 {
+    @include mx-10();
+  }
+}
+
+@media (min-width: $mobile-m-width) {
+  .smm\:mx-6 {
+    @include mx-6();
+  }
+
+  .smm\:mx-10 {
+    @include mx-10();
+  }
+}
+
+@media (min-width: $mobile-width) {
+  .sm\:my-0 {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .sm\:m-6 {
+    @include m-6();
+  }
+
+  .sm\:m-10 {
+    @include m-10();
+  }
+
+  .sm\:m-12 {
+    @include m-12();
+  }
+
+  .sm\:m-16 {
+    @include m-16();
+  }
+
+  .sm\:m-20 {
+    @include m-20();
+  }
+
+  .sm\:mx-6 {
+    @include mx-6();
+  }
+
+  .sm\:mx-10 {
+    @include mx-10();
+  }
+
+  .sm\:mx-20 {
+    @include mx-20();
+  }
+
+  .sm\:mx-50 {
+    @include mx-50();
+  }
+
+  .sm\:mx-100 {
+    @include mx-100();
+  }
+
+  .sm\:my-6 {
+    @include my-6();
+  }
+
+  .sm\:my-10 {
+    @include my-10();
+  }
+
+  .sm\:my-14 {
+    @include my-14();
+  }
+
+  .sm\:my-20 {
+    @include my-20();
+  }
+}
+
+@media (min-width: $desktop-width) {
+  .lg\:m-6 {
+    @include m-6();
+  }
+
+  .lg\:m-10 {
+    @include m-10();
+  }
+
+  .lg\:m-12 {
+    @include m-12();
+  }
+
+  .lg\:m-16 {
+    @include m-16();
+  }
+
+  .lg\:m-20 {
+    @include m-20();
+  }
+
+  .lg\:mx-6 {
+    @include mx-6();
+  }
+
+  .lg\:mx-10 {
+    @include mx-10();
+  }
+
+  .lg\:mx-20 {
+    @include mx-20();
+  }
+
+  .lg\:mx-50 {
+    @include mx-50();
+  }
+
+  .lg\:mx-100 {
+    @include mx-100();
+  }
+
+  .lg\:my-6 {
+    @include my-6();
+  }
+
+  .lg\:my-10 {
+    @include my-10();
+  }
+
+  .lg\:my-14 {
+    @include my-14();
+  }
+
+  .lg\:my-20 {
+    @include my-20();
+  }
+}
+
+@media (min-width: $large-desktop-width) {
+  .xl\:m-6 {
+    @include m-6();
+  }
+
+  .xl\:m-10 {
+    @include m-10();
+  }
+
+  .xl\:m-12 {
+    @include m-12();
+  }
+
+  .xl\:m-16 {
+    @include m-16();
+  }
+
+  .xl\:m-20 {
+    @include m-20();
+  }
+
+  .xl\:mx-6 {
+    @include mx-6();
+  }
+
+  .xl\:mx-10 {
+    @include mx-10();
+  }
+
+  .xl\:mx-20 {
+    @include mx-20();
+  }
+
+  .xl\:mx-50 {
+    @include mx-50();
+  }
+
+  .xl\:mx-100 {
+    @include mx-100();
+  }
+
+  .xl\:my-6 {
+    @include my-6();
+  }
+
+  .xl\:my-10 {
+    @include my-10();
+  }
+
+  .xl\:my-14 {
+    @include my-14();
+  }
+
+  .xl\:my-20 {
+    @include my-20();
+  }
+}

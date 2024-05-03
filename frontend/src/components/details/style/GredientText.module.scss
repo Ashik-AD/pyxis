@@ -1,0 +1,17 @@
+$color-green: #5DF7DE;
+$color-yellow: #C3F27D;
+
+.Container_Bg {
+    background: linear-gradient(322deg, #1557993d, #15995747);
+}
+
+.GredientText {
+    /* Created with https://www.css-gradient.com */
+    background: #5DF7DE;
+    background: -webkit-linear-gradient(top left, $color-green, $color-yellow);
+    background: -moz-linear-gradient(top left, $color-green, $color-yellow);
+    background: linear-gradient(to bottom right, $color-green, $color-yellow);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

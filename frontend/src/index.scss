@@ -1,0 +1,54 @@
+@import './styles/variables';
+@import './styles/Flex.scss';
+@import './styles/Grid.scss';
+@import './styles/Text';
+
+* {
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  outline-color: transparent;
+}
+
+::-webkit-scrollbar {
+  height: 3px;
+  width: 3px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #8b8b8b;
+  width: 3px;
+  border-radius: 3px;
+}
+
+body {
+  font-family: 'Noto Sans Display', sans-serif;
+  font-family: 'Poppins', sans-serif;
+  background: $bg-primary;
+  font-size: 15px;
+  font-weight: 400;
+  overflow: hidden;
+  -webkit-scroll-behavior: smooth;
+  scroll-behavior: smooth;
+}
+
+a {
+  text-decoration: none;
+  color: $color-gray;
+}
+
+li {
+  list-style-type: none;
+}
+
+button {
+  background: transparent;
+  padding: 6px 14px;
+  font-size: 15px;
+  border: 2px solid #7e7e7e;
+  cursor: pointer;
+}

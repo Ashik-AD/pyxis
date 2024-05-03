@@ -1,0 +1,546 @@
+@import 'variables';
+$p-6: 6px;
+$p-8: 8px;
+$p-10: 10px;
+$p-12: 12px;
+$p-14: 14px;
+$p-16: 16px;
+$p-20: 20px;
+$p-30: 30px;
+$p-40: 40px;
+$p-50: 50px;
+$p-100: 100px;
+
+@mixin p-6 {
+  padding: $p-6;
+}
+
+@mixin p-8 {
+  padding: $p-8;
+}
+
+@mixin p-10 {
+  padding: $p-10;
+}
+
+@mixin p-12 {
+  padding: $p-12;
+}
+
+@mixin p-14 {
+  padding: $p-14;
+}
+
+@mixin p-16 {
+  padding: $p-16;
+}
+
+@mixin p-20 {
+  padding: $p-20;
+}
+
+@mixin p-30 {
+  padding: $p-30;
+}
+
+@mixin p-40 {
+  padding: $p-40;
+}
+
+@mixin px-6 {
+  padding-right: $p-6;
+  padding-left: $p-6;
+}
+
+@mixin px-8 {
+  padding-right: $p-8;
+  padding-left: $p-8;
+}
+
+@mixin px-10 {
+  padding-right: $p-10;
+  padding-left: $p-10;
+}
+
+@mixin px-16 {
+  padding-right: $p-16;
+  padding-left: $p-16;
+}
+
+@mixin px-20 {
+  padding-right: $p-20;
+  padding-left: $p-20;
+}
+
+@mixin px-50 {
+  padding-right: $p-50;
+  padding-left: $p-50;
+}
+
+@mixin px-100 {
+  padding-right: $p-100;
+  padding-left: $p-100;
+}
+
+@mixin py-6 {
+  padding-top: $p-6;
+  padding-bottom: $p-6;
+}
+
+@mixin py-8 {
+  padding-top: $p-8;
+  padding-bottom: $p-8;
+}
+
+@mixin py-10 {
+  padding-top: $p-10;
+  padding-bottom: $p-10;
+}
+
+@mixin py-14 {
+  padding-top: $p-14;
+  padding-bottom: $p-14;
+}
+
+@mixin py-16 {
+  padding-top: $p-16;
+  padding-bottom: $p-16;
+}
+
+@mixin py-20 {
+  padding-top: $p-20;
+  padding-bottom: $p-20;
+}
+
+@mixin py-50 {
+  padding-top: $p-50;
+  padding-bottom: $p-50;
+}
+
+@mixin pt-50 {
+  padding-top: $p-50;
+}
+
+@mixin pb-50 {
+  padding-bottom: $p-50;
+}
+
+.p-6 {
+  @include p-6();
+}
+
+.p-8 {
+  @include p-8();
+}
+
+.p-10 {
+  @include p-10();
+}
+
+.p-12 {
+  @include p-12();
+}
+
+.p-14 {
+  @include p-14();
+}
+
+.p-16 {
+  @include p-16();
+}
+
+.p-20 {
+  @include p-20();
+}
+
+.p-30 {
+  @include p-30();
+}
+
+.p-40 {
+  @include p-40();
+}
+
+.px-6 {
+  @include px-6();
+}
+
+.px-10 {
+  @include px-10();
+}
+
+.px-16 {
+  @include px-16();
+}
+
+.px-20 {
+  @include px-20();
+}
+
+.px-50 {
+  @include px-50();
+}
+
+.px-100 {
+  @include px-100();
+}
+
+.py-6 {
+  @include py-6();
+}
+
+.py-8 {
+  @include py-8();
+}
+
+.py-10 {
+  @include py-10();
+}
+
+.py-14 {
+  @include py-14();
+}
+
+.py-16 {
+  @include py-16();
+}
+
+.py-20 {
+  @include py-20();
+}
+
+.py-50 {
+  @include py-50();
+}
+
+.pt-50 {
+  @include pt-50();
+}
+
+.pb-50 {
+  @include pb-50();
+}
+
+.pl-10 {
+  padding-left: 10px;
+}
+
+.pt-10 {
+  padding-top: 10px;
+}
+
+.pr-10 {
+  padding-right: 10px;
+}
+
+.pb-10 {
+  padding-bottom: 10px
+}
+
+.pl-20 {
+  padding-left: 20px;
+}
+
+.pt-20 {
+  padding-top: 20px;
+}
+
+.pr-20 {
+  padding-right: 20px;
+}
+
+.pb-20 {
+  padding-bottom: 20px
+}
+
+@media (min-width: $mobile-sm-width) {
+  .xsm\:px-6 {
+    @include px-6();
+  }
+
+  .xsm\:px-10 {
+    @include px-10();
+  }
+}
+
+@media (min-width: $mobile-m-width) {
+  .smm\:px-6 {
+    @include px-6();
+  }
+
+  .smm\:px-10 {
+    @include px-10();
+  }
+}
+
+@media (min-width: $mobile-width) {
+  .sm\:pt-0 {
+    padding: 0px;
+  }
+
+  .sm\:pb-0 {
+    padding-bottom: 0px;
+  }
+
+  .sm\:p-6 {
+    @include p-6();
+  }
+
+  .sm\:p-10 {
+    @include p-10();
+  }
+
+  .sm\:p-12 {
+    @include p-12();
+  }
+
+  .sm\:p-16 {
+    @include p-16();
+  }
+
+  .sm\:p-20 {
+    @include p-20();
+  }
+
+  .sm\:p-30 {
+    @include p-30();
+  }
+
+  .sm\:p-40 {
+    @include p-40();
+  }
+
+  .sm\:px-6 {
+    @include px-6();
+  }
+
+  .sm\:px-10 {
+    @include px-10();
+  }
+
+  .sm\:px-20 {
+    @include px-20();
+  }
+
+  .sm\:px-50 {
+    @include px-50();
+  }
+
+  .sm\:px-100 {
+    @include px-100();
+  }
+
+  .sm\:py-6 {
+    @include py-6();
+  }
+
+  .sm\:py-10 {
+    @include py-10();
+  }
+
+  .sm\:py-14 {
+    @include py-14();
+  }
+
+  .sm\:py-20 {
+    @include py-20();
+  }
+
+  .sm\:py-50 {
+    @include py-50();
+  }
+
+  .sm\:pt-50 {
+    @include pt-50();
+  }
+}
+
+@media (min-width: $tablet-width) {
+  .md\:p-6 {
+    @include p-6();
+  }
+
+  .md\:p-10 {
+    @include p-10();
+  }
+
+  .md\:p-12 {
+    @include p-12();
+  }
+
+  .md\:p-16 {
+    @include p-16();
+  }
+
+  .md\:p-20 {
+    @include p-20();
+  }
+
+  .md\:p-30 {
+    @include p-30();
+  }
+
+  .md\:p-40 {
+    @include p-40();
+  }
+
+  .md\:px-6 {
+    @include px-6();
+  }
+
+  .md\:px-10 {
+    @include px-10();
+  }
+
+  .md\:px-20 {
+    @include px-20();
+  }
+
+  .md\:px-50 {
+    @include px-50();
+  }
+
+  .md\:px-100 {
+    @include px-100();
+  }
+
+  .md\:py-6 {
+    @include py-6();
+  }
+
+  .md\:py-10 {
+    @include py-10();
+  }
+
+  .md\:py-14 {
+    @include py-14();
+  }
+
+  .md\:py-20 {
+    @include py-20();
+  }
+
+  .md\:py-50 {
+    @include py-50();
+  }
+}
+
+@media (min-width: $desktop-width) {
+  .lg\:p-6 {
+    @include p-6();
+  }
+
+  .lg\:p-10 {
+    @include p-10();
+  }
+
+  .lg\:p-12 {
+    @include p-12();
+  }
+
+  .lg\:p-16 {
+    @include p-16();
+  }
+
+  .lg\:p-20 {
+    @include p-20();
+  }
+
+  .lg\:px-6 {
+    @include px-6();
+  }
+
+  .lg\:px-10 {
+    @include px-10();
+  }
+
+  .lg\:px-20 {
+    @include px-20();
+  }
+
+  .lg\:px-50 {
+    @include px-50();
+  }
+
+  .lg\:px-100 {
+    @include px-100();
+  }
+
+  .lg\:py-6 {
+    @include py-6();
+  }
+
+  .lg\:py-10 {
+    @include py-10();
+  }
+
+  .lg\:py-14 {
+    @include py-14();
+  }
+
+  .lg\:py-20 {
+    @include py-20();
+  }
+
+  .lg\:py-50 {
+    @include py-50();
+  }
+}
+
+@media (min-width: $large-desktop-width) {
+  .xl\:p-6 {
+    @include p-6();
+  }
+
+  .xl\:p-10 {
+    @include p-10();
+  }
+
+  .xl\:p-12 {
+    @include p-12();
+  }
+
+  .xl\:p-16 {
+    @include p-16();
+  }
+
+  .xl\:p-20 {
+    @include p-20();
+  }
+
+  .xl\:px-6 {
+    @include px-6();
+  }
+
+  .xl\:px-10 {
+    @include px-10();
+  }
+
+  .xl\:px-20 {
+    @include px-20();
+  }
+
+  .xl\:px-50 {
+    @include px-50();
+  }
+
+  .xl\:px-100 {
+    @include px-100();
+  }
+
+  .xl\:py-6 {
+    @include py-6();
+  }
+
+  .xl\:py-10 {
+    @include py-10();
+  }
+
+  .xl\:py-14 {
+    @include py-14();
+  }
+
+  .xl\:py-20 {
+    @include py-20();
+  }
+}
