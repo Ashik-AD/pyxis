@@ -13,15 +13,16 @@ const ItemLike: FC<PropsType> = (props) => {
     (async () => {
       const { data } = await ax.post("/liked/search", {
         data: {
-          uid: user.id,
-          item_id: props.id,
+          uid: user?.id,
+          item_id: props?.id,
         },
       });
       if (data) {
         setIsLiked(data.isLiked);
       }
     })();
-  }, [user.id, props.id]);
+  }, [user?.id, props?.id]);
+
   const handleAddRemoveLike = async () => {
     if (isLiked) {
       const proceedRemove: any = await props.handleLike.remove();
