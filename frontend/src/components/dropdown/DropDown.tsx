@@ -1,37 +1,32 @@
-import React, { useRef } from "react";
+import { useState, ReactNode, MouseEvent } from "react";
 
-const DropDown: React.FC<PropTypes> = ({
-  children,
-  label,
-  styles,
-  drpId,
-  handleDrp,
-  noHide,
-}) => {
-  const drpDownRef = useRef<HTMLDivElement>(null);
+const DropDown = ({ children, label, styles, drpId }: PropTypes) => {
+  const [isVisible, setIsVisible] = useState(false);
 
-  window.addEventListener("click", (eve: any) => {
-    if (noHide) {
-      if (eve.target.classList.contains("noEffect")) {
+  function handleClick(event: MouseEvent<HTMLDivElement>) {
+    document.addEventListener("click", hideDropdown);
+
+    function hideDropdown(eve: any) {
+      if (eve.target == event.target) {
+        let visible = !isVisible;
+        setIsVisible(visible);
         return;
       }
+      setIsVisible(false);
+      document.removeEventListener("click", hideDropdown);
     }
-    if (eve.target?.classList?.contains(drpId)) {
-      drpDownRef.current?.classList.toggle("visibility-hidden");
-    } else {
-      drpDownRef.current?.classList.add("visibility-hidden");
-      handleDrp && handleDrp();
-    }
-  });
+  }
 
   return (
-    <div className="drp_container relative z-4">
-      {label && <div className={`drp_btn ${drpId}`}>{label}</div>}
+    <div className="relative">
+      <div className={`drp_btn ${drpId}`} onClick={handleClick}>
+        {label}
+      </div>
       <div
-        className={`drp_list absolute visibility-hidden z-4 ${
+        className={`w-full absolute ${
           styles ? styles : ""
-        } right-0`}
-        ref={drpDownRef}
+        } ${!isVisible ? "visibility-hidden opacity-0" : ""} left-0`}
+        style={{ top: "120%" }}
       >
         {children}
       </div>
@@ -40,12 +35,12 @@ const DropDown: React.FC<PropTypes> = ({
 };
 
 interface PropTypes {
-  children: React.ReactChild;
-  label: any;
+  children: ReactNode;
+  label: ReactNode;
   styles?: string;
   drpId: string;
   handleDrp?: () => void;
   noHide?: boolean;
 }
 
-export default React.memo(DropDown);
+export default DropDown;
