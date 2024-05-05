@@ -25,7 +25,7 @@ const MovieContainer: FC = () => {
           store_key="topMovie"
         />
       </div>
-      <div className="container flex flex-col pl-10 sm:px-20">
+      <div className="container flex flex-col sm:px-20">
         <div className="my-20">
           <Title title="Movies in theater" />
           <CardRegularSliderWithStore
