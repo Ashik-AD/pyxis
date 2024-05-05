@@ -3,6 +3,8 @@ import { Routes, Route } from "react-router-dom";
 import NotFound from "../page/404/NotFound";
 import Store from "../store/Store";
 import Spinner from "../components/loading/Spinner";
+import Navbar from "../components/nav/navbar";
+import Auth from "../auth/Auth";
 const Home = React.lazy(() => import("../page/home/Home"));
 const SignUp = React.lazy(() => import("../page/signup/SignUp"));
 const Login = React.lazy(() => import("../page/login/Login"));
@@ -41,9 +43,12 @@ const AppRoutes: React.FC = () => {
         path="/*"
         element={
           <Store>
-            <Suspense>
-              <Home />
-            </Suspense>
+            <Auth>
+              <Suspense>
+                <Navbar />
+                <Home />
+              </Suspense>
+            </Auth>
           </Store>
         }
       />
