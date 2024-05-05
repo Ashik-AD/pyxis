@@ -3,12 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { storage } from "../utils/storage";
 import { StoreContext } from "../store/Store";
 import { ax } from "../config/default";
+
 const Auth: FC<{ children: ReactElement }> = (props) => {
   const navigate = useNavigate();
   const {
     store: { user },
     dispatch,
   } = useContext(StoreContext);
+
   useEffect(() => {
     (async () => {
       const localStorage = storage.getItems();
@@ -26,10 +28,7 @@ const Auth: FC<{ children: ReactElement }> = (props) => {
           } catch (error) {
             console.log(error);
           }
-          navigate("/get-started", { replace: true });
         }
-      } else {
-        navigate("/get-started", { replace: true });
       }
     })();
   }, [dispatch, navigate, user]);
