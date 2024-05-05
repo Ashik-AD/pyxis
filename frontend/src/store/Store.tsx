@@ -1,6 +1,21 @@
-import React, { useReducer } from 'react';
-import { storeReducer } from './storeReducer';
-const INITIAL_STATE = {
+import React, { Dispatch, useReducer } from "react";
+import { User } from "../types/global";
+import { storeReducer } from "./storeReducer";
+
+export type StoreType = {
+  user: User | null;
+  collections: null;
+  topMovie: null;
+  playingMovie: null;
+  upcomingMovie: null;
+  popularTv: null;
+  popularMovie: null;
+  topTv: null;
+  playingTv: null;
+  tv_full: null;
+  movie_full: null;
+}
+const INITIAL_STATE: StoreType = {
   user: null,
   collections: null,
   popularMovie: null,
@@ -13,11 +28,15 @@ const INITIAL_STATE = {
   tv_full: null,
   movie_full: null,
 };
+type State = typeof INITIAL_STATE;
 
-export const StoreContext = React.createContext<any>(null);
+export const StoreContext = React.createContext<{
+  store: State;
+  dispatch: Dispatch<{ type: string; payload?: any }>;
+}>({ store: INITIAL_STATE, dispatch: () => {}});
 
 const Store = (props: any) => {
-  const [state, dispatch] = useReducer<any>(storeReducer, INITIAL_STATE);
+  const [state, dispatch] = useReducer(storeReducer, INITIAL_STATE);
   return (
     <StoreContext.Provider value={{ store: state, dispatch }}>
       {props.children}
