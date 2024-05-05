@@ -1,15 +1,15 @@
-import { useState, useRef, FC, useEffect, useContext } from "react";
+import { useState, useRef, FC, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import DropDown from "../dropdown/DropDown";
 import ContextPlaylist from "../contextMenu/ContextPlaylist";
 import CollectionType from "./collection.type";
 import { RiArrowRightSLine } from "react-icons/ri";
-import { StoreContext } from "../../store/Store";
 
 import RemoveFromThis from "../contextMenu/item/RemoveFromThis";
 import RemoveFromWatchlist from "../contextMenu/item/RemoveFromWatchlist";
 import RemovedFromLiked from "../contextMenu/item/RemovedFromLiked";
 import AddToLiked from "../contextMenu/item/AddToLiked";
+import useUser from "../../hooks/useUser";
 const obj = {
   duration: 0,
   items_name: "",
@@ -28,9 +28,7 @@ const CollectionDrpAction: FC<{
   drpId: string;
   itemName?: string;
 }> = ({ items, drpId, itemName }) => {
-  const {
-    store: { user },
-  } = useContext(StoreContext);
+  const user = useUser();
   const [isVisibleContext, setIsVisibleContext] = useState(false);
   const [selectedItem, setSelectedItem] = useState<CollectionType>(obj);
   const contextRef = useRef<HTMLDivElement>(null);
@@ -108,7 +106,7 @@ const CollectionDrpAction: FC<{
       `/${selectedItem.media_type}/info/${
         selectedItem.playlist_items_id
       }-${selectedItem.items_name.replaceAll(" ", "-")}`,
-      { replace: true }
+      { replace: true },
     );
   };
 
@@ -155,13 +153,13 @@ const CollectionDrpAction: FC<{
                 selectedItem.liked_id
                   ? selectedItem.liked_id
                   : selectedItem.item_key
-                  ? selectedItem.item_key
-                  : selectedItem.playlist_items_id
+                    ? selectedItem.item_key
+                    : selectedItem.playlist_items_id
               }
               media_type={selectedItem.media_type}
               posterPath={selectedItem.poster_url}
               release_date={selectedItem.released_date}
-              uid={user.id}
+              uid={user?.id!}
               id={selectedItem.id}
               handleMouseOver={handleCloseContext}
             />
@@ -191,8 +189,8 @@ const CollectionDrpAction: FC<{
                   selectedItem.liked_id
                     ? selectedItem.liked_id
                     : selectedItem.item_key
-                    ? selectedItem.item_key
-                    : selectedItem.playlist_items_id
+                      ? selectedItem.item_key
+                      : selectedItem.playlist_items_id
                 }
                 mediaType={selectedItem.media_type === "tv" ? "tv" : "movie"}
                 posterURL={selectedItem.poster_url}
@@ -206,7 +204,7 @@ const CollectionDrpAction: FC<{
           <span className="bg-fade w-full" style={{ height: 1 }}></span>
           {itemName === "watchlist" && (
             <RemoveFromWatchlist
-              uid={user.id}
+              uid={user?.id!}
               handleMouseOver={handleCloseContext}
               watchlistItemId={
                 selectedItem.item_key ? selectedItem.item_key : "no-id"
@@ -217,7 +215,7 @@ const CollectionDrpAction: FC<{
           {itemName !== "watchlist" && itemName !== "liked" && (
             <RemoveFromThis
               handleMouseOver={handleCloseContext}
-              uid={user.id}
+              uid={user?.id!}
               itemId={selectedItem.playlist_items_id}
               playlistId={selectedItem.playlist_id}
               id={selectedItem.id}
@@ -226,7 +224,7 @@ const CollectionDrpAction: FC<{
           {(selectedItem.is_liked === "true" || itemName === "liked") && (
             <RemovedFromLiked
               handleMouseOver={handleCloseContext}
-              uid={user.id}
+              uid={user?.id!}
               liked_id={selectedItem.liked_id ? selectedItem.liked_id : ""}
               id={selectedItem.id}
             />
