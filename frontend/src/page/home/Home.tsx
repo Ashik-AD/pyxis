@@ -18,7 +18,6 @@ import { ax } from "../../config/default";
 const Like = React.lazy(() => import("../liked/Like"));
 const WatchList = React.lazy(() => import("../watchList/WatchList"));
 const Profile = React.lazy(() => import("../profile/Profile"));
-import isConnectionAvailable from "../../utils/isConnAvailable";
 
 const Home: FC = () => {
   const { store, dispatch } = useContext(StoreContext);
@@ -40,7 +39,6 @@ const Home: FC = () => {
   return (
     <section className="home flex">
         <div className="content_container h-screen overflow-y-scroll w-full">
-          {isConnectionAvailable() && (
             <Routes>
               <Route path="/*" element={<Index />} />
               <Route
@@ -132,7 +130,6 @@ const Home: FC = () => {
                 }
               />
             </Routes>
-          )}
         </div>
     </section>
   );

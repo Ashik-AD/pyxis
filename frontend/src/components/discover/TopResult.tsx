@@ -100,6 +100,7 @@ const TopResult: React.FC<PropTypes> = ({
                   release_date={el.release_date}
                   poster={el.poster_path}
                   url={`/collection/${el.name.replaceAll(" ", "-")}-${el.id}`}
+                  vote_average={el.vote_average}
                 />
               ))}
             </div>

@@ -1,8 +1,16 @@
-import { CSSProperties, FC, ReactElement } from "react";
+import { CSSProperties, ReactElement } from "react";
 import { Link, useLocation } from "react-router-dom";
 
-const NavItem: FC<PropsType> = (props) => {
-  const { icon, text, styles, classes, link, iconClasses } = props;
+interface PropsType {
+  icon?: ReactElement;
+  text?: string;
+  styles?: CSSProperties;
+  classes?: string;
+  link: string;
+}
+
+const NavItem = (props: PropsType) => {
+  const { icon, text, styles, classes, link } = props;
   const { pathname } = useLocation();
   const routeMatch = () =>
     pathname &&
@@ -16,25 +24,12 @@ const NavItem: FC<PropsType> = (props) => {
       style={{ ...styles, color: routeMatch() ? "#d1004d" : "" }}
       className={`${
         classes ? classes : ""
-      } flex gap-10 align-center color-gray py-6 font-semibold rounded-lg transition overflow-hidden`}
+      } flex gap-10 align-center color-white py-6 font-semibold rounded-lg transition overflow-hidden`}
     >
-      {icon && (
-        <span className={`flex ${iconClasses ? iconClasses : "text-lg"}`}>
-          {icon}
-        </span>
-      )}
+      {icon && <span className={`flex`}>{icon}</span>}
       {text && <span className="flex text-xsm truncate">{text}</span>}
     </Link>
   );
 };
-
-interface PropsType {
-  icon?: ReactElement;
-  iconClasses?: string;
-  text: string;
-  styles?: CSSProperties;
-  classes?: string;
-  link: string;
-}
 
 export default NavItem;
