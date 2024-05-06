@@ -1,19 +1,20 @@
-import { FC, useContext, useState } from "react";
+import { FC, useState } from "react";
 import { RiAddFill } from "react-icons/ri";
-import { ax } from "../../config/default";
-import { StoreContext } from "../../store/Store";
 import ShowAlert from "../alert/ShowAlert";
-import { WatchListPropsType } from "./watchlist.type";
+import { ax } from "../../config/default";
+import type { WatchListPropsType } from "./watchlist.type";
+
+import useUser from "../../hooks/useUser";
 
 const WatchListAdd: FC<WatchListPropsType> = (props) => {
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
-  const {
-    store: { user },
-  } = useContext(StoreContext);
+
+  const user = useUser();
+
   const handleWatchListAdd = async () => {
     try {
-      const request = await ax.post(`/${user.id}/watch-list/add`, {
+      const request = await ax.post(`/${user?.id}/watch-list/add`, {
         data: {
           average_vote: props.average_vote,
           duration: props.duration,
