@@ -26,7 +26,7 @@ const Home: FC = () => {
     let initialFetch = null;
     if (store.user) {
       initialFetch = async () => {
-        const { data } = await ax.get(`${store.user.id}/playlist`);
+        const { data } = await ax.get(`${store?.user?.id}/playlist`);
         dispatch({ type: "SET_COLLECTION", payload: data });
       };
       initialFetch();
