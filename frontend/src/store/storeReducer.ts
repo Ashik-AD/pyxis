@@ -1,7 +1,6 @@
 import { storage } from '../utils/storage';
-import type { StoreType } from './Store';
 export const storeReducer = (
-  state: StoreType,
+  state: any,
   action: { type: string; payload?: any }
 ) => {
   switch (action.type) {
