@@ -9,8 +9,8 @@ import Slider from "./Slider";
 
 const CardRegularSliderWithStore: React.FC<PropTypes> = ({
   url,
-  store_item_type,
-  store_key,
+  storeItem,
+  storeKey,
   media_type,
 }) => {
   const [loading, setLoading] = useState(false);
@@ -18,12 +18,12 @@ const CardRegularSliderWithStore: React.FC<PropTypes> = ({
   const { store, dispatch } = useContext(StoreContext);
   useEffect(() => {
     let fetchItems = null;
-    if (!store[store_key]) {
+    if (!store[storeKey]) {
       setLoading(true);
       fetchItems = async () => {
         try {
           const { data } = await ax.get(`${url}`);
-          dispatch({ type: store_item_type, payload: data });
+          dispatch({ type: storeItem, payload: data });
         } catch (err) {
           setError(true);
         } finally {
@@ -40,8 +40,9 @@ const CardRegularSliderWithStore: React.FC<PropTypes> = ({
   if (error) return <h1>Something went wrong...</h1>;
   return (
     <Slider>
-      {store[store_key] &&
-        store[store_key].results.map((el: CardPropTypes) => (
+      {store[storeKey] &&
+      //@ts-ignore
+        store[storeKey].results.map((el: CardPropTypes) => (
           <CardRegular
             imageStyle="h-full"
             key={el.id}
@@ -56,8 +57,10 @@ const CardRegularSliderWithStore: React.FC<PropTypes> = ({
     </Slider>
   );
 };
-interface PropTypes extends STORE_ITEM_TYPE, STORE_KEY {
-  readonly url: string;
-  readonly media_type: "movie" | "tv";
+interface PropTypes {
+  url: string;
+  media_type: "movie" | "tv";
+  storeKey: STORE_KEY;
+ storeItem: STORE_ITEM_TYPE; 
 }
 export default CardRegularSliderWithStore;
