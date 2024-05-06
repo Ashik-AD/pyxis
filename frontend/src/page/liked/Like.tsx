@@ -1,23 +1,25 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import CollectionItemLists from "../../components/collection/CollectionItemLists";
 import CollectionHeading from "../../components/heading/CollectionHeading";
 import SkeletonTable from "../../components/skeleton/SkeletonTable";
-import { StoreContext } from "../../store/Store";
 import { noImage } from "../../utils/noImage";
 import { ax } from "../../config/default";
+import useUser from "../../hooks/useUser";
+
 const Like = () => {
   const [likedItem, setLikedItem] = useState<any>(null);
   const [loading, setLoading] = useState(true);
-  const {
-    store: { user },
-  } = useContext(StoreContext);
+
+  const user = useUser()
+
   useEffect(() => {
     document.title = "Pyxis - Liked";
   }, []);
+
   useEffect(() => {
     let fetchLiked = null;
     fetchLiked = async () => {
-      const { data } = await ax.get(`${user.id}/liked/all`);
+      const { data } = await ax.get(`${user?.id}/liked/all`);
       if (data) {
         setLikedItem(data);
       }
