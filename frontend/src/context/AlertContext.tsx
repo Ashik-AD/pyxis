@@ -1,10 +1,11 @@
-import React, { FC, ReactElement, useState } from "react";
+import React, { FC, ReactNode, useState } from "react";
 import ShowAlert from "../components/alert/ShowAlert";
 
 export const AlertContext = React.createContext<{
   setAlert: (text: string, type: "error" | "success") => void;
-}>({ setAlert(text, type) {} });
-const AlertShow: FC<{ children: ReactElement }> = (props) => {
+}>({ setAlert() {} });
+
+const AlertShow: FC<{ children: ReactNode }> = (props) => {
   const [alert, setAlert] = useState({
     type: "",
     text: "",
