@@ -14,7 +14,7 @@ interface CollectionType {
 
 const CollectionHeading: FC = () => {
   let { pathname } = useLocation();
-  const playlist_id = pathname.split("/").pop();
+  const playlist_id = pathname.split("/").pop()!;
 
   const [updateCollection, setUpdateCollection] = useState(false);
   const [collection, setCollection] = useState<Partial<CollectionType>>({});
@@ -26,8 +26,8 @@ const CollectionHeading: FC = () => {
   useEffect(() => {
     const findCollection =
       collections &&
-      collections.find((cl: CollectionType) => cl.playlist_id === playlist_id);
-    setCollection(findCollection);
+      collections?.find((cl: any) => cl?.playlist_id === playlist_id);
+    setCollection(findCollection || {});
   }, [pathname, collections]);
 
   useEffect(() => {
