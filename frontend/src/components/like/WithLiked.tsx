@@ -41,7 +41,7 @@ function WithLiked(WrappedComponent: React.ComponentType<any>) {
           release_date,
           media_type,
         };
-        const { data, status } = await ax.post(`/${user.id}/liked/add`, {
+        const { data, status } = await ax.post(`/${user?.id}/liked/add`, {
           data: prepareLike,
         });
         if (status === 200) {
@@ -60,7 +60,7 @@ function WithLiked(WrappedComponent: React.ComponentType<any>) {
 
     const handleRemoveLiked = async () => {
       try {
-        const { data, status } = await ax.post(`/${user.id}/liked/delete`, {
+        const { data, status } = await ax.post(`/${user?.id}/liked/delete`, {
           data: { likedId: id },
         });
         if (status === 201) {
