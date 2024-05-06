@@ -77,7 +77,7 @@ const UpdateEmail = () => {
     try {
       const { data, status } = await ax.post("/account/update-email", {
         data: {
-          uid: user.id,
+          uid: user?.id,
           newEmail: email,
           password: authKey,
         },
@@ -128,7 +128,7 @@ const UpdateEmail = () => {
             type="text"
             name="current_email"
             styles="w-full sm:w-75"
-            value={user.email}
+            value={user?.email}
           />
         </div>
         <div className="flex flex-col sm:items-center sm:flex-row gap-10 color-light-gray w-full">
