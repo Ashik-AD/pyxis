@@ -18,16 +18,16 @@ const CreateNewCollection: FC<PropsType> = ({
   const handleCreateNewPlaylist = async () => {
     const playlistName = title
       ? title
-      : `#New collection ${collections.length}`;
+      : `#New collection ${collections?.length}`;
     try {
-      const { status, data } = await ax.post(`/create-playlist/${user.id}`, {
+      const { status, data } = await ax.post(`/create-playlist/${user?.id}`, {
         data: {
           playlistName: playlistName,
           description: "",
         },
       });
       if (status === 201) {
-        const newCollection = collections;
+        const newCollection = collections || [];
         newCollection.push(data.playlist);
         handleClick && handleClick(data.playlist.playlist_id);
         dispatch({ type: "SET_COLLECTION", payload: newCollection });
