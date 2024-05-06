@@ -1,10 +1,10 @@
 import React, { Dispatch, useReducer } from "react";
-import { User } from "../types/global";
+import { Collection, User } from "../types/global";
 import { storeReducer } from "./storeReducer";
 
 export type StoreType = {
   user: User | null;
-  collections: null;
+  collections: Array<Collection> | null;
   topMovie: null;
   playingMovie: null;
   upcomingMovie: null;
@@ -14,8 +14,9 @@ export type StoreType = {
   playingTv: null;
   tv_full: null;
   movie_full: null;
-}
-const INITIAL_STATE: StoreType = {
+};
+
+export const INITIAL_STATE: StoreType = {
   user: null,
   collections: null,
   popularMovie: null,
@@ -28,12 +29,11 @@ const INITIAL_STATE: StoreType = {
   tv_full: null,
   movie_full: null,
 };
-type State = typeof INITIAL_STATE;
 
 export const StoreContext = React.createContext<{
-  store: State;
+  store: StoreType;
   dispatch: Dispatch<{ type: string; payload?: any }>;
-}>({ store: INITIAL_STATE, dispatch: () => {}});
+}>({ store: INITIAL_STATE, dispatch: () => {} });
 
 const Store = (props: any) => {
   const [state, dispatch] = useReducer(storeReducer, INITIAL_STATE);
