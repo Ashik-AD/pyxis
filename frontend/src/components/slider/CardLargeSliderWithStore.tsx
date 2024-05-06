@@ -8,21 +8,22 @@ import { CardPropTypes } from "../types/movie";
 import SliderLg from "./SliderLg";
 const CardLargeSliderWithStore: React.FC<PropTypes> = ({
   url,
-  store_item_type,
-  store_key,
+  storeItemType,
+  storeKey,
   media_type,
 }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const { store, dispatch } = useContext(StoreContext);
+
   useEffect(() => {
     let fetchItems = null;
-    if (!store[store_key]) {
+    if (!store[storeKey]) {
       setLoading(true);
       fetchItems = async () => {
         try {
           const { data } = await ax.get(`${url}`);
-          dispatch({ type: store_item_type, payload: data });
+          dispatch({ type: storeItemType, payload: data });
         } catch (err) {
           setError(true);
         } finally {
@@ -37,18 +38,19 @@ const CardLargeSliderWithStore: React.FC<PropTypes> = ({
   }, []);
   if (loading) return <SkeletonSliderLg />;
   if (error) return <h1>Something went wrong</h1>;
-  if (!store[store_key]) return null;
+  if (!store[storeKey]) return null;
   return (
     <SliderLg>
-      {store[store_key] &&
-        store[store_key].results.map((el: CardPropTypes) => (
+      {store[storeKey] &&
+      //@ts-ignore
+        store[storeKey].results.map((el: CardPropTypes) => (
           <CardLarge
             imageStyle="h-190"
             key={el.id}
             {...el}
             url={`/${media_type}/info/${el.id}-${el.title.replaceAll(
               " ",
-              "-"
+              "-",
             )}`}
           />
         ))}
@@ -56,8 +58,10 @@ const CardLargeSliderWithStore: React.FC<PropTypes> = ({
     </SliderLg>
   );
 };
-interface PropTypes extends STORE_ITEM_TYPE, STORE_KEY {
-  readonly url: string;
-  readonly media_type: "movie" | "tv";
-}
+type PropTypes = {
+  url: string;
+  media_type: "movie" | "tv";
+  storeKey: STORE_KEY;
+  storeItemType: STORE_ITEM_TYPE;
+};
 export default CardLargeSliderWithStore;
