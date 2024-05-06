@@ -1,10 +1,10 @@
-import { FC, useContext, useState, useEffect } from "react";
+import { FC, useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { StoreContext } from "../../store/Store";
 import UpdateCollection from "./UpdateCollection";
 import { ax } from "../../config/default";
 import CollectionItemLists from "./CollectionItemLists";
 import CollectionHeading from "./CollectionHeading";
+import useUser from "../../hooks/useUser";
 
 const CollectionInfo: FC = () => {
   let { pathname } = useLocation();
@@ -12,11 +12,10 @@ const CollectionInfo: FC = () => {
   const [collectionItems, setCollectionItems] = useState<any>([]);
 
   const [updateCollection, setUpdateCollection] = useState(false);
-  const {
-    store: { user },
-  } = useContext(StoreContext);
+  const user = useUser();
+
   const fetchCollectionItems = async () => {
-    const { data } = await ax.get(`collection/${user.id}/${playlist_id}/all`);
+    const { data } = await ax.get(`collection/${user?.id}/${playlist_id}/all`);
     setCollectionItems(data);
   };
 

@@ -1,16 +1,15 @@
-import { useContext, FC } from "react";
-import { StoreContext } from "../../store/Store";
+import { FC } from "react";
 import { IoArrowBack } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import useUser from "../../hooks/useUser";
+
 const CollectionHeading: FC<HeadingPropsType> = ({
   banner_url,
   total_item,
   color,
   title,
 }) => {
-  const {
-    store: { user },
-  } = useContext(StoreContext);
+  const user = useUser()
   return (
     <div
       className="w-screen flex flex-col content-center sm:content-normal px-20 sm:px-50 gap-20 sm:align-bottom relative z-1"
@@ -44,7 +43,7 @@ const CollectionHeading: FC<HeadingPropsType> = ({
             {title}
           </span>
           <div className="color-white text-medium sm:text-regular font-semibold my-10">
-            <span>{user.full_name.split(" ").shift()} </span>
+            <span>{user?.full_name?.split(" ")?.shift()} </span>
             {total_item > 0 && <span>• {total_item} Movie/Tv</span>}
           </div>
         </div>
