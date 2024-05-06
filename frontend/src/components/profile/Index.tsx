@@ -24,13 +24,13 @@ const Index: FC<PropsType> = ({ total_liked, total_watchlist }) => {
             Full Name
           </div>{" "}
           <div className="font-medium text-center sm:text-left text-lg sm:text-regular capitalize">
-            {user.full_name}
+            {user?.full_name}
           </div>
           <div className="hidden sm:visible color-gray">Email</div>{" "}
           <div className="font-medium text-center sm:text-left">
-            {user.email}
+            {user?.email}
           </div>
-          {user.country && (
+          {user?.country && (
             <>
               <div className="hidden sm:visible color-gray">Country</div>{" "}
               <div className="font-medium text-center sm:text-left">
@@ -40,7 +40,7 @@ const Index: FC<PropsType> = ({ total_liked, total_watchlist }) => {
           )}
         </div>
       </div>
-      {(collections?.length > 0 || total_watchlist > 0) && (
+      {((collections && collections.length > 0) || total_watchlist > 0) && (
         <div className="flex flex-col" style={{ marginTop: 50 }}>
           <span className="text-regular color-light-gray font-semibold my-20">
             Your Movie/TV lists
