@@ -1,4 +1,4 @@
-import React, { useContext, FC, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 
 import { STORE_KEY } from "../../store/storeType";
 import { cleanupTv } from "../../utils/cleanupTv";
@@ -27,8 +27,22 @@ var settings = {
   arrows: false,
 };
 
-const FullPageSlide: FC<PropTypes> = ({ url, store_key, media_type }) => {
+const getDetailUrl = (
+  id: number | string,
+  media_type: string,
+  title: string,
+): string => {
+  return `${media_type}/info/${id}-${title.replaceAll(" ", "-")}`;
+};
+
+type Props = {
+  url: string;
+  media_type: "movie" | "tv";
+  store_key: STORE_KEY;
+}
+const FullPageSlide = ({ url, store_key, media_type }: Props) => {
   const { store, dispatch } = useContext(StoreContext);
+
   useEffect(() => {
     let fetchItems = null;
     if (!store[store_key]) {
@@ -51,37 +65,28 @@ const FullPageSlide: FC<PropTypes> = ({ url, store_key, media_type }) => {
   }
   const items = () => {
     return media_type === "movie"
-      ? store.movie_full.map((el: FullPagePropsType) => (
+      ? store?.movie_full?.map((movie: FullPagePropsType) => (
           <FullPage
-            key={el.id}
-            {...el}
+            {...movie}
+            key={movie?.id}
             media_type="movie"
-            detail_url={getDetailUrl(el.id, media_type, el.title)}
-            trailer_url={`trailer/${media_type}/${el.id}`}
+            detail_url={getDetailUrl(movie?.id, media_type, movie?.title)}
+            trailer_url={`trailer/${media_type}/${movie?.id}`}
           />
         ))
-      : cleanupTv(store.tv_full).map((el: TvFullPageSlideProps) => (
-          <FullPage
-            key={el.id}
-            {...el}
-            media_type="tv"
-            backdrop={el.backdrop}
-            detail_url={getDetailUrl(el.id, media_type, el.title)}
-            trailer_url={`trailer/${media_type}/${el.id}`}
-          />
-        ));
+      : store?.tv_full
+        ? cleanupTv(store?.tv_full)?.map((tv: TvFullPageSlideProps) => (
+            <FullPage
+              {...tv}
+              key={tv.id}
+              media_type="tv"
+              backdrop={tv.backdrop}
+              detail_url={getDetailUrl(tv.id, media_type, tv.title)}
+              trailer_url={`trailer/${media_type}/${tv.id}`}
+            />
+          ))
+        : null;
   };
   return <Slider {...settings}>{items()}</Slider>;
 };
-const getDetailUrl = (
-  id: number | string,
-  media_type: string,
-  title: string,
-): string => {
-  return `${media_type}/info/${id}-${title.replaceAll(" ", "-")}`;
-};
-interface PropTypes extends STORE_KEY {
-  url: string;
-  media_type: "movie" | "tv";
-}
 export default FullPageSlide;
