@@ -5,15 +5,15 @@ import { storeReducer } from "./storeReducer";
 export type StoreType = {
   user: User | null;
   collections: Array<Collection> | null;
-  topMovie: null;
-  playingMovie: null;
-  upcomingMovie: null;
-  popularTv: null;
-  popularMovie: null;
-  topTv: null;
-  playingTv: null;
-  tv_full: null;
-  movie_full: null;
+  topMovie: Array<any> | null 
+  playingMovie: Array<any> | null;
+  upcomingMovie: Array<any> | null;
+  popularTv: Array<any> | null;
+  popularMovie: Array<any> | null;
+  topTv: Array<any> | null;
+  playingTv: Array<any> | null;
+  tv_full: Array<any> | null;
+  movie_full: Array<any> | null;
 };
 
 export const INITIAL_STATE: StoreType = {
