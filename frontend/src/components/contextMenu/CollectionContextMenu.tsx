@@ -24,7 +24,7 @@ const CollectionContextMenu: FC<PropsType> = ({ uid, collection_id }) => {
   const handleDeleteCollection = async () => {
     const { status } = await deleteCollection(uid, collection_id);
     if (status === 200) {
-      const newCollection = collections.filter(
+      const newCollection = collections?.filter(
         (el: any) => el.playlist_id !== collection_id
       );
       dispatch({ type: "SET_COLLECTION", payload: newCollection });
@@ -33,7 +33,7 @@ const CollectionContextMenu: FC<PropsType> = ({ uid, collection_id }) => {
   const handleRemoveItems = async () => {
     const { status } = await deleteCollectionContents(uid, collection_id);
     if (status === 200) {
-      const newCollection = collections.map((el: any) => {
+      const newCollection = collections?.map((el: any) => {
         if (el.playlist_id === collection_id) {
           el.total_items = 0;
         }
