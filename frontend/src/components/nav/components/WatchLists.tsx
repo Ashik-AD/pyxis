@@ -1,17 +1,15 @@
-import { useContext } from "react";
 import { Link } from "react-router-dom";
 import useFetch from "../../../hooks/useFetch";
-import { StoreContext } from "../../../store/Store";
+import useUser from "../../../hooks/useUser";
 import { imageUrlWithSize } from "../../../utils/imageUrl";
 import { noImage } from "../../../utils/noImage";
 import Spinner from "../../loading/Spinner";
 import DrpWrapper from "./DrpWrapper";
 
 const WatchLists = () => {
-  const {
-    store: { user },
-  } = useContext(StoreContext);
-  const { data, loading } = useFetch(`${user.id}/watch-list/${6}`);
+  const user = useUser()
+
+  const { data, loading } = useFetch(`${user?.id}/watch-list/${6}`);
 
   return (
     <DrpWrapper title="My watch lists" link="/watch-list">
