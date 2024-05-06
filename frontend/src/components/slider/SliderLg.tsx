@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { ReactNode } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -58,7 +58,7 @@ const settings = {
   ],
 };
 
-const SliderLg: React.FC<{ children: ReactElement }> = (props) => {
+const SliderLg: React.FC<{ children: ReactNode}> = (props) => {
   return (
     <Slider
       {...settings}
