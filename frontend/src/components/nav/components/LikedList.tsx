@@ -1,18 +1,24 @@
-import { useContext } from "react";
 import { Link } from "react-router-dom";
 import DrpWrapper from "./DrpWrapper";
 import useFetch from "../../../hooks/useFetch";
-import { StoreContext } from "../../../store/Store";
 import { imageUrlWithSize } from "../../../utils/imageUrl";
 import Spinner from "../../loading/Spinner";
-const LikedList = () => {
-  const {
-    store: {
-      user: { id, liked_id },
-    },
-  } = useContext(StoreContext);
+import useUser from "../../../hooks/useUser";
 
-  const { data, loading } = useFetch(`/liked/with-limit/${id}/${liked_id}/6`);
+type LikedTypes = {
+  id: string;
+  liked_id: string;
+  media_type: string;
+  poster_url: string;
+  title: string;
+}
+
+const LikedList = () => {
+  const user = useUser();
+
+  const { data, loading } = useFetch(
+    `/liked/with-limit/${user?.id}/${user?.liked_id}/6`,
+  );
 
   return (
     <DrpWrapper title="Liked" link="/like">
@@ -24,7 +30,7 @@ const LikedList = () => {
             <Link
               to={`/${lk.media_type}/info/${lk.liked_id}-${lk.title.replaceAll(
                 " ",
-                "-"
+                "-",
               )}`}
               key={lk.id}
               className="flex items-center color-gray gap-10 my-10 hover-bg-fade rounded-regular"
@@ -43,13 +49,5 @@ const LikedList = () => {
     </DrpWrapper>
   );
 };
-
-interface LikedTypes {
-  id: string;
-  liked_id: string;
-  media_type: string;
-  poster_url: string;
-  title: string;
-}
 
 export default LikedList;
