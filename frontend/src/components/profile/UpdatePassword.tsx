@@ -110,7 +110,7 @@ const UpdatePassword: FC = () => {
     try {
       const { data, status } = await ax.post(`/security/update-auth/password`, {
         data: {
-          uid: user.id,
+          uid: user?.id,
           currentPwd: authKey.current,
           newPwd: authKey.update,
         },
