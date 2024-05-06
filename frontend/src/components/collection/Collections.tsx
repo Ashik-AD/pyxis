@@ -30,12 +30,14 @@ const Collections: FC = () => {
     <section className="grid col-2 sm:col-5 gap-20 py-50 px-10 sm:px-50">
       <AlertShow>
         {collections &&
-          collections.map((el: CollectionData) => (
+          user &&
+          collections.map((collection) => (
             <CollectionCard
-              {...el}
               full_name={user.full_name}
-              key={el.playlist_id}
+              key={collection.playlist_id}
               uid={user.id}
+              playlist_id={collection.playlist_id}
+              playlist_name={collection.playlist_name}
             />
           ))}
       </AlertShow>
@@ -51,15 +53,6 @@ const Collections: FC = () => {
       )}
     </section>
   );
-};
-
-type CollectionData = {
-  uid: string;
-  playlist_name: string;
-  playlist_id: string;
-  description: string;
-  total_item: number;
-  created_date: string;
 };
 
 export default Collections;
