@@ -111,7 +111,7 @@ const DeleteAccount = () => {
       if (validatePassword) {
         try {
           const { data } = await ax.post(`/account/delete/permanent`, {
-            data: { email: info.email, password: info.pwd, uid: user.id },
+            data: { email: info.email, password: info.pwd, uid: user?.id },
           });
           if (data.status === 200) {
             dispatch({ type: 'CLEAR_USER' });
