@@ -4,6 +4,12 @@ import { StoreContext } from "../../store/Store";
 import { noImage } from "../../utils/noImage";
 import Modal from "../modal/Modal";
 
+type PropTypes = {
+  collection_id: string;
+  handleClick: (val: true | false) => void;
+  onHandleCompletion?: (values?: any) => void;
+}
+
 const UpdateCollection: FC<PropTypes> = (props) => {
   const { handleClick, collection_id } = props;
   const {
@@ -11,9 +17,9 @@ const UpdateCollection: FC<PropTypes> = (props) => {
     store: { collections, user },
   } = useContext(StoreContext);
   const [updateError, setUpdateError] = useState("");
-  const collection: CollectionType =
+  const collection =
     collections &&
-    collections.find((el: any) => el.playlist_id === collection_id);
+    collections.find((item) => item.playlist_id === collection_id);
 
   const handleSubmit = async (eve: any) => {
     eve.preventDefault();
@@ -25,26 +31,26 @@ const UpdateCollection: FC<PropTypes> = (props) => {
       return;
     }
     if (
-      collection.playlist_name === title &&
-      collection.description === newDescription
+      collection?.playlist_name === title &&
+      collection?.description === newDescription
     ) {
       handleClick(false);
       return;
     }
-    const request = await ax.post(`/${user.id}/update-playlist`, {
+    const request = await ax.post(`/${user?.id}/update-playlist`, {
       data: {
         title,
         description: newDescription,
-        playlist_id: collection.playlist_id,
+        playlist_id: collection?.playlist_id,
       },
     });
     if (request.status === 200) {
-      const newCollections = collections.map((el: CollectionType) => {
-        if (el.playlist_id === collection.playlist_id) {
-          el.playlist_name = title;
-          el.description = newDescription;
+      const newCollections = collections?.map((item) => {
+        if (item.playlist_id === collection?.playlist_id) {
+          item.playlist_name = title;
+          item.description = newDescription;
         }
-        return el;
+        return item;
       });
       handleClick(false);
       dispatch({ type: "SET_COLLECTION", payload: newCollections });
@@ -75,7 +81,7 @@ const UpdateCollection: FC<PropTypes> = (props) => {
           Edit Details
         </span>
         <div className="flex flex-col sm:flex-row gap-20">
-          <div className="relative flex content-center sm:content-normal w-full sm:w-33">
+          <div className="ritemative flex content-center sm:content-normal w-full sm:w-33">
             <img
               src={noImage.collection}
               alt="collection-banner"
@@ -89,12 +95,12 @@ const UpdateCollection: FC<PropTypes> = (props) => {
             <input
               type="text"
               name="title"
-              defaultValue={collection.playlist_name}
+              defaultValue={collection?.playlist_name}
               className="bg-transparent border-2 border-gray color-light-gray py-10 px-10 w-full rounded-regular"
               onClick={clearUpdateError}
             />
             <textarea
-              defaultValue={collection.description}
+              defaultValue={collection?.description}
               name="description"
               className="h-100 bg-transparent border-2 border-gray rounded-lg color-gray p-10"
               onClick={clearUpdateError}
@@ -110,14 +116,4 @@ const UpdateCollection: FC<PropTypes> = (props) => {
     </Modal>
   );
 };
-interface PropTypes {
-  collection_id: string;
-  handleClick: (val: true | false) => void;
-  onHandleCompletion?: (values?: any) => void;
-}
-interface CollectionType {
-  playlist_id: string;
-  playlist_name: string;
-  description: string;
-}
 export default UpdateCollection;
