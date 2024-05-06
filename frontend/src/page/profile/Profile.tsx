@@ -1,7 +1,6 @@
-import { FC, useContext, useEffect } from "react";
+import { FC, useEffect } from "react";
 import ProfileSideBar from "../../components/profile/ProfileSideBar";
 import { Link, Route, Routes } from "react-router-dom";
-import { StoreContext } from "../../store/Store";
 import Index from "../../components/profile/Index";
 import ProfileNavMobile from "../../components/profile/ProfileNavMobile";
 import useFetch from "../../hooks/useFetch";
@@ -9,15 +8,17 @@ import UpdateEmail from "../../components/profile/UpdateEmail";
 import UpdatePassword from "../../components/profile/UpdatePassword";
 import DeleteAccount from "../../components/profile/DeleteAccount";
 import { RiArrowLeftLine } from "react-icons/ri";
+import useUser from "../../hooks/useUser";
+
 const Profile: FC = () => {
-  const {
-    store: { user },
-  } = useContext(StoreContext);
+  const user = useUser()
+
   useEffect(() => {
-    document.title = `Pyxis • ${user.full_name}`;
+    document.title = `Pyxis • ${user?.full_name}`;
   }, [user]);
-  const likedCount = useFetch(`${user.id}/count/liked`);
-  const watchlistCount = useFetch(`${user.id}/count/watchlist`);
+
+  const likedCount = useFetch(`${user?.id}/count/liked`);
+  const watchlistCount = useFetch(`${user?.id}/count/watchlist`);
   return (
     <section
       className="fixed left-0 h-screen w-screen overflow-hidden flex content-center bg-primary absolute sm:p-20"
