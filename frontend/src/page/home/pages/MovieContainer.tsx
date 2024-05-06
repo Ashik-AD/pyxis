@@ -21,8 +21,8 @@ const MovieContainer: FC = () => {
         <CardLargeSliderWithStore
           media_type="movie"
           url="/movie/top"
-          store_item_type="SET_TOP_MOVIE"
-          store_key="topMovie"
+          storeItemType="SET_TOP_MOVIE"
+          storeKey="topMovie"
         />
       </div>
       <div className="container flex flex-col sm:px-20">
@@ -31,8 +31,8 @@ const MovieContainer: FC = () => {
           <CardRegularSliderWithStore
             url="/movie/now-playing/"
             media_type="movie"
-            store_item_type="SET_PLAYING_MOVIE"
-            store_key="playingMovie"
+            storeItem="SET_PLAYING_MOVIE"
+            storeKey="playingMovie"
           />
         </div>
         <div className="my-20">
@@ -40,8 +40,8 @@ const MovieContainer: FC = () => {
           <CardRegularSliderWithStore
             url="/movie/upcoming/"
             media_type="movie"
-            store_item_type="SET_UPCOMING_MOVIE"
-            store_key="upcomingMovie"
+            storeItem="SET_UPCOMING_MOVIE"
+            storeKey="upcomingMovie"
           />
         </div>
       </div>

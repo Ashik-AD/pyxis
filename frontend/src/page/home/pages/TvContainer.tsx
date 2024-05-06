@@ -22,8 +22,8 @@ const TvContainer: FC = () => {
         <CardLargeSliderWithStore
           media_type="tv"
           url="tv/top/"
-          store_item_type="SET_TOP_TV"
-          store_key="topTv"
+          storeItemType="SET_TOP_TV"
+          storeKey="topTv"
         />
       </div>
       <div className="container flex flex-col  pl-10 py-20 sm:px-20">
@@ -32,8 +32,8 @@ const TvContainer: FC = () => {
           <CardRegularSliderWithStore
             url="/tv/on-air/"
             media_type="tv"
-            store_item_type="SET_PLAYING_TV"
-            store_key="playingTv"
+            storeItem="SET_PLAYING_TV"
+            storeKey="playingTv"
           />
         </div>
       </div>
