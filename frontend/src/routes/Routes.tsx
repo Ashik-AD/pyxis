@@ -4,7 +4,7 @@ import NotFound from "../page/404/NotFound";
 import Store from "../store/Store";
 import Spinner from "../components/loading/Spinner";
 import Navbar from "../components/nav/navbar";
-import Auth from "../auth/Auth";
+import WithUser from "../with-user/with-user";
 const Home = React.lazy(() => import("../page/home/Home"));
 const SignUp = React.lazy(() => import("../page/signup/SignUp"));
 const Login = React.lazy(() => import("../page/login/Login"));
@@ -43,12 +43,12 @@ const AppRoutes: React.FC = () => {
         path="/*"
         element={
           <Store>
-            <Auth>
+            <WithUser>
               <Suspense>
                 <Navbar />
                 <Home />
               </Suspense>
-            </Auth>
+            </WithUser>
           </Store>
         }
       />
