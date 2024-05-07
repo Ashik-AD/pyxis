@@ -38,9 +38,15 @@ Pyxis is a simple website where users can view details about movies and TV shows
    ```
 2. Install NPM packages
    ```sh
+   cd server 
+   npm install
+   cd ..
+   cd frontend
+   npm install
+   cd ..
    npm install
    ```
 3. Start local dev
    ```sh
-   npm run dev
+   npm start
    ```
