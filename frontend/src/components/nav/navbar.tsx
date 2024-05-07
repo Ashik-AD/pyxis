@@ -2,15 +2,17 @@ import { Link } from "react-router-dom";
 import { FaSearch, FaAngleDown, FaHeart } from "react-icons/fa";
 import { BiSolidCategoryAlt, BiSolidCollection } from "react-icons/bi";
 import { IoMdLogOut } from "react-icons/io";
-
+import { IoPerson } from "react-icons/io5";
 import NavItem from "./components/NavItem";
 import Container from "../layout/container";
 import DropDown from "../dropdown/DropDown";
 import useUser from "../../hooks/useUser";
+import useAuth from "../../hooks/useAuth";
+
+import defaultAvatar from '../../image/default_avatar.jpg'
 
 export default function Navbar() {
   const user = useUser();
-  console.log(user)
   return (
     <nav className="absolute w-screen top-0 left-0 lg:visible z-2">
       <Container>
@@ -40,14 +42,16 @@ type ProfileProps = {
   fullName: string;
   avatarURL?: string;
 }
+
 function Profile({ fullName, avatarURL }: ProfileProps) {
+  const { logout } = useAuth()
   return (
     <DropDown
       drpId="user_profile"
       label={
         <div className="flex color-white items-center gap-10 cursor-pointer">
           <img
-            src="https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_6.png"
+            src={avatarURL || defaultAvatar}
             className="rounded-full"
             height={32}
           />
@@ -60,6 +64,12 @@ function Profile({ fullName, avatarURL }: ProfileProps) {
     >
       <div className="bg-black py-10 rounded-lg border-1 border-gray">
         <NavItem
+          text="Profile"
+          link="/profile"
+          icon={<IoPerson />}
+          classes="p-16 hover-bg-fade:hover"
+        />
+        <NavItem
           text="Liked"
           link="/liked"
           icon={<FaHeart />}
@@ -67,7 +77,7 @@ function Profile({ fullName, avatarURL }: ProfileProps) {
         />
         <NavItem
           text="Collections"
-          link="/liked"
+          link="/collection"
           icon={<BiSolidCollection />}
           classes="p-16 hover-bg-fade:hover"
         />
@@ -76,6 +86,7 @@ function Profile({ fullName, avatarURL }: ProfileProps) {
           link="/"
           icon={<IoMdLogOut />}
           classes="p-16 hover-bg-fade:hover"
+          onClick={logout}
         />
       </div>
     </DropDown>
