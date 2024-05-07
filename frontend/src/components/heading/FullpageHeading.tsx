@@ -19,19 +19,19 @@ const FullPageHeading: React.FC<FullPagePropsType> = (props) => {
     vote_average,
   } = props;
   return (
-    <div className="relative flex bg-cover  w-full h-full">
+    <div className="relative bg-cover  w-full h-full">
       <BackgroundImage src={imageUrlWithSize(backdrop, "1280")} />
       <div
-        className="flex content-bottom relative w-full h-full color-white z-1"
+        className="flex content-bottom center relative w-full h-full color-white z-1"
         style={{
           paddingTop: 50,
           background:
             "linear-gradient(0deg,rgba(1, 0, 32, 0.75) 20%, #2222226b)",
         }}
       >
+      <div className="w-full">
         <Container>
           <div className="info_wrapper flex flex-col sm:flex-row items-center gap-20 w-full ">
-            {/*  */}
             <div
               className="hidden sm:visible w-full"
               style={{ maxWidth: 1350 }}
@@ -48,9 +48,9 @@ const FullPageHeading: React.FC<FullPagePropsType> = (props) => {
                     <p className="font-medium text-sm" style={{ width: "90%" }}>
                       {desc}
                     </p>
-                    <div className="flex flex-col gap-40">
-                      <div className="flex gap-20">
-                        <span className="text-medium lg:text-medium font-medium">
+                    <div className="flex flex-col gap-60">
+                      <div className="flex gap-20 content-bottom">
+                        <span className="text-small font-medium">
                           {formatDate(new Date(release_date))}
                         </span>
                         <span
@@ -74,6 +74,7 @@ const FullPageHeading: React.FC<FullPagePropsType> = (props) => {
             </div>
           </div>
         </Container>
+        </div>
       </div>
       <div
         className="hidden sm:visible w-screen absolute bottom-0 left-0 z-0"
