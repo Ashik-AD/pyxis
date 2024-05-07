@@ -19,6 +19,7 @@ const Profile: FC = () => {
 
   const likedCount = useFetch(`${user?.id}/count/liked`);
   const watchlistCount = useFetch(`${user?.id}/count/watchlist`);
+
   return (
     <section
       className="fixed left-0 h-screen w-screen overflow-hidden flex content-center bg-primary absolute sm:p-20"
