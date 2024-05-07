@@ -1,7 +1,7 @@
 ## ⚠️⚠️⚠️
-<h2 style="color: orange;">Monorepo for pyxis_client & pyxis_server repo on progress</h2>
+<h2 color="orange" style="color: orange;">Monorepo for pyxis_client & pyxis_server repo on progress</h2>
 
-If you encounter any issues or have questions, don't hesitate to reach out to the development team for assistance.
+If you encounter any issues or have questions, don't hesitate to reach out to me.
 ## ⚠️⚠️⚠️
 
 # Pyxis
