@@ -1,11 +1,12 @@
 import React, { Dispatch, useReducer } from "react";
 import { Collection, User } from "../types/global";
 import { storeReducer } from "./storeReducer";
+import { STORE_ITEM_TYPE } from "./storeType";
 
 export type StoreType = {
   user: User | null;
   collections: Array<Collection> | null;
-  topMovie: Array<any> | null 
+  topMovie: Array<any> | null;
   playingMovie: Array<any> | null;
   upcomingMovie: Array<any> | null;
   popularTv: Array<any> | null;
@@ -32,7 +33,7 @@ export const INITIAL_STATE: StoreType = {
 
 export const StoreContext = React.createContext<{
   store: StoreType;
-  dispatch: Dispatch<{ type: string; payload?: any }>;
+  dispatch: Dispatch<{ type: STORE_ITEM_TYPE; payload?: any }>;
 }>({ store: INITIAL_STATE, dispatch: () => {} });
 
 const Store = (props: any) => {
