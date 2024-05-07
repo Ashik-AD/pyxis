@@ -7,10 +7,11 @@ interface PropsType {
   styles?: CSSProperties;
   classes?: string;
   link: string;
+  onClick?: () => void;
 }
 
 const NavItem = (props: PropsType) => {
-  const { icon, text, styles, classes, link } = props;
+  const { icon, text, styles, classes, link, onClick } = props;
   const { pathname } = useLocation();
   const routeMatch = () =>
     pathname &&
@@ -25,6 +26,7 @@ const NavItem = (props: PropsType) => {
       className={`${
         classes ? classes : ""
       } flex gap-10 align-center color-white py-6 font-semibold rounded-lg transition overflow-hidden`}
+      onClick={onClick}
     >
       {icon && <span className={`flex`}>{icon}</span>}
       {text && <span className="flex text-xsm truncate">{text}</span>}
