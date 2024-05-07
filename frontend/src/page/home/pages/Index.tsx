@@ -12,10 +12,16 @@ const Index: FC = () => {
   }, []);
   return (
     <section className="flex flex-col bg-black">
-      <MovieContainer />
-      <TvContainer />
       <Routes>
-        <Route index element={null} />
+        <Route
+          index
+          element={
+            <>
+              <MovieContainer />
+              <TvContainer />
+            </>
+          }
+        />
         <Route path="/trailer/:type/:id" element={<Trailer />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
