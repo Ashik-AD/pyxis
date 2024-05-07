@@ -1,8 +1,8 @@
 import React from "react";
-import "./App.css";
-import "./styles/Height.css";
-import "./styles/Width.css";
-import "./styles/Color.css";
+import "./App.scss";
+import "./styles/Height.scss";
+import "./styles/Width.scss";
+import "./styles/Color.scss";
 import { AxiosConfig } from "./config/default";
 import AppRoutes from "./routes/Routes";
 

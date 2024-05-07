@@ -1,7 +1,7 @@
 @import './styles/variables';
 @import './styles/Padding';
 @import './styles/Margin';
-@import url('./styles/Space');
+@import './styles/Space';
 
 @mixin visible {
   display: block !important;
