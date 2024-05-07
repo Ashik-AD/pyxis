@@ -1,3 +1,9 @@
+## ⚠️⚠️⚠️
+<h2 style="color: orange;">Monorepo for pyxis_client & pyxis_server repo on progress</h2>
+
+If you encounter any issues or have questions, don't hesitate to reach out to the development team for assistance.
+## ⚠️⚠️⚠️
+
 # Pyxis
 
 Pyxis is a simple website where users can view details about movies and TV shows.
@@ -11,7 +17,7 @@ Pyxis is a simple website where users can view details about movies and TV shows
 
 - ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 - ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
-- ![NnodeJs](https://img.shields.io/badge/nodejs-%23007ACC.svg?style=for-the-badge&logo=node&logoColor=white)
+- ![NodeJs](https://img.shields.io/badge/nodejs-%23007ACC.svg?style=for-the-badge&logo=node&logoColor=white)
 ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
 - ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 - ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
