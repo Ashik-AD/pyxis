@@ -25,18 +25,18 @@ const ItemLike: FC<PropsType> = (props) => {
 
   const handleAddRemoveLike = async () => {
     if (isLiked) {
-      const proceedRemove: any = await props.handleLike.remove();
-      return proceedRemove && setIsLiked(false);
+      props.handleLike.remove();
+      setIsLiked(false);
     } else {
-      const proceedAdd: any = await props.handleLike.add();
-      return proceedAdd && setIsLiked(true);
+      props.handleLike.add();
+      setIsLiked(true);
     }
   };
   return (
     <Button
       handleClick={handleAddRemoveLike}
       color={!isLiked ? props.color : ""}
-      styles={isLiked ? "bg-purple" : ""}
+      styles={`rounded-full ${isLiked ? "bg-purple" : ""}`}
     >
       {isLiked ? <RiHeartFill /> : <RiHeartLine />}
     </Button>
