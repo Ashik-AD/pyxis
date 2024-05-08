@@ -1,7 +1,7 @@
 export interface HeadingPropTypes {
   readonly title: string;
   readonly tagline: string;
-  readonly spoken_languages: [];
+  readonly spoken_languages: Array<{english_name: string}>;
   readonly production_countries: {name: string}[];
   readonly release_date: Date | null;
   readonly status: string;
