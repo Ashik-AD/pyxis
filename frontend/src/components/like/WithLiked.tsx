@@ -45,7 +45,6 @@ function WithLiked(WrappedComponent: React.ComponentType<any>) {
           data: prepareLike,
         });
         if (status === 200) {
-          console.log(data.message);
           setError(data.message);
           return false;
         }
