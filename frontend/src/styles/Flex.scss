@@ -157,6 +157,10 @@
         @include flex-col();
     }
 
+    .md\:flex-row {
+      @include flex-row();
+    }
+
     .md\:nowrap {
         @include nowrap();
     }
