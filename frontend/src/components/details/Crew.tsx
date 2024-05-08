@@ -6,11 +6,8 @@ import { PersonCardTypes } from "../types/Person.type";
 import PersonCard from "../cards/PersonCard";
 import { noImage } from "../../utils/noImage";
 
-import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-const SliderArrow = React.lazy(() => import("../slider/SliderArrow"));
-import { settings } from "../slider/PersonSlide";
 
 const Crew: React.FC<PropTypes> = ({ color, id, type }) => {
   const { data, loading, error } = useFetch(`${type}/credit/${id}/crew`);
@@ -25,24 +22,20 @@ const Crew: React.FC<PropTypes> = ({ color, id, type }) => {
       profile_img: el.profile_path
         ? imageUrlWithSize(el.profile_path, "185")
         : el.gender === 2
-        ? noImage.male
-        : noImage.female,
+          ? noImage.male
+          : noImage.female,
       department: el.job,
       color: color,
       gender: el.gender,
-    })
+    }),
   );
 
   return (
-    <Slider
-      {...settings}
-      nextArrow={<SliderArrow />}
-      prevArrow={<SliderArrow />}
-    >
+    <div className="grid col-2 md:col-3 gap-20 row-gap-30">
       {crew.map((el: any) => (
         <PersonCard {...el} color={color} key={el.id} />
       ))}
-    </Slider>
+    </div>
   );
 };
 interface PropTypes {
