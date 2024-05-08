@@ -13,15 +13,19 @@ const SocialLink: React.FC<PropTypes> = ({
   instagram_id,
   twitter_id,
 }) => {
+
   const classes =
     "flex content-center rounded-full bg-white text-lg color-info";
+
   const style = {
     height: 30,
     width: 30,
     color: "#000",
   };
+
   if (!facebook_id && !twitter_id && !instagram_id && !web)
     return <h4>Awe, no social links found 🙁🙁</h4>;
+
   return (
     <div className="flex gap-10">
       {facebook_id && (
@@ -59,7 +63,7 @@ const SocialLink: React.FC<PropTypes> = ({
       )}
       <span
         className="block bg-fade mx-20"
-        style={{ width: 3, height: "5vh" }}
+        style={{ width: 3, height: 30 }}
       ></span>
       <a
         href={web ? web : "#"}
