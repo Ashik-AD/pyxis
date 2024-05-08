@@ -292,6 +292,10 @@
     @include w-300();
   }
 
+  .lg\:w-400 {
+    @include w-400();
+  }
+
   // width in pixesl
   .lg\:w-70px {
     width: 70px;
