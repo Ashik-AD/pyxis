@@ -1,10 +1,12 @@
 import { FC } from "react";
 
 const MyDiv: FC<PropTypes> = (props) => {
-  const { title, isDividerShow, styles, children, color } = props;
+  const { title, isDividerShow, styles, children } = props;
+
   if (children === "") {
     return null;
   }
+
   return (
     <div
       className={`w-full color-white py-10 overflow-hidden ${
@@ -17,18 +19,18 @@ const MyDiv: FC<PropTypes> = (props) => {
             {title}{" "}
             {isDividerShow !== false && (
               <span
-                className="rounded-lg flex"
-                style={{ height: 5, width: "60%", background: color }}
+                className="rounded-lg flex bg-fade"
+                style={{ height: 4, width: "30%"}}
               ></span>
             )}
           </span>
         </div>
       </div>
-
       {children}
     </div>
   );
 };
+
 interface PropTypes {
   children: any;
   title: string;
