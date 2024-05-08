@@ -1,5 +1,4 @@
 import { FC, useState } from "react";
-import { RiAddFill } from "react-icons/ri";
 import ShowAlert from "../alert/ShowAlert";
 import { ax } from "../../config/default";
 import type { WatchListPropsType } from "./watchlist.type";
@@ -39,12 +38,11 @@ const WatchListAdd: FC<WatchListPropsType> = (props) => {
       <button
         onClick={handleWatchListAdd}
         style={props.styles}
-        className={`flex items-center gap-10 uppercase py-10 border-1 border-gray rounded-xxlg text-xsm font-bold color-white hover-bg-fade ${
+        className={`flex items-center gap-10 py-10 border-1 border-gray rounded-xxlg text-xsm font-bold color-white hover-bg-fade ${
           props.classNames ? props.classNames : ""
         }`}
       >
-        <RiAddFill className="text-lg" />{" "}
-        {!props!.hideLabel ? "Watchlist" : " "}
+        Add to watchlist
       </button>
       <ShowAlert clearAlert={clearMsg} success={success} error={error} />
     </>
