@@ -5,16 +5,17 @@ const ProductionBy: FC<PropsType> = ({ items, color, title }) => {
   return (
     <MyDiv title={title} color={color}>
       <div
-        className="grid col-2 align-center wrap gap-10 overflow-y-scroll"
+        className="flex flex-col center wrap gap-10 overflow-y-scroll"
         style={{ maxHeight: 200 }}
       >
         {items.map((el: any, index: number) => (
           <span key={index}>
             {el.logo_path ? (
               <img
-                src={imageUrlWithSize(el.logo_path, "45")}
+                src={imageUrlWithSize(el.logo_path, '92')}
                 alt={el.name}
                 key={index}
+                style={{filter: 'invert(1)'}}
               />
             ) : (
               <span className="text-sm" key={index}>
