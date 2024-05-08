@@ -1,14 +1,15 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement } from "react";
 
 const Button: React.FC<PropTypes> = (props) => {
   const { title, styles, color, handleClick } = props;
   return (
     <button
-      className={`flex content-center text-lg color-white rounded-full p-6 border-0 ${
-        styles && styles
+      className={`flex content-center text-lg gap-10 color-white p-6 border-0 ${
+        styles ? styles : ""
       }`}
       style={{ background: color }}
-      onClick={handleClick}>
+      onClick={handleClick}
+    >
       {title}
       {props.children}
     </button>
