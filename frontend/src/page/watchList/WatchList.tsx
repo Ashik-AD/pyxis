@@ -24,7 +24,6 @@ const WatchList: FC = () => {
     let fetchWatchList = null;
     fetchWatchList = async () => {
       const { data } = await ax.get(`${user?.id}/watch-list/all`);
-      console.log(data);
       setWatchList(data);
       setLoading(false);
     };
