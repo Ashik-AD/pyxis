@@ -4,6 +4,11 @@ import { ax } from "../../config/default";
 
 import TopResult from "../../components/discover/TopResult";
 import SearchInput from "../../components/search/SearchInput";
+import PageLayout from "../../components/layout/page-layout";
+import Container from "../../components/layout/container";
+
+let controller: AbortController;
+let signal;
 
 const Search = () => {
   const [searchResult, setSearchResult] = useState<any>();
@@ -12,22 +17,22 @@ const Search = () => {
   const search = useCallback(
     async (query: string | null) => {
       setSearching(true);
-      let cancel: any;
-      let CancelToken = ax.CancelToken;
       if (!query) {
-        cancel();
         setSearchResult(null);
         return;
       }
       try {
+        controller = new AbortController();
+        signal = controller.signal;
+
         const searchMovieTv = await ax.get(`search/${query}`, {
-          cancelToken: new CancelToken((c) => (cancel = c)),
+          signal,
         });
         const searchPeoples = await ax.get(`search/people/${query}`, {
-          cancelToken: new CancelToken((c) => (cancel = c)),
+          signal,
         });
         const searchCollections = await ax.get(`search/collection/${query}`, {
-          cancelToken: new CancelToken((c) => (cancel = c)),
+          signal,
         });
         setSearchResult({
           topResult: searchMovieTv.data.results,
@@ -35,14 +40,13 @@ const Search = () => {
           collections: searchCollections.data,
         });
       } catch (error) {
-        console.log("Something went wrong");
         console.log(error);
       } finally {
         setSearching(false);
       }
-      return () => cancel();
+      return ()  => controller?.abort()
     },
-    [searchKey]
+    [searchKey],
   );
 
   useEffect(() => {
@@ -63,32 +67,42 @@ const Search = () => {
     };
   }, []);
 
-  const handleInputSearch = (search_key: string) =>
-    setTimeout(() => setSearchKey(search_key), 50);
+  const handleInputSearch = (search_key: string) => {
+    setSearchKey((prevKey) => {
+      if (prevKey !== search_key) {
+        controller?.abort("Aborted because of multiple request");
+      }
+      return search_key;
+    });
+  };
 
   return (
-    <section className="search_container w-full pt-50">
-      <div className="fixed bg-primary w-full top-0">
-        <SearchInput
-          handleInputChange={handleInputSearch}
-          searchValue={searchKey}
-        />
-      </div>
-      <div style={searching ? { opacity: 0.3 } : { opacity: 1 }}>
-        {searchResult && (
-          <TopResult
-            movieAndTvResult={searchResult.topResult}
-            personResult={searchResult.peoples}
-            collection={searchResult.collections}
-            search_key={searchKey ? searchKey : ""}
+    <PageLayout>
+      <Container>
+        <div className="flex content-center">
+          <SearchInput
+            handleInputChange={handleInputSearch}
+            searchValue={searchKey}
           />
-        )}
-
-        <div style={!searchResult ? { display: "block" } : { display: "none" }}>
-          <DiscoverLists />
         </div>
-      </div>
-    </section>
+        <div style={searching ? { opacity: 0.3 } : { opacity: 1 }}>
+          {searchResult && (
+            <TopResult
+              movieAndTvResult={searchResult?.topResult}
+              personResult={searchResult?.peoples}
+              collection={searchResult?.collections}
+              search_key={searchKey ? searchKey : ""}
+            />
+          )}
+
+          <div
+            style={!searchResult ? { display: "block" } : { display: "none" }}
+          >
+            <DiscoverLists />
+          </div>
+        </div>
+      </Container>
+    </PageLayout>
   );
 };
 
