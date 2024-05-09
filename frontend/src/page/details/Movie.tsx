@@ -5,7 +5,6 @@ import useFetch from "../../hooks/useFetch";
 import extractId from "../../utils/extractId";
 import MyDiv from "../../components/details/MyDiv";
 import SocialLink from "../../components/details/SocialLink";
-import PersonSlide from "../../components/slider/PersonSlide";
 import Crew from "../../components/details/Crew";
 import Keywords from "../../components/details/Keywords";
 import Video from "../../components/details/Video";
@@ -13,6 +12,7 @@ import Similar from "../../components/details/Similar";
 import DetailLoading from "../../components/loading/DetailLoading";
 import ProductionBy from "../../components/details/ProductionBy";
 import Container from "../../components/layout/container";
+import PersonList from "../../components/person-list";
 
 const Movie = () => {
   const [color] = useState("#ca2845");
@@ -32,9 +32,8 @@ const Movie = () => {
           <div className="grid col-1 lg:col-4 col-gap-50 gap-20">
             <div className="w-full sm:span-3 flex flex-col gap-20 overflow-x-hidden">
               <MyDiv title="Top Cast">
-                <PersonSlide
+                <PersonList
                   url={`movie/credit/${movieId}/cast`}
-                  color={color}
                 />
               </MyDiv>
               <MyDiv title="Top Crew">
