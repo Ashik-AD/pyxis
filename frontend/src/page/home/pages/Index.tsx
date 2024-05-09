@@ -11,7 +11,7 @@ const Index: FC = () => {
     document.title = myAppTitle();
   }, []);
   return (
-    <section className="flex flex-col bg-black">
+    <section className="relative flex flex-col bg-black">
       <Routes>
         <Route
           index
