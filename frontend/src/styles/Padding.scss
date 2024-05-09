@@ -270,6 +270,10 @@ $p-100: 100px;
   padding-top: 20px;
 }
 
+.pt-100 {
+  padding-top: $p-100;
+}
+
 .pr-20 {
   padding-right: 20px;
 }
