@@ -5,7 +5,7 @@ const DiscoverCard: React.FC<PropTypes> = ({ name, id, styles, type }) => {
     <Link
       to={`/discover/${type}/genre/${name.replaceAll(" ", "-")}-${id}/1`}
       key={id}
-      className="flex h-100 w-120 px-10 text-sm sm:h-120 sm:w-150 content-center text-center sm:text-medium font-semibold color-white rounded-lg hover-shadow transition"
+      className="flex h-100 px-10 text-sm content-center text-center sm:h-150 sm:text-medium font-semibold color-white rounded-lg hover-shadow transition"
       style={{ ...styles }}
     >
       {name}
