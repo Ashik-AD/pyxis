@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import CardRegular from "../../components/cards/CardRegular";
 import Title from "../../components/cards/Title";
+import Container from "../../components/layout/container";
 import Paginate from "../../components/pagination/Paginate";
 import SkeletonSm from "../../components/skeleton/SkeletonSm";
 import { ax } from "../../config/default";
@@ -36,7 +37,7 @@ const DiscoverByGenre: React.FC = () => {
         const fetch1 = await ax.get(
           `/discover/${type}/by_genre/${genre_id?.split("-").pop()}/${
             page.current
-          }`
+          }`,
         );
         setLists(fetch1.data.results);
         setPage((prevState) => ({
@@ -46,7 +47,7 @@ const DiscoverByGenre: React.FC = () => {
         const fetch2 = await ax.get(
           `/discover/${type}/by_genre/${genre_id?.split("-").pop()}/${
             page.current + 1
-          }`
+          }`,
         );
         const combine: any = fetch1.data.results.concat(fetch2.data.results);
         setLists(combine);
@@ -71,7 +72,7 @@ const DiscoverByGenre: React.FC = () => {
             ?.slice(0, genre_name.length - 1)
             .toString()
             .replaceAll(",", " ")
-        : genre_name?.shift()
+        : genre_name?.shift(),
     );
     document.title = `Pyxis • Discover By ${genreName}`;
     return () => {
@@ -90,29 +91,31 @@ const DiscoverByGenre: React.FC = () => {
     );
   if (error) return <h1>Something went wrong...</h1>;
   return (
-    <div
-      className="px-10 sm:px-20 pt-50 my-20 sm:pt-0 sm:my-0 overflow-y-scroll"
-      ref={containerRef}
-      style={{ background: "#000" }}
-    >
-      <Title title={`Discover ${type} By ${genreName}`} />
-      <div className="grid col-2 md:col-4 lg:col-6 sm:gap-10 gap-10 row-gap-20">
-        {lists &&
-          lists.map((el: any) => (
-            <CardRegular
-              key={el.id}
-              {...el}
-              imageStyle="h-full"
-              url={`/${type}/info/${el.id}-${el.title.replaceAll(" ", "-")}`}
-            />
-          ))}
-      </div>
+    <Container>
+      <div
+        className="pt-50 my-20 sm:pt-0 sm:my-0 overflow-y-scroll"
+        ref={containerRef}
+        style={{ background: "#000" }}
+      >
+        <Title title={`Discover ${type} By ${genreName}`} />
+        <div className="grid col-2 md:col-4 lg:col-6 sm:gap-10 gap-10 row-gap-20">
+          {lists &&
+            lists.map((el: any) => (
+              <CardRegular
+                key={el.id}
+                {...el}
+                imageStyle="h-full"
+                url={`/${type}/info/${el.id}-${el.title.replaceAll(" ", "-")}`}
+              />
+            ))}
+        </div>
 
-      <Paginate
-        total_pages={page.total}
-        active_page={page.current ? page.current : 1}
-      />
-    </div>
+        <Paginate
+          total_pages={page.total}
+          active_page={page.current ? page.current : 1}
+        />
+      </div>
+    </Container>
   );
 };
 
