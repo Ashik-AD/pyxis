@@ -12,10 +12,10 @@ const DiscoverLists: React.FC = () => {
   if (!data) return <LoadingSkeleton />;
   if (error) return <h1>Something went wrong</h1>;
   return (
-    <section className="flex flex-col px-20 sm:px-50 py-20 gap-20">
+    <section className="flex flex-col gap-20">
       <div className="flex flex-col gap-10">
         <Title title="Discover Movie By" />
-        <div className="grid col-2 sm:col-6 wrap gap-20">
+        <div className="grid col-2 sm:col-4 lg:col-6 wrap gap-20">
           {data.movie_genre.map((el: any, index: number) => (
             <DiscoverCard
               {...el}
@@ -30,7 +30,7 @@ const DiscoverLists: React.FC = () => {
       </div>
       <div className="flex flex-col gap-10">
         <Title title="Discover Tv Show By" />
-        <div className="grid col-2 sm:col-6 wrap gap-20 ">
+        <div className="grid col-2 sm:col-4 lg:col-6 wrap gap-20 ">
           {data.tv_genre.map((el: any, index: number) => (
             <DiscoverCard
               {...el}
