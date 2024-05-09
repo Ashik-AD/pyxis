@@ -9,13 +9,13 @@ import DropDown from "../dropdown/DropDown";
 import useUser from "../../hooks/useUser";
 import useAuth from "../../hooks/useAuth";
 
-import defaultAvatar from '../../image/default_avatar.jpg'
+import defaultAvatar from "../../image/default_avatar.jpg";
 
 export default function Navbar() {
   const user = useUser();
   return (
-    <nav className="absolute w-screen top-0 left-0 lg:visible z-2">
-      <Container>
+    <nav className="absolute w-screen z-2">
+      <Container> 
         <div className="flex flex-col space-between iteme-center  py-20 z-2">
           <div className="w-full flex gap-16 items-center space-between">
             <span className="flex gap-10 items-center">
@@ -27,7 +27,11 @@ export default function Navbar() {
               </Link>
             </span>
             <div className="flex gap-30">
-              {user ? <Profile fullName={user.full_name} /> : <NavItem text="Log in" link="/login" />}
+              {user ? (
+                <Profile fullName={user.full_name} />
+              ) : (
+                <NavItem text="Log in" link="/login" />
+              )}
               <NavItem icon={<FaSearch />} link="/search" />
               <NavItem icon={<BiSolidCategoryAlt />} link="" />
             </div>
@@ -41,10 +45,10 @@ export default function Navbar() {
 type ProfileProps = {
   fullName: string;
   avatarURL?: string;
-}
+};
 
 function Profile({ fullName, avatarURL }: ProfileProps) {
-  const { logout } = useAuth()
+  const { logout } = useAuth();
   return (
     <DropDown
       drpId="user_profile"
