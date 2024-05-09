@@ -4,7 +4,7 @@ const Button: React.FC<PropTypes> = (props) => {
   const { title, styles, color, handleClick } = props;
   return (
     <button
-      className={`flex content-center text-lg gap-10 color-white p-6 border-0 ${
+      className={`flex content-center gap-10 color-white p-6 border-0 ${
         styles ? styles : ""
       }`}
       style={{ background: color }}
