@@ -2,7 +2,6 @@ import React, { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
-import PersonSlide from "../../components/slider/PersonSlide";
 import Keywords from "../../components/details/Keywords";
 import MyDiv from "../../components/details/MyDiv";
 import Similar from "../../components/details/Similar";
@@ -16,6 +15,7 @@ import DetailLoading from "../../components/loading/DetailLoading";
 import AringDate from "../../components/details/AringDate";
 import Heading from "../../components/details/Heading";
 import Container from "../../components/layout/container";
+import PersonList from "../../components/person-list";
 
 const Tv: React.FC = () => {
   const color = "#ca2845";
@@ -58,7 +58,7 @@ const Tv: React.FC = () => {
                   />
                 )}
                 <MyDiv title="Cast" color={color}>
-                  <PersonSlide url={`tv/credit/${id}/cast`} color={color} />
+                  <PersonList url={`tv/credit/${id}/cast`} color={color} />
                 </MyDiv>
                 <MyDiv title="Crew" color={color}>
                   <Crew color={color} id={data.id} type="tv" />
