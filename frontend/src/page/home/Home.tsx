@@ -38,8 +38,8 @@ const Home: FC = () => {
   }, [store.user, dispatch]);
 
   return (
-    <section className="home flex">
-      <div className="content_container h-screen overflow-y-scroll w-full">
+    <div className="home overflow-y-scroll">
+      <div className="h-screen w-full relative z-1">
         <Routes>
           <Route path="/*" element={<Index />} />
           <Route
@@ -51,18 +51,18 @@ const Home: FC = () => {
             }
           />
           <Route
-            path="/discover/:type/genre/:genre_id/*"
-            element={
-              <Suspense>
-                <DiscoverByGenre />
-              </Suspense>
-            }
-          />
-          <Route
             path="/tv/info/:id/*"
             element={
               <Suspense>
                 <Tv />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/discover/:type/genre/:genre_id/*"
+            element={
+              <Suspense>
+                <DiscoverByGenre />
               </Suspense>
             }
           />
@@ -134,7 +134,7 @@ const Home: FC = () => {
           />
         </Routes>
       </div>
-    </section>
+    </div>
   );
 };
 
