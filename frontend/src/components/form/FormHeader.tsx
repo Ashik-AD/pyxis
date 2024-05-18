@@ -1,15 +1,17 @@
 import React from "react";
-const FormHeader: React.FC<{ title: string; classNames?: string }> = ({
-  title,
-  classNames,
-}) => (
+type Props = {
+  title: string;
+  subtitle?: string;
+  className?: string;
+};
+const FormHeader = ({ title, subtitle, className }: Props) => (
   <div
-    className={`form-head font-bold text-heading color-white cursor-default z-2 ${
-      classNames ? classNames : ""
+    className={`form-head mb-50 color-white cursor-default z-2 ${
+      className ? className : ""
     }`}
-    style={{ marginBottom: 50 }}
   >
-    {title}
+    <h1 className="text-xlg font-semibold">{title}</h1>
+    {subtitle && <span className="text-regular font-medium">{subtitle}</span>}
   </div>
 );
 export default React.memo(FormHeader);
