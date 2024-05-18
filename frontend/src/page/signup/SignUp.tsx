@@ -185,7 +185,7 @@ const SignUp: React.FC = () => {
           path="/"
           element={
             <React.Fragment>
-              <FormHeader title="Sign Up" classNames="text-center" />
+              <FormHeader title="Sign Up" subtitle=""  />
               <form className="flex flex-col w-full sm:px-20 z-2">
                 <div
                   className="slider grid col-3 gap-20 transition-1"
