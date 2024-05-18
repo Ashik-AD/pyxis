@@ -52,7 +52,7 @@ const Login: React.FC = () => {
     if (!validateEmail(userCredential.email)) {
       handleErrorMessage(
         "email",
-        "Invalid email address. Please make sure you enter valid email address."
+        "Invalid email address. Please make sure you enter valid email address.",
       );
       return;
     }
@@ -110,9 +110,12 @@ const Login: React.FC = () => {
       <form
         onSubmit={handleFormSubmit}
         autoComplete="OFF"
-        className="flex flex-col content-center px-20 lg:px-50 z-2"
+        className="flex flex-col z-2"
       >
-        <FormHeader title="Log in" />
+        <FormHeader
+          title="Log in to your Account"
+          subtitle="Discover the Movie, TV shows, artist and many more."
+        />
         <InputGroup classes="w-full">
           <Input
             type="text"
@@ -142,9 +145,11 @@ const Login: React.FC = () => {
         ) : (
           ""
         )}
-        <button className="px-50 py-8 my-20 mb-50 color-success text-medium font-semibold rounded-lg">
-          Log in
-        </button>
+        <span className="flex content-center">
+          <button className="px-50 py-8 my-20 mb-50 color-success text-medium font-semibold rounded-lg">
+            Log in
+          </button>
+        </span>
         <FormFooter path="/signup" accountStatus="dont" />
         {showLoading && <ShowWaitOverlay />}
       </form>
