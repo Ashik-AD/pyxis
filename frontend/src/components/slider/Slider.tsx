@@ -17,15 +17,8 @@ const SliderMain = (props: any) => {
       {
         breakpoint: 1920,
         settings: {
-          slidesToShow: 6,
-          slidesToScroll: 4,
-        },
-      },
-      {
-        breakpoint: 1620,
-        settings: {
-          slidesToShow: 9,
-          slidesToScroll: 9,
+          slidesToShow: 8,
+          slidesToScroll: 8,
         },
       },
       {
