@@ -1,5 +1,5 @@
 export const noImage = (() => {
-  const base = import.meta.env.DEV  ? import.meta.env.VITE_SERVER_DEVELOPMENT : import.meta.env.VITE_SERVER_PRODUCTION;
+  const base = import.meta.env.DEV  ? import.meta.env.VITE_SERVER_DEVELOPMENT_URL : import.meta.env.VITE_SERVER_PRODUCTION_URL;
    
   return {
     female: `${base}/ks23zkdsiw32f.jpg`,
