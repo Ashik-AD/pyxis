@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { FaSearch, FaAngleDown, FaHeart } from "react-icons/fa";
-import { BiSolidCategoryAlt, BiSolidCollection } from "react-icons/bi";
+import { BiSolidCollection } from "react-icons/bi";
 import { IoMdLogOut } from "react-icons/io";
 import { IoPerson } from "react-icons/io5";
 import NavItem from "./components/NavItem";
@@ -33,7 +33,6 @@ export default function Navbar() {
                 <NavItem text="Log in" link="/login" />
               )}
               <NavItem icon={<FaSearch />} link="/search" />
-              <NavItem icon={<BiSolidCategoryAlt />} link="" />
             </div>
           </div>
         </div>
