@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { KeyboardEvent, KeyboardEventHandler, useRef } from "react";
 import { RiCloseFill } from "react-icons/ri";
 import { FiSearch } from "react-icons/fi";
 import styles from "./styles.module.css";
@@ -30,6 +30,14 @@ function SearchInput(props: Props) {
       inputRef.current.value = "";
     }
   }
+
+  function handlePressEnterKey(event: KeyboardEvent<HTMLInputElement>) {
+    if (event.key?.toString().toLowerCase() == "enter") {
+      if (props.handleInputChange && inputRef?.current) {
+        props.handleInputChange(inputRef?.current?.value);
+      }
+    }
+  }
   return (
     <div
       aria-labelledby="search box"
@@ -46,6 +54,7 @@ function SearchInput(props: Props) {
         placeholder="Movie, Tv shows & Artist..."
         autoFocus={true}
         defaultValue={props.searchValue}
+        onKeyDown={handlePressEnterKey}
         title="Search here"
         ref={inputRef}
       />
