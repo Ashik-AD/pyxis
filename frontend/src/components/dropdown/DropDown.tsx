@@ -23,9 +23,9 @@ const DropDown = ({ children, label, styles, drpId }: PropTypes) => {
         {label}
       </div>
       <div
-        className={`w-full absolute ${
+        className={`absolute ${
           styles ? styles : ""
-        } ${!isVisible ? "visibility-hidden opacity-0" : ""} left-0`}
+        } ${!isVisible ? "visibility-hidden opacity-0" : ""} right-0`}
         style={{ top: "120%" }}
       >
         {children}

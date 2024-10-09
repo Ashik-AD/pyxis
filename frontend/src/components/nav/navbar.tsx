@@ -15,7 +15,7 @@ export default function Navbar() {
   const user = useUser();
   return (
     <nav className="absolute w-screen z-2">
-      <Container> 
+      <Container>
         <div className="flex flex-col space-between iteme-center  py-20 z-2">
           <div className="w-full flex gap-16 items-center space-between">
             <span className="flex gap-10 items-center">
@@ -28,7 +28,7 @@ export default function Navbar() {
             </span>
             <div className="flex gap-30">
               {user ? (
-                <Profile fullName={user.full_name} />
+                <Profile fullName={user.full_name} email={user.email} />
               ) : (
                 <NavItem text="Log in" link="/login" />
               )}
@@ -44,28 +44,40 @@ export default function Navbar() {
 type ProfileProps = {
   fullName: string;
   avatarURL?: string;
+  email: string;
 };
 
-function Profile({ fullName, avatarURL }: ProfileProps) {
+function Profile({ fullName, avatarURL, email }: ProfileProps) {
   const { logout } = useAuth();
   return (
     <DropDown
       drpId="user_profile"
+      styles="w-200"
       label={
         <div className="flex color-white items-center gap-10 cursor-pointer">
           <img
             src={avatarURL || defaultAvatar}
             className="rounded-full"
-            height={32}
+            height={48}
           />
-          <span className="text-sm font-medium">{fullName}</span>
           <i className="flex">
             <FaAngleDown />
           </i>
         </div>
       }
     >
-      <div className="bg-black py-10 rounded-lg border-1 border-gray">
+      <div className="flex flex-col gap-10 bg-black py-10 rounded-lg border-1 border-gray">
+        <div className="flex flex-col p-16">
+          {fullName && (
+            <span
+              className="text-medium color-purple"
+              style={{ whiteSpace: "nowrap" }}
+            >
+              {fullName}
+            </span>
+          )}
+          <span>{email}</span>
+        </div>
         <NavItem
           text="Profile"
           link="/profile"

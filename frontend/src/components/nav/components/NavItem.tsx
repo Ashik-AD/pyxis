@@ -25,11 +25,11 @@ const NavItem = (props: PropsType) => {
       style={{ ...styles, color: routeMatch() ? "#d1004d" : "" }}
       className={`${
         classes ? classes : ""
-      } flex gap-10 align-center color-white py-6 font-semibold rounded-lg transition overflow-hidden`}
+      } flex gap-20 align-center color-white py-6 font-semibold rounded-lg transition overflow-hidden`}
       onClick={onClick}
     >
-      {icon && <span className={`flex`}>{icon}</span>}
-      {text && <span className="flex text-xsm truncate">{text}</span>}
+      {icon && <span className={`flex text-lg `}>{icon}</span>}
+      {text && <span className="flex text-small truncate">{text}</span>}
     </Link>
   );
 };
