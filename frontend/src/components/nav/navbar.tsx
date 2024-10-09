@@ -1,12 +1,11 @@
 import { useEffect, useRef } from "react";
 import {
   Link,
+  useLocation,
   useNavigate,
-  useParams,
   useSearchParams,
 } from "react-router-dom";
 import { FaAngleDown, FaHeart } from "react-icons/fa";
-import { FiSearch } from "react-icons/fi";
 import { BiSolidCollection } from "react-icons/bi";
 import { IoMdLogOut } from "react-icons/io";
 import { IoPerson } from "react-icons/io5";
@@ -18,7 +17,6 @@ import useAuth from "../../hooks/useAuth";
 import SearchInput from "../search/SearchInput";
 
 import defaultAvatar from "../../image/default_avatar.jpg";
-import Input from "../form/Input";
 
 import styles from "./styles.module.css";
 
@@ -79,16 +77,18 @@ export default function Navbar() {
 
 function Search() {
   let route = useNavigate();
+  let path = useLocation();
   let [params, setParams] = useSearchParams();
 
   function handleInputSearch(searchTerm: string) {
     let p = new URLSearchParams(`q=${searchTerm}`);
-    setParams(p, {
-        replace: true
-    });
+    setParams(p);
   }
+
   function handleNavigateOnSearch() {
-    return route("/search");
+    if (path.pathname != "/search") {
+      return route("/search");
+    }
   }
   return (
     <div onClick={handleNavigateOnSearch}>
