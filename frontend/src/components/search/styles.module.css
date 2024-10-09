@@ -1,0 +1,22 @@
+.search_box {
+  display: flex;
+  gap: 0.6rem;
+  background: #302130a3;
+  align-items: center;
+  padding-block: 0.8rem;
+  padding-inline: 1rem;
+  border-radius: 2rem;
+
+  input {
+    background: transparent;
+    outline-color: transparent;
+    color: #fff;
+    border: 0;
+    flex: 1;
+    font-size: 1rem;
+  }
+
+  &:has(> input:focus) {
+    background: #302130a8;
+  }
+}

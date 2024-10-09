@@ -3,17 +3,20 @@ import DiscoverLists from "../../components/discover/DiscoverLists";
 import { ax } from "../../config/default";
 
 import TopResult from "../../components/discover/TopResult";
-import SearchInput from "../../components/search/SearchInput";
 import PageLayout from "../../components/layout/page-layout";
 import Container from "../../components/layout/container";
+import { useSearchParams } from "react-router-dom";
 
 let controller: AbortController;
 let signal;
 
 const Search = () => {
+  const [searchParam, _] = useSearchParams();
   const [searchResult, setSearchResult] = useState<any>();
-  const [searchKey, setSearchKey] = useState<string | null>(null);
   const [searching, setSearching] = useState(false);
+
+  let searchKey = searchParam.toString().split("=")[1];
+
   const search = useCallback(
     async (query: string | null) => {
       setSearching(true);
@@ -28,12 +31,14 @@ const Search = () => {
         const searchMovieTv = await ax.get(`search/${query}`, {
           signal,
         });
-        const searchPeoples = await ax.get(`search/people/${query}`, {
-          signal,
-        });
-        const searchCollections = await ax.get(`search/collection/${query}`, {
-          signal,
-        });
+        const [searchPeoples, searchCollections] = await Promise.all([
+          await ax.get(`search/people/${query}`, {
+            signal,
+          }),
+          await ax.get(`search/collection/${query}`, {
+            signal,
+          }),
+        ]);
         setSearchResult({
           topResult: searchMovieTv.data.results,
           peoples: searchPeoples.data,
@@ -44,7 +49,7 @@ const Search = () => {
       } finally {
         setSearching(false);
       }
-      return ()  => controller?.abort()
+      return () => controller?.abort();
     },
     [searchKey],
   );
@@ -61,30 +66,9 @@ const Search = () => {
     };
   }, [searchKey]);
 
-  useEffect(() => {
-    return () => {
-      setSearchKey(null);
-    };
-  }, []);
-
-  const handleInputSearch = (search_key: string) => {
-    setSearchKey((prevKey) => {
-      if (prevKey !== search_key) {
-        controller?.abort("Aborted because of multiple request");
-      }
-      return search_key;
-    });
-  };
-
   return (
     <PageLayout>
       <Container>
-        <div className="flex content-center">
-          <SearchInput
-            handleInputChange={handleInputSearch}
-            searchValue={searchKey}
-          />
-        </div>
         <div style={searching ? { opacity: 0.3 } : { opacity: 1 }}>
           {searchResult && (
             <TopResult

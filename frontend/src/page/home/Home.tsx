@@ -38,7 +38,7 @@ const Home: FC = () => {
   }, [store.user, dispatch]);
 
   return (
-    <div className="home overflow-y-scroll">
+    <div className="home">
       <div className="h-screen w-full relative z-1">
         <Routes>
           <Route path="/*" element={<Index />} />

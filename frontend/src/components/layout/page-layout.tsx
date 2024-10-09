@@ -5,5 +5,5 @@ export default function PageLayout({
   children,
   ...props
 }: HTMLAttributes<HTMLDivElement>) {
-  return <div className={`page-layout pt-100 ${className || ""}`} {...props}>{children}</div>;
+  return <div className={`page-layout pt-50 ${className || ""}`} {...props}>{children}</div>;
 }

@@ -8,7 +8,7 @@ const ResultPersonList: React.FC<PropTypes> = (props) => {
   const { id, name, profile_path, known_for_department, gender } = props;
   return (
     <Link
-      to={`/person/${name.replaceAll(" ", "-")}-${id}`}
+      to={`/person/${name?.replaceAll(" ", "-")}-${id}`}
       key={id}
       title={name}
       className="flex flex-col items-center gap-20 color-white hover-bg-fade p-6 rounded-regular bg-secondary overflow-hidden"
@@ -33,7 +33,7 @@ const ResultPersonList: React.FC<PropTypes> = (props) => {
             {name}
           </span>
           <span className="capitalize text-xsm font-semibold my-6">
-            {known_for_department.toLowerCase() === "acting"
+            {known_for_department?.toLowerCase() === "acting"
               ? "Artist"
               : known_for_department}
           </span>

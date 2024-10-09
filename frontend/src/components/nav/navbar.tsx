@@ -1,5 +1,12 @@
-import { Link } from "react-router-dom";
-import { FaSearch, FaAngleDown, FaHeart } from "react-icons/fa";
+import { useEffect, useRef } from "react";
+import {
+  Link,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from "react-router-dom";
+import { FaAngleDown, FaHeart } from "react-icons/fa";
+import { FiSearch } from "react-icons/fi";
 import { BiSolidCollection } from "react-icons/bi";
 import { IoMdLogOut } from "react-icons/io";
 import { IoPerson } from "react-icons/io5";
@@ -8,36 +15,88 @@ import Container from "../layout/container";
 import DropDown from "../dropdown/DropDown";
 import useUser from "../../hooks/useUser";
 import useAuth from "../../hooks/useAuth";
+import SearchInput from "../search/SearchInput";
 
 import defaultAvatar from "../../image/default_avatar.jpg";
+import Input from "../form/Input";
+
+import styles from "./styles.module.css";
 
 export default function Navbar() {
   const user = useUser();
+  let navRef = useRef<HTMLEmbedElement | null>(null);
+  let rootObserverRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    function scrollObserver(entires: IntersectionObserverEntry[]) {
+      if (entires[0].isIntersecting) {
+        navRef.current?.classList.remove(styles.nav_fill);
+      } else {
+        navRef.current?.classList.add(styles.nav_fill);
+      }
+    }
+    let observer = new IntersectionObserver(scrollObserver, {
+      rootMargin: "0px",
+      threshold: 0.0,
+    });
+    if (rootObserverRef.current) {
+      observer.observe(rootObserverRef.current);
+    }
+  }, [navRef.current, rootObserverRef.current]);
+
   return (
-    <nav className="absolute w-screen z-2">
-      <Container>
-        <div className="flex flex-col space-between iteme-center  py-20 z-2">
-          <div className="w-full flex gap-16 items-center space-between">
-            <span className="flex gap-10 items-center">
-              <Link
-                to="/"
-                className="text-lg color-white font-bold hidden sm:visible"
-              >
-                Pyxis
-              </Link>
-            </span>
-            <div className="flex gap-30">
-              {user ? (
-                <Profile fullName={user.full_name} email={user.email} />
-              ) : (
-                <NavItem text="Log in" link="/login" />
-              )}
-              <NavItem icon={<FaSearch />} link="/search" />
+    <>
+      <nav className={`${styles.nav} fixed w-screen z-2`} ref={navRef}>
+        <Container>
+          <div className="flex flex-col space-between iteme-center  py-10 z-2">
+            <div className="w-full flex gap-16 items-center space-between">
+              <span className="flex gap-10 items-center">
+                <Link
+                  to="/"
+                  className="text-lg color-white font-bold hidden sm:visible"
+                >
+                  Pyxis
+                </Link>
+              </span>
+              <div>
+                <Search />
+              </div>
+              <div className="flex gap-30">
+                {user ? (
+                  <Profile fullName={user.full_name} email={user.email} />
+                ) : (
+                  <NavItem text="Log in" link="/login" />
+                )}
+              </div>
             </div>
           </div>
-        </div>
-      </Container>
-    </nav>
+        </Container>
+      </nav>
+      <div className={styles.observer_ele} ref={rootObserverRef}></div>
+    </>
+  );
+}
+
+function Search() {
+  let route = useNavigate();
+  let [params, setParams] = useSearchParams();
+
+  function handleInputSearch(searchTerm: string) {
+    let p = new URLSearchParams(`q=${searchTerm}`);
+    setParams(p, {
+        replace: true
+    });
+  }
+  function handleNavigateOnSearch() {
+    return route("/search");
+  }
+  return (
+    <div onClick={handleNavigateOnSearch}>
+      <SearchInput
+        handleInputChange={handleInputSearch}
+        searchValue={params.toString().split("=")[1]}
+      />
+    </div>
   );
 }
 
@@ -58,7 +117,7 @@ function Profile({ fullName, avatarURL, email }: ProfileProps) {
           <img
             src={avatarURL || defaultAvatar}
             className="rounded-full"
-            height={48}
+            height={36}
           />
           <i className="flex">
             <FaAngleDown />

@@ -1,14 +1,11 @@
-import { FormEvent, ReactComponentElement } from 'react';
+import { FormEvent, InputHTMLAttributes, ReactComponentElement } from "react";
 
-export interface InputProps {
-  name: string;
-  value?: string | number;
-  onInputChange: (eve: FormEvent<HTMLInputElement>) => void;
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+  onInputChange?: (eve: FormEvent<HTMLInputElement>) => void;
   onClickInput?: (eve: FormEvent<HTMLInputElement>) => void;
   handleOnBlur?: (eve: FormEvent<HTMLInputElement>) => void;
   handleFocus?: (eve: FormEvent<HTMLInputElement>) => void;
-  label: string;
-  type: string;
+  label?: string;
   icon?: ReactComponentElement<any>;
   classes?: string;
   error?: string | null;

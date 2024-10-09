@@ -1,0 +1,9 @@
+.nav_fill {
+  background: #1919199c;
+  backdrop-filter: blur(10px);
+}
+.observer_ele {
+  position: absolute;
+  top: 0;
+  z-index: -1;
+}

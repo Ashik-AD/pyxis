@@ -1,10 +1,10 @@
 import React, { useRef, useEffect } from "react";
-import { InputProps } from "./input.type";
+import type { InputProps } from "./input.type";
 
 const Input: React.FC<InputProps> = (props) => {
   const {
     name,
-    type,
+    type = "text",
     label,
     onInputChange,
     icon,
@@ -14,6 +14,8 @@ const Input: React.FC<InputProps> = (props) => {
     handleOnBlur,
     handleFocus,
     isShowError,
+    className,
+    ...restProps
   } = props;
   const labelRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -24,39 +26,45 @@ const Input: React.FC<InputProps> = (props) => {
     }
   }, [error]);
   const handleAnimateLabel = (): void => {
-    labelRef.current?.classList.add("animate-label");
+    if (label) {
+      labelRef.current?.classList.add("animate-label");
+    }
   };
   const removeAnimateLabel = () => {
-    if (value !== "") {
-      handleAnimateLabel();
-    } else {
-      labelRef.current?.classList.remove("animate-label");
+    if (label) {
+      if (value !== "") {
+        handleAnimateLabel();
+      } else {
+        labelRef.current?.classList.remove("animate-label");
+      }
     }
   };
 
   return (
     <div className={`input-wrapper relative z-1 ${classes}`}>
-      <span
-        ref={labelRef}
-        className={`input-label absolute left-20 font-semibold color-white select-none -z-1 transition bg-secondary ${
-          error ? "color-red" : ""
-        }
+      {label && (
+        <span
+          ref={labelRef}
+          className={`input-label absolute left-20 font-semibold color-white select-none -z-1 transition bg-secondary ${
+            error ? "color-red" : ""
+          }
         ${value ? "animate-label text-xsm" : "text-sm"}
         `}
-        style={{ top: 14 }}
-      >
-        {label}
-      </span>
+          style={{ top: 14 }}
+        >
+          {label}
+        </span>
+      )}
       <input
         type={type}
         name={name}
         value={value}
         onChange={onInputChange}
-        className={`py-14 px-20 w-full bg-transparent border-2 border-fade font-medium rounded-lg z-1 color-white text-regular ${
+        className={`py-14 px-20 w-full bg-transparent border-1 border-fade font-medium rounded-lg z-1 color-white text-regular ${
           error
             ? "border-red select-danger"
             : value && "color-success border-success"
-        }`}
+        } ${className || ''}`}
         style={icon ? { paddingRight: 30 } : {}}
         onFocus={(eve) => {
           handleAnimateLabel();
@@ -72,10 +80,13 @@ const Input: React.FC<InputProps> = (props) => {
         }}
         onClick={props.onClickInput ? props.onClickInput : undefined}
         ref={inputRef}
+        {...restProps}
       />
-      <p className="color-red right-10 text-sm font-semibold transition">
-        {isShowError === undefined ? error : ""}
-      </p>
+      {isShowError && (
+        <p className="color-red right-10 text-sm font-semibold transition">
+          {error}
+        </p>
+      )}
       {icon ? (
         <span
           className={`absolute flex right-10 text-lg color-white ${
