@@ -1,6 +1,6 @@
-import fieldLists from '../db/fieldLists.js';
-import User from '../model/user.js';
-import generateId from '../utils/generateId.js';
+import fieldLists from "../db/fieldLists.js";
+import User from "../model/user.js";
+import generateId from "../utils/generateId.js";
 export const createPlaylist = async (req, res) => {
   const uid = req.params.uid;
   const { playlistName, description } = req.body.data;
@@ -12,19 +12,20 @@ export const createPlaylist = async (req, res) => {
       playlistName,
       description,
     });
-    res
-      .status(201)
-      .send({ msg: 'One playlist created', playlist: {
+    res.status(201).send({
+      msg: "One playlist created",
+      playlist: {
         playlist_id: playlistId,
         uid,
         playlist_name: playlistName,
         description,
         total_item: 0,
-        create_date: new Date()
-      } });
+        create_date: new Date(),
+      },
+    });
   } catch (err) {
     console.log(err);
-    res.status(421).send('Something went wrong');
+    res.status(421).send("Something went wrong");
   }
 };
 
@@ -35,7 +36,7 @@ export const getPlaylist = async (req, res, next) => {
     res.send(playlists);
   } catch (err) {
     console.log(err);
-    res.send('Something went wrong');
+    res.send("Something went wrong");
   }
 };
 
@@ -55,12 +56,12 @@ export const renamePlaylist = async (req, res, next) => {
     }
   } catch (err) {
     console.log(err);
-    res.send('Something went wrong');
+    res.send("Something went wrong");
   }
 };
 
 export const removePlaylist = async (req, res, next) => {
-  const {uid, collection_id} = req.params;
+  const { uid, collection_id } = req.params;
   try {
     await User.playlist.remove({
       uid,
@@ -69,7 +70,7 @@ export const removePlaylist = async (req, res, next) => {
     res.send(`${uid} playlist successfully removed`);
   } catch (err) {
     console.log(err);
-    res.send('Something went wrong');
+    res.send("Something went wrong");
   }
 };
 
@@ -78,12 +79,12 @@ export const addPlaylistItem = async (req, res, next) => {
   try {
     const { data } = req.body;
     await User.playlist.addItem({ ...data, uid });
-    res.status(201).send('Successfully added');
+    res.status(201).send("Successfully added");
   } catch (err) {
     res.send({ msg: err.message });
   }
 };
-  
+
 export const getPlaylistItems = async (req, res, next) => {
   const { uid, playlist_id } = req.params;
   try {
@@ -91,7 +92,7 @@ export const getPlaylistItems = async (req, res, next) => {
     res.send(items);
   } catch (err) {
     console.log(err);
-    res.send('Something went wrong');
+    res.send("Something went wrong");
   }
 };
 
@@ -104,32 +105,33 @@ export const removePlaylistItem = async (req, res, next) => {
       ...data,
     });
     if (remove) {
-      res.status(201).send('Successful!');
+      res.status(201).send("Successful!");
       return;
     }
-    res.send('Nothing found');
+    res.send("Nothing found");
   } catch (err) {
     console.log(err);
-    res.send('Something went wrong');
+    res.send("Something went wrong");
   }
 };
 
 export const removePlaylistItemAll = async (req, res, next) => {
-  const {uid, collection_id} = req.params;
+  const { uid, collection_id } = req.params;
   try {
-    const remove = await User.playlist.removeAllItem({uid, playlist_id: collection_id});
-    if(remove){
-      res.status(200).send('Your all collected movie and tv show is deleted');
+    const remove = await User.playlist.removeAllItem({
+      uid,
+      playlist_id: collection_id,
+    });
+    if (remove) {
+      res.status(200).send("Your all collected movie and tv show is deleted");
+    } else {
+      res.status(206).send("Your collection is empty.");
     }
-    else {
-      res.status(206).send("Your collection is empty.")
-    }
-  }
-  catch(error){
+  } catch (error) {
     res.status(401).send("Something went wrong");
     console.log(error);
   }
-}
+};
 
 export const getLiked = async (req, res, next) => {
   try {
@@ -138,7 +140,7 @@ export const getLiked = async (req, res, next) => {
     res.send(likedItems);
   } catch (err) {
     console.log(err);
-    res.send('Something went wrong');
+    res.send("Something went wrong");
   }
 };
 
@@ -149,7 +151,7 @@ export const getLikedWithLimit = async (req, res, next) => {
     res.send(likedItems);
   } catch (error) {
     console.log(error);
-    res.status(400).send('Something went wrong');
+    res.status(400).send("Something went wrong");
   }
 };
 
@@ -169,17 +171,19 @@ export const addLike = async (req, res, next) => {
       releaseDate: release_date,
       mediaType: media_type,
     });
-      await User.playlist.addRemovePlaylistLikedItems({
-        uid,
-        itemId: liked_id,
-        isLiked: true,
-      });
+    await User.playlist.addRemovePlaylistLikedItems({
+      uid,
+      itemId: liked_id,
+      isLiked: true,
+    });
     res
       .status(201)
       .send({ message: `"${title}" is successfully added`, result: addItem });
   } catch (err) {
-    console.log(err)
-    res.status(200).send(err);
+    console.log(err);
+    res.status(400).send({
+      message: err,
+    });
   }
 };
 
@@ -187,19 +191,22 @@ export const removeLike = async (req, res, next) => {
   try {
     const { likedId } = req.body.data;
     const uid = req.params.uid;
-    await User.liked.remove({
+    let isDeleted = await User.liked.remove({
       uid,
       likedId,
     });
+    if (!isDeleted) {
+      return res.status(404).send({ message: `Item not found` });
+    }
     await User.playlist.addRemovePlaylistLikedItems({
       uid,
       itemId: likedId,
       isLiked: false,
     });
-    res.status(201).send('Removed from your like');
+    res.status(201).send("Removed from your like");
   } catch (err) {
     console.log(err);
-    res.send('Something went wrong');
+    res.send("Something went wrong");
   }
 };
 
@@ -207,9 +214,9 @@ export const searchLiked = async (req, res, next) => {
   try {
     const { uid, item_id } = req.body.data;
     const search = await User.liked.find({ uid, likedId: item_id });
-    res.send({isLiked: search.length > 0 ? true : false});
+    res.send({ isLiked: search.length > 0 ? true : false });
   } catch (err) {
-    res.status(400).send('Something went wrong');
+    res.status(400).send("Something went wrong");
   }
 };
 
@@ -220,7 +227,7 @@ export const addWatchList = async (req, res, next) => {
   try {
     const isLiked = await User.liked.find({ uid, likedId: data.item_key });
     data[fieldLists.isLiked] = isLiked?.length > 0 ? true : false;
-    const addItem = await User.watchList.add({ ...data, uid }); 
+    const addItem = await User.watchList.add({ ...data, uid });
     if (typeof addItem === "boolean") {
       res.status(201).send(`${data.title} is added to your watchlist`);
       return;
@@ -239,7 +246,7 @@ export const getWatchList = async (req, res, next) => {
     res.send(watchLists);
   } catch (error) {
     console.log(error);
-    res.status(400).send({ msg: 'Something went wrong', err: error });
+    res.status(400).send({ msg: "Something went wrong", err: error });
   }
 };
 
@@ -249,7 +256,7 @@ export const getWatchListLimit = async (req, res, next) => {
     const ls = await User.watchList.withLimit({ uid, limit });
     res.send(ls);
   } catch (error) {
-    res.status(400).send('Something went wrong');
+    res.status(400).send("Something went wrong");
     console.log(error);
   }
 };
@@ -259,12 +266,12 @@ export const removeWatchList = async (req, res, next) => {
     const { uid, item_id } = req.params;
     const rem = await User.watchList.remove({ uid, item_key: item_id }); // return affected row count
     if (rem > 0) {
-      res.status(201).send('Successful');
+      res.status(201).send("Successful");
       return;
     }
-    res.send('Unchanged');
+    res.send("Unchanged");
   } catch (error) {
-    res.status(400).send('Something went wrong');
+    res.status(400).send("Something went wrong");
     console.log(error);
   }
 };
@@ -273,17 +280,17 @@ export const countItems = async (req, res, next) => {
   try {
     const { uid, table } = req.params;
     let cnt;
-    if (table === 'liked') {
+    if (table === "liked") {
       cnt = await User.liked.count(uid);
       res.status(200).send(`${cnt}`);
       return;
-    } else if (table === 'watchlist') {
+    } else if (table === "watchlist") {
       cnt = await User.watchList.count(uid);
       res.send(`${cnt}`);
       return;
     }
   } catch (error) {
-    res.status(400).send('Something went wrong');
+    res.status(400).send("Something went wrong");
     console.log(error);
   }
 };
