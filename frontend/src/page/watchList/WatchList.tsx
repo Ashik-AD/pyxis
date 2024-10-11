@@ -22,6 +22,7 @@ function WatchList() {
     let fetchWatchList = null;
     if (!watchList || watchList?.length <= 0) {
       fetchWatchList = async () => {
+        setLoading(true);
         const { data } = await ax.get(`${user?.id}/watch-list/all`);
         dispatch({ type: "SET_WATCHLIST", payload: data });
         setLoading(false);

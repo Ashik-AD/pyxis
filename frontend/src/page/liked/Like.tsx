@@ -19,6 +19,7 @@ const Like = () => {
     if (!liked || liked?.length == 0) {
       fetchLiked = async () => {
         try {
+          setLoading(true);
           const { data } = await ax.get(`${user?.id}/liked/all`);
           if (data) {
             dispatch({ type: "SET_LIKED", payload: data });
