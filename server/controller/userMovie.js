@@ -264,12 +264,12 @@ export const getWatchListLimit = async (req, res, next) => {
 export const removeWatchList = async (req, res, next) => {
   try {
     const { uid, item_id } = req.params;
-    const rem = await User.watchList.remove({ uid, item_key: item_id }); // return affected row count
-    if (rem > 0) {
-      res.status(201).send("Successful");
+    const result = await User.watchList.remove({ uid, item_key: item_id }); // return affected row count
+    if (result.deletedCount == 1) {
+      res.status(200).send("Successful");
       return;
     }
-    res.send("Unchanged");
+    res.status(404).send({ message: "Item not found" });
   } catch (error) {
     res.status(400).send("Something went wrong");
     console.log(error);
