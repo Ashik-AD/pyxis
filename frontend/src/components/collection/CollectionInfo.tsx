@@ -3,7 +3,6 @@ import { useLocation } from "react-router-dom";
 import UpdateCollection from "./UpdateCollection";
 import { ax } from "../../config/default";
 import CollectionItemLists from "./CollectionItemLists";
-import CollectionHeading from "./CollectionHeading";
 import useUser from "../../hooks/useUser";
 
 const CollectionInfo: FC = () => {
@@ -25,7 +24,6 @@ const CollectionInfo: FC = () => {
 
   return (
     <section className="w-full h-full">
-      <CollectionHeading />
       <CollectionItemLists
         items={collectionItems}
         handleCollection={setCollectionItems}
