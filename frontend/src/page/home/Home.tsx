@@ -18,7 +18,7 @@ import { ax } from "../../config/default";
 import Auth from "../../auth/Auth";
 const Like = React.lazy(() => import("../liked/Like"));
 const WatchList = React.lazy(() => import("../watchList/WatchList"));
-const Profile = React.lazy(() => import("../profile/Profile"));
+const Users = React.lazy(() => import("../user/index"));
 
 const Home: FC = () => {
   const { store, dispatch } = useContext(StoreContext);
@@ -123,11 +123,11 @@ const Home: FC = () => {
             }
           />
           <Route
-            path="/profile/*"
+            path="/user/*"
             element={
               <Auth>
                 <Suspense>
-                  <Profile />
+                  <Users />
                 </Suspense>
               </Auth>
             }

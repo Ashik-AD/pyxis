@@ -37,3 +37,51 @@
     opacity: 0;
   }
 }/*# sourceMappingURL=Animate.module.css.map */
+
+.container {
+  position: relative;
+  display: block;
+  background: #141414;
+  overflow: hidden;
+}
+
+.container_animate {
+  &::after {
+    position: absolute;
+    content: "";
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      #232323,
+      #313131,
+      #232323,
+      transparent
+    );
+    opacity: 0.5;
+    animation-name: span;
+    animation-duration: 1000ms;
+    animation-iteration-count: infinite;
+    transition: 300ms linear;
+  }
+}
+
+@keyframes span {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.container-regular {
+  border-radius: 4px;
+}
+.container-medium {
+  border-radius: 16px;
+}
+.container-circle {
+  border-radius: 50%;
+}

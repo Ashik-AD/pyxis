@@ -1,6 +1,6 @@
-import { FC, useEffect, useState } from 'react';
-import { RiHeart2Fill, RiHeart2Line } from 'react-icons/ri';
-import WithLiked from '../like/WithLiked';
+import { FC, useEffect, useState } from "react";
+import { RiHeart2Fill, RiHeart2Line } from "react-icons/ri";
+import WithLiked from "../like/WithLiked";
 
 const LikeButton: FC = (props: any) => {
   const [x, setX] = useState<boolean>();
@@ -9,7 +9,8 @@ const LikeButton: FC = (props: any) => {
   }, [props.isLiked]);
   return x ? (
     <RiHeart2Fill
-      className='text-medium sm:text-lg color-purple'
+      className="text-medium sm:text-lg color-purple"
+      size={24}
       onClick={() => {
         props.handleLike.remove() && setX(false);
         props.handleLikeAfter && props.handleLikeAfter();
@@ -17,7 +18,7 @@ const LikeButton: FC = (props: any) => {
     />
   ) : (
     <RiHeart2Line
-      className='text-medium sm:text-lg'
+      className="text-medium sm:text-lg"
       onClick={() => props.handleLike.add() && setX(true)}
     />
   );

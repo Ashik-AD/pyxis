@@ -1,5 +1,6 @@
 import { FC, useState } from "react";
 import { ax } from "../../../config/default";
+import useDispatch from "../../../hooks/useDispatch";
 import ShowAlert from "../../alert/ShowAlert";
 import { WatchListPropsType } from "../../watchList/watchlist.type";
 import { ItemPropsTypes } from "./itemTypes";
@@ -17,23 +18,26 @@ const AddToWatchlist: FC<PropsType> = ({
   title,
   is_liked,
 }) => {
+  const storeDispatch = useDispatch();
+
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
   const handleAddWatchlist = async () => {
     try {
+      let item = {
+        item_key,
+        title,
+        release_date,
+        poster_path,
+        media_type,
+        duration,
+        average_vote,
+        is_liked,
+      };
       const { data } = await ax.post(`${uid}/watch-list/add`, {
-        data: {
-          item_key,
-          title,
-          release_date,
-          poster_path,
-          media_type,
-          duration,
-          average_vote,
-          is_liked,
-        },
+        data: item,
       });
-
+      storeDispatch({ type: "ADD_WATCHLIST_ITEM", payload: item });
       setSuccess(data);
     } catch (error: any) {
       console.log(error);

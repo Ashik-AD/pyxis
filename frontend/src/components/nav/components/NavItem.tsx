@@ -1,5 +1,5 @@
 import { CSSProperties, ReactElement } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 interface PropsType {
   icon?: ReactElement;
@@ -12,17 +12,14 @@ interface PropsType {
 
 const NavItem = (props: PropsType) => {
   const { icon, text, styles, classes, link, onClick } = props;
-  const { pathname } = useLocation();
-  const routeMatch = () =>
-    pathname &&
-    link &&
-    pathname.split("/")[1] &&
-    pathname.split("/")[1].toLowerCase() === link.split("/")[1].toLowerCase();
   return (
-    <Link
+    <NavLink
       title={text}
       to={link}
-      style={{ ...styles, color: routeMatch() ? "#d1004d" : "" }}
+      style={({ isActive }) => ({
+        ...styles,
+        color: isActive ? "#d1004d" : "",
+      })}
       className={`${
         classes ? classes : ""
       } flex gap-20 align-center color-white py-6 font-semibold rounded-lg transition overflow-hidden`}
@@ -30,7 +27,7 @@ const NavItem = (props: PropsType) => {
     >
       {icon && <span className={`flex text-lg `}>{icon}</span>}
       {text && <span className="flex text-small truncate">{text}</span>}
-    </Link>
+    </NavLink>
   );
 };
 

@@ -20,20 +20,20 @@ const CardRegular = (props: CardPropTypes) => {
   return (
     <Link
       to={url}
-      className={`flex flex-col gap-10 cursor-pointer color-white overflow-x-hidden p-6 sm:p-10 hover-fade-half ${
+      className={`flex flex-col gap-10 cursor-pointer color-white overflow-hidden p-6 sm:p-10 hover-fade-half ${
         containerStyle ? containerStyle : ""
       }`}
       title={title}
     >
       <div
-        className={`relative poster_wrapper w-full  overflow-hidden ${
+        className={`relative poster_wrapper w-full overflow-hidden ${
           imageStyle && imageStyle
         }`}
       >
         <Image
           src={poster ? imageUrl(poster) : noImage.default}
           alt={title}
-          className="h-full w-full"
+          className="h-full w-full bg-cover"
         />
 
         <span
@@ -44,8 +44,8 @@ const CardRegular = (props: CardPropTypes) => {
           }}
         ></span>
       </div>
-      <div className="flex flex-col gap-10">
-        <span className="font-medium truncate sm:text-sm text-xsm">
+      <div className="flex flex-col gap-10 overflow-hidden">
+        <span className="font-medium text-sm truncate sm:text-medium">
           {title}
         </span>
         <Rating rating={vote_average} />

@@ -3,7 +3,10 @@ import { ax } from "../../config/default";
 import Button from "../details/Button";
 import { RiHeartFill, RiHeartLine } from "react-icons/ri";
 import { StoreContext } from "../../store/Store";
-import WithLiked from "./WithLiked";
+import WithLiked, { WithLikedProps } from "./WithLiked";
+
+import styles from "./styles.module.css";
+
 const ItemLike: FC<PropsType> = (props) => {
   const {
     store: { user },
@@ -36,14 +39,14 @@ const ItemLike: FC<PropsType> = (props) => {
     <Button
       handleClick={handleAddRemoveLike}
       color={!isLiked ? props.color : ""}
-      styles={`rounded-full ${isLiked ? "bg-purple" : ""}`}
+      styles={`${styles.btn_like} rounded-full flex ${isLiked ? "color-purple" : ""}`}
     >
-      {isLiked ? <RiHeartFill /> : <RiHeartLine />}
+      {isLiked ? <RiHeartFill size={24} /> : <RiHeartLine size={24} />}
     </Button>
   );
 };
 
-interface PropsType {
+interface PropsType extends WithLikedProps {
   id: string;
   posterPath: string;
   title: string;
@@ -55,4 +58,5 @@ interface PropsType {
   };
 }
 
+//@ts-ignore-next
 export default WithLiked(ItemLike);

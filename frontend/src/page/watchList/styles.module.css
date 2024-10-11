@@ -1,0 +1,11 @@
+.remove_container {
+  position: relative;
+
+  .btn_close {
+    visibility: hidden;
+  }
+
+    &:hover .btn_close {
+        visibility: visible;
+    }
+}

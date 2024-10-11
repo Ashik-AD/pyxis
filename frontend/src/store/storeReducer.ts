@@ -1,9 +1,11 @@
 import { storage } from "../utils/storage";
-import { STORE_ITEM_TYPE } from "./storeType";
-export const storeReducer = (
-  state: any,
+import type { Store } from "./Store";
+import type { STORE_ITEM_TYPE } from "./storeType";
+
+export function storeReducer(
+  state: Store,
   action: { type: STORE_ITEM_TYPE; payload?: any },
-) => {
+) {
   switch (action.type) {
     case "SET_USER":
       storage.setItems(action.payload);
@@ -12,7 +14,10 @@ export const storeReducer = (
       return state.user;
     case "CLEAR_USER":
       storage.clearItems();
-      return {...state, user: null};
+      return { ...state, user: null };
+    case "SET_WATCHLIST": {
+      return { ...state, watchList: action.payload };
+    }
     case "SET_COLLECTION":
       return { ...state, collections: action.payload };
     case "SET_POPULAR_MOVIE":
@@ -39,4 +44,4 @@ export const storeReducer = (
     default:
       return state;
   }
-};
+}

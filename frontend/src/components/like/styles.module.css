@@ -1,0 +1,7 @@
+.btn_like {
+    padding: 0;
+    background: transparent;
+    &:hover {
+        opacity: 0.8;
+    }
+}

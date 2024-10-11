@@ -3,8 +3,7 @@ import { IoArrowBack } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import useUser from "../../hooks/useUser";
 
-const CollectionHeading: FC<HeadingPropsType> = ({
-  banner_url,
+const CollectionHeading: FC<HeadingPropsType> = ({ banner_url,
   total_item,
   color,
   title,

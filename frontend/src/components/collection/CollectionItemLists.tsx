@@ -6,7 +6,6 @@ import formatDate from "../../utils/formatDate";
 import { imageUrl } from "../../utils/imageUrl";
 import CollectionType from "./collection.type";
 import CollectionDrpAction from "./CollectionDrpAction";
-import CollectionTableHeading from "./CollectionTableHeading";
 import LikeButton from "./LikeButton";
 
 export const CollectionContext = React.createContext<any>(null);
@@ -61,9 +60,6 @@ const CollectionItemLists: FC<{
     >
       <div className="px-10 sm:px-20 md:px-30 lg:px-50 pt-50 relative">
         <div className="flex flex-col gap-20">
-          <div className="sm:visible hidden">
-            <CollectionTableHeading />
-          </div>
           {deviceType === "desktop" &&
             items.map((el, index) => (
               <div
@@ -73,8 +69,8 @@ const CollectionItemLists: FC<{
                   el.playlist_items_id
                     ? el.playlist_items_id
                     : el.item_key
-                    ? el.item_key
-                    : el.liked_id
+                      ? el.item_key
+                      : el.liked_id
                 }
               >
                 <div className="flex-col sm:flex sm:flex-row items-center gap-20 span-4  overflow-hidden">
@@ -99,8 +95,8 @@ const CollectionItemLists: FC<{
                             el.liked_id
                               ? el.liked_id
                               : el.item_key
-                              ? el.item_key
-                              : el.playlist_items_id
+                                ? el.item_key
+                                : el.playlist_items_id
                           }
                           posterPath={el.poster_url}
                           title={el.title ? el.title : el.items_name}
@@ -108,8 +104,8 @@ const CollectionItemLists: FC<{
                             el.liked_id
                               ? true
                               : el.is_liked === "true"
-                              ? true
-                              : false
+                                ? true
+                                : false
                           }
                           media_type={el.media_type}
                           release_date={el.released_date}
@@ -168,8 +164,8 @@ const CollectionItemLists: FC<{
                       el.liked_id
                         ? el.liked_id
                         : el.item_key
-                        ? el.item_key
-                        : el.playlist_items_id
+                          ? el.item_key
+                          : el.playlist_items_id
                     }
                     posterPath={el.poster_url}
                     title={el.title ? el.title : el.items_name}
@@ -210,8 +206,8 @@ const CollectionItemLists: FC<{
                   item.playlist_items_id
                     ? item.playlist_items_id
                     : item.item_key
-                    ? item.item_key
-                    : item.liked_id
+                      ? item.item_key
+                      : item.liked_id
                 }
               >
                 <div
@@ -252,8 +248,8 @@ const CollectionItemLists: FC<{
                             item.liked_id
                               ? item.liked_id
                               : item.item_key
-                              ? item.item_key
-                              : item.playlist_items_id
+                                ? item.item_key
+                                : item.playlist_items_id
                           }
                           posterPath={item.poster_url}
                           title={item.title ? item.title : item.items_name}
@@ -261,8 +257,8 @@ const CollectionItemLists: FC<{
                             item.liked_id
                               ? true
                               : item.is_liked === "true"
-                              ? true
-                              : false
+                                ? true
+                                : false
                           }
                           media_type={item.media_type}
                           release_date={item.released_date}

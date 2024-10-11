@@ -1,16 +1,16 @@
-import { FC, useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import AlertShow from "../../context/AlertContext";
-import { StoreContext } from "../../store/Store";
+import useStore from "../../hooks/useStore";
 import CollectionCard from "./components/CollectionCard";
 import UpdateCollection from "./UpdateCollection";
 
-const Collections: FC = () => {
-  const {
-    store: { user, collections },
-  } = useContext(StoreContext);
+const Collections = () => {
+  let { user, collections } = useStore();
+console.log(user, collections)
   const [updatModal, setUpdateModal] = useState(false);
   let routeState: any = useLocation().state;
+
   useEffect(() => {
     if (routeState && collections) {
       if (routeState["playlist_id"]) {
@@ -18,6 +18,7 @@ const Collections: FC = () => {
       }
     }
   }, [routeState]);
+
   useEffect(() => {
     return () => clearRouteState();
   }, []);

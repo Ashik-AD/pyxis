@@ -142,7 +142,7 @@ const HeadingDesktop: FC<HeadingPropTypes> = (props) => {
                     duration={runtime}
                     posterPath={poster_path}
                     title={title}
-                    release_date={release_date}
+                    release_date={release_date!!}
                     media_type="movie"
                   />
                   <Button

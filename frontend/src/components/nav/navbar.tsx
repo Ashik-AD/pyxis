@@ -9,6 +9,7 @@ import { FaAngleDown, FaHeart } from "react-icons/fa";
 import { BiSolidCollection } from "react-icons/bi";
 import { IoMdLogOut } from "react-icons/io";
 import { IoPerson } from "react-icons/io5";
+import { MdSmartDisplay } from "react-icons/md";
 import NavItem from "./components/NavItem";
 import Container from "../layout/container";
 import DropDown from "../dropdown/DropDown";
@@ -139,19 +140,25 @@ function Profile({ fullName, avatarURL, email }: ProfileProps) {
         </div>
         <NavItem
           text="Profile"
-          link="/profile"
+          link="/user/profile"
           icon={<IoPerson />}
           classes="p-16 hover-bg-fade:hover"
         />
         <NavItem
           text="Liked"
-          link="/liked"
+          link="/user/liked"
           icon={<FaHeart />}
           classes="p-16 hover-bg-fade:hover"
         />
         <NavItem
+          text="Watchlist"
+          link="/user/watch-list"
+          icon={<MdSmartDisplay />}
+          classes="p-16 hover-bg-fade:hover"
+        />
+        <NavItem
           text="Collections"
-          link="/collection"
+          link="/user/collection"
           icon={<BiSolidCollection />}
           classes="p-16 hover-bg-fade:hover"
         />
