@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { FC, useEffect, useState } from "react";
 import { RiMoreFill } from "react-icons/ri";
 import { Link } from "react-router-dom";

@@ -1,8 +1,9 @@
+//@TODO
+// - add nav links
 import { RiArrowLeftLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import ProfileImage from "../../image/default_avatar.jpg";
 import DropDown from "../dropdown/DropDown";
-import profileRoutes from "./ProfileRoutes";
 const ProfileNavMobile = () => {
   return (
     <div
@@ -24,15 +25,6 @@ const ProfileNavMobile = () => {
         />
         <DropDown drpId="user_avatar" label="">
           <div className="bg-secondary flex flex-col absolute top-20 my-20 right-0 w-200 p-6 shadow-lg rounded-regular">
-            {profileRoutes.map((route) => (
-              <Link
-                key={route.id}
-                to={route.id}
-                className="py-10 px-10 color-light-gray font-medium hover-bg-fade rounded-regular"
-              >
-                {route.title}
-              </Link>
-            ))}
           </div>
         </DropDown>
       </div>

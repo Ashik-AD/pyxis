@@ -1,4 +1,4 @@
-import React, { KeyboardEvent, KeyboardEventHandler, useRef } from "react";
+import React, { KeyboardEvent, useRef } from "react";
 import { RiCloseFill } from "react-icons/ri";
 import { FiSearch } from "react-icons/fi";
 import styles from "./styles.module.css";

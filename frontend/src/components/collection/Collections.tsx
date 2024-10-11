@@ -7,7 +7,6 @@ import UpdateCollection from "./UpdateCollection";
 
 const Collections = () => {
   let { user, collections } = useStore();
-console.log(user, collections)
   const [updatModal, setUpdateModal] = useState(false);
   let routeState: any = useLocation().state;
 
@@ -34,9 +33,9 @@ console.log(user, collections)
           user &&
           collections.map((collection) => (
             <CollectionCard
-              full_name={user.full_name}
+              full_name={user?.full_name!}
               key={collection.playlist_id}
-              uid={user.id}
+              uid={user?.id!}
               playlist_id={collection.playlist_id}
               playlist_name={collection.playlist_name}
             />

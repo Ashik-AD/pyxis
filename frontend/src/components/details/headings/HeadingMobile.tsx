@@ -44,7 +44,11 @@ const HeadingMobile: FC<HeadingPropTypes> = (props) => {
               {genres.map((el: { id: number; name: string }) => (
                 <span
                   key={el.id}
-                  style={{ paddingTop: 3, paddingBottom: 3, borderTopRightRadius: 12 }}
+                  style={{
+                    paddingTop: 3,
+                    paddingBottom: 3,
+                    borderTopRightRadius: 12,
+                  }}
                   className="bg-dark-fade px-6 rounded-regular border-1 border-gray"
                 >
                   {el.name}
@@ -91,7 +95,7 @@ const HeadingMobile: FC<HeadingPropTypes> = (props) => {
                 duration={runtime}
                 posterPath={poster_path}
                 title={title}
-                release_date={release_date}
+                release_date={release_date as Date}
                 media_type="movie"
               />
               <Button color={"#CA2845"} styles="drp-collection rounded-full">
