@@ -1,103 +1,111 @@
 @import './variables';
 
 .bg-black {
-    background: #000;
+  background: #000;
 }
 
 .bg-transparent {
-    background: transparent;
+  background: transparent;
 }
 
 .bg-primary {
-    background: $bg-primary;
+  background: $bg-primary;
 }
 
 .bg-secondary {
-    background: $bg-secondary;
+  background: $bg-secondary;
 }
 
 .bg-dark {
-    background: $color-dark;
+  background: $color-dark;
 }
 
 .bg-info {
-    background: $color-info;
+  background: $color-info;
 }
 
 .bg-success {
-    background: $color-success;
+  background: $color-success;
 }
 
 .bg-warn {
-    background: $color-warn;
+  background: $color-warn;
 }
 
 .bg-pink-light {
-    background: $color-pink-light;
+  background: $color-pink-light;
 }
 
 .bg-white {
-    background: $color-white;
+  background: $color-white;
 }
 
 .bg-fade {
-    background: $color-fade;
+  background: $color-fade;
 }
 
 .bg-purple {
-    background: $color-purple;
+  background: $color-purple;
+}
+
+.bg-pink {
+  background: $color-pink;
 }
 
 .bg-dark-fade {
-    background: #1724197e;
+  background: #1724197e;
 }
 
 .color-light-gray {
-    color: $color-light-gray;
+  color: $color-light-gray;
 }
 
 .color-white {
-    color: $color-white;
+  color: $color-white;
 }
 
 .color-gray {
-    color: $color-gray;
+  color: $color-gray;
 }
 
 .color-fade {
-    color: $color-fade;
+  color: $color-fade;
 }
 
 .color-teal {
-    color: $color-teal;
+  color: $color-teal;
 }
 
 .color-info {
-    color: $color-info;
+  color: $color-info;
 }
 
 .color-success {
-    color: $color-success;
+  color: $color-success;
 }
 
 .color-warn {
-    color: $color-warn;
+  color: $color-warn;
 }
 
 .color-red {
-    color: $color-red;
+  color: $color-red;
 }
 
 .color-purple {
-    color: $color-purple;
+  color: $color-purple;
+}
+
+.color-pink {
+  color: $color-pink;
 }
 
 @media (min-width: 640px) {
-    .sm\:bg-primary {
-        background: $bg-primary;
-    }
+  .sm\:bg-primary {
+    background: $bg-primary;
+  }
 
-    .sm\:bg-secondary {
-        background: $bg-secondary;
-    }
+  .sm\:bg-secondary {
+    background: $bg-secondary;
+  }
 }
