@@ -44,7 +44,7 @@ const CardRegular = (props: CardPropTypes) => {
           }}
         ></span>
       </div>
-      <div className="flex flex-col gap-10 overflow-hidden">
+      <div className="flex flex-col gap-10">
         <span className="font-medium text-sm truncate sm:text-medium">
           {title}
         </span>
