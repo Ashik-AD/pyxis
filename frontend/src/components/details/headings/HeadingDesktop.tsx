@@ -57,8 +57,9 @@ const HeadingDesktop: FC<HeadingPropTypes> = (props) => {
   return (
     <div className="hidden sm:visible">
       <div
-        className={`desktop h-screen norepeat bg-cover flex content-bottom relative ${Styles.Heading_overlay} overflow-hidden`}
+        className={`desktop norepeat bg-cover flex content-bottom relative ${Styles.Heading_overlay}`}
         style={{
+          minHeight: "100dvh",
           background: `url(${imageUrlWithSize(
             slideIndex === 0 ? backdrop_path : backdrops[slideIndex].file_path,
             "1280",
@@ -136,33 +137,37 @@ const HeadingDesktop: FC<HeadingPropTypes> = (props) => {
                       fontSize: 17,
                     }}
                   />
-                  <ItemLike
-                    color="#ca2845"
-                    id={id}
-                    duration={runtime}
-                    posterPath={poster_path}
-                    title={title}
-                    release_date={release_date!!}
-                    media_type="movie"
-                  />
-                  <Button
-                    color="#ca2845"
-                    styles="drp-collection relative rounded-full"
-                  >
+                  <Button styles="flex items-center bg-purple px-10 rounded-xxlg">
                     <>
-                      <BsBookmarkPlus className="drp-collection" />
-                      <div className="absolute bg-primary">
-                        <DropDown label="" drpId="drp-collection">
-                          <ContextPlaylist
-                            playlistItemId={id}
-                            playlistItemName={title}
-                            posterURL={poster_path ? poster_path : ""}
-                            releaseDate={release_date}
-                            duration={runtime}
-                            mediaType="movie"
-                          />
-                        </DropDown>
-                      </div>
+                      <ItemLike
+                        id={id}
+                        duration={runtime}
+                        posterPath={poster_path}
+                        title={title}
+                        release_date={release_date!!}
+                        media_type="movie"
+                      />
+                      |
+                      <DropDown
+                        label={
+                          <Button>
+                            <BsBookmarkPlus
+                              className="drp-collection hover-fade-half"
+                              size={20}
+                            />
+                          </Button>
+                        }
+                        drpId="drp-collection"
+                      >
+                        <ContextPlaylist
+                          playlistItemId={id}
+                          playlistItemName={title}
+                          posterURL={poster_path ? poster_path : ""}
+                          releaseDate={release_date}
+                          duration={runtime}
+                          mediaType="movie"
+                        />
+                      </DropDown>
                     </>
                   </Button>
                 </div>
@@ -183,8 +188,7 @@ const HeadingDesktop: FC<HeadingPropTypes> = (props) => {
                 <div
                   className="absolute flex content-bottom left-0 top-0 w-full h-full"
                   style={{
-                    background:
-                      "linear-gradient(transparent, #060034 80%)",
+                    background: "linear-gradient(transparent, #060034 80%)",
                   }}
                 >
                   <div className="h-half w-full flex flex-col content-center space-between pb-20">

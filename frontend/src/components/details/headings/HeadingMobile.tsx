@@ -89,30 +89,37 @@ const HeadingMobile: FC<HeadingPropTypes> = (props) => {
                 styles={{ backgroundColor: "#CA2845", border: 0, width: "70%" }}
                 classNames="shadow-lg text-regular font-medium letter-space-1 px-20 py-16 content-center"
               />
-              <ItemLike
-                color="#CA2845"
-                id={id}
-                duration={runtime}
-                posterPath={poster_path}
-                title={title}
-                release_date={release_date as Date}
-                media_type="movie"
-              />
-              <Button color={"#CA2845"} styles="drp-collection rounded-full">
+              <Button styles="flex items-center bg-purple px-10 rounded-xxlg">
                 <>
-                  <BsBookmarkPlus className="drp-collection" />
-                  <div className="absolute">
-                    <DropDown label="" drpId="drp-collection">
-                      <ContextPlaylist
-                        playlistItemId={id}
-                        playlistItemName={title}
-                        posterURL={poster_path ? poster_path : ""}
-                        releaseDate={release_date}
-                        duration={runtime}
-                        mediaType="movie"
-                      />
-                    </DropDown>
-                  </div>
+                  <ItemLike
+                    id={id}
+                    duration={runtime}
+                    posterPath={poster_path}
+                    title={title}
+                    release_date={release_date!!}
+                    media_type="movie"
+                  />
+                  |
+                  <DropDown
+                    label={
+                      <Button>
+                        <BsBookmarkPlus
+                          className="drp-collection hover-fade-half"
+                          size={20}
+                        />
+                      </Button>
+                    }
+                    drpId="drp-collection"
+                  >
+                    <ContextPlaylist
+                      playlistItemId={id}
+                      playlistItemName={title}
+                      posterURL={poster_path ? poster_path : ""}
+                      releaseDate={release_date}
+                      duration={runtime}
+                      mediaType="movie"
+                    />
+                  </DropDown>
                 </>
               </Button>
             </div>
