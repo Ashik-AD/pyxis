@@ -39,7 +39,7 @@ const ItemLike: FC<PropsType> = (props) => {
     <Button
       handleClick={handleAddRemoveLike}
       color={!isLiked ? props.color : ""}
-      styles={`${styles.btn_like} rounded-full flex ${isLiked ? "color-purple" : ""}`}
+      styles={`${styles.btn_like} rounded-full flex ${isLiked ? "color-pink" : ""}`}
     >
       {isLiked ? <RiHeartFill size={24} /> : <RiHeartLine size={24} />}
     </Button>
