@@ -27,11 +27,12 @@
 .bg-success {
   background: $color-success;
 }
-
 .bg-warn {
   background: $color-warn;
 }
-
+.bg-danger {
+  background: $color-danger;
+}
 .bg-pink-light {
   background: $color-pink-light;
 }
@@ -86,6 +87,10 @@
 
 .color-warn {
   color: $color-warn;
+}
+
+.color-danger {
+  color: $color-danger;
 }
 
 .color-red {
