@@ -1,6 +1,16 @@
 import { useState, ReactNode, MouseEvent } from "react";
 
-const DropDown = ({ children, label, styles, drpId }: PropTypes) => {
+type Props = {
+  children: ReactNode;
+  label: ReactNode;
+  styles?: string;
+  drpId: string;
+  handleDrp?: () => void;
+  noHide?: boolean;
+}
+
+
+const DropDown = ({ children, label, styles, drpId }: Props) => {
   const [isVisible, setIsVisible] = useState(false);
 
   function handleClick(event: MouseEvent<HTMLDivElement>) {
@@ -23,24 +33,14 @@ const DropDown = ({ children, label, styles, drpId }: PropTypes) => {
         {label}
       </div>
       <div
-        className={`absolute ${
+        className={`absolute top-10 right-0 ${
           styles ? styles : ""
-        } ${!isVisible ? "visibility-hidden opacity-0" : ""} right-0`}
-        style={{ top: "120%" }}
+        } ${!isVisible ? "visibility-hidden opacity-0" : ""}`}
       >
         {children}
       </div>
     </div>
   );
 };
-
-interface PropTypes {
-  children: ReactNode;
-  label: ReactNode;
-  styles?: string;
-  drpId: string;
-  handleDrp?: () => void;
-  noHide?: boolean;
-}
 
 export default DropDown;
