@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 import ContextPlaylist from "../contextMenu/ContextPlaylist";
-import CollectionType from "./collection.type";
+import { CollectionItem } from "./collection.type";
 import { RiArrowRightSLine } from "react-icons/ri";
 
 import RemoveFromThis from "../contextMenu/item/RemoveFromThis";
@@ -12,22 +12,8 @@ import useUser from "../../hooks/useUser";
 
 import styles from "./styles.module.scss";
 
-const obj = {
-  duration: 0,
-  items_name: "",
-  added_date: "",
-  media_type: "",
-  playlist_id: "",
-  playlist_items_id: "",
-  poster_url: "",
-  released_date: null,
-  uid: "",
-  is_liked: null,
-  id: "",
-};
-
 type Props = {
-  items: CollectionType[];
+  items: CollectionItem[];
   drpId: string;
   itemName?: string;
 };
@@ -35,7 +21,7 @@ type Props = {
 const CollectionDrpAction = ({ items, drpId, itemName }: Props) => {
   const user = useUser();
   const [isCtxMenuVisible, setisCtxMenuVisible] = useState(false);
-  const [selectedItem, setSelectedItem] = useState<CollectionType>(obj);
+  const [selectedItem, setSelectedItem] = useState<CollectionItem | null>(null);
   const drpContainerRef = useRef<HTMLDivElement | null>(null);
   const drpRef = useRef<any>(null);
   const navigate = useNavigate();
@@ -73,19 +59,16 @@ const CollectionDrpAction = ({ items, drpId, itemName }: Props) => {
 
   useEffect(() => {
     return () => {
-      setSelectedItem(obj);
+      setSelectedItem(null);
     };
   }, []);
 
   const handleGotoDetails = () => {
-    navigate(
-      `/${selectedItem.media_type}/info/${
-        selectedItem.playlist_items_id
-      }-${selectedItem.items_name.replaceAll(" ", "-")}`,
-    );
+    navigate(`/${selectedItem?.media_type}/info/${selectedItem?.id}`);
   };
 
   if (items.length < 0) return null;
+
   return (
     <div
       className={`fixed bg-secondary sm:right-20 p-8 rounded-lg ${isCtxMenuVisible ? "visibility-visible" : "-z-1 visibility-hidden"} `}
@@ -103,24 +86,22 @@ const CollectionDrpAction = ({ items, drpId, itemName }: Props) => {
         >
           Go to details
         </li>
-        {selectedItem.is_liked !== "true" && itemName !== "liked" && (
+        {selectedItem && !selectedItem.is_liked ? (
           <AddToLiked
-            title={
-              selectedItem.title ? selectedItem.title : selectedItem.items_name
-            }
+            title={selectedItem?.title}
             duration={selectedItem.duration}
-            item_key={
-              selectedItem.liked_id
-                ? selectedItem.liked_id
-                : selectedItem.item_key
-                  ? selectedItem.item_key
-                  : selectedItem.playlist_items_id
-            }
+            item_key={selectedItem?.id}
             media_type={selectedItem.media_type}
             posterPath={selectedItem.poster_url}
             release_date={selectedItem.released_date}
             uid={user?.id!}
             id={selectedItem.id}
+          />
+        ) : (
+          <RemovedFromLiked
+            uid={user?.id!}
+            liked_id={selectedItem?.id || ""}
+            id={selectedItem?.id!}
           />
         )}
         <Submenu
@@ -130,54 +111,36 @@ const CollectionDrpAction = ({ items, drpId, itemName }: Props) => {
               tabIndex={0}
             >
               <span className="flex space-between noEffect">
-                <span className="noEffect">Save to your Like Movie/Tv</span>
+                <span className="noEffect">More Collections</span>
                 <RiArrowRightSLine className="text-medium noEffect" />
               </span>
             </li>
           }
         >
           <ContextPlaylist
-            duration={selectedItem.duration}
-            playlistItemName={
-              selectedItem.title ? selectedItem.title : selectedItem.items_name
-            }
-            playlistItemId={
-              selectedItem.liked_id
-                ? selectedItem.liked_id
-                : selectedItem.item_key
-                  ? selectedItem.item_key
-                  : selectedItem.playlist_items_id
-            }
-            mediaType={selectedItem.media_type === "tv" ? "tv" : "movie"}
-            posterURL={selectedItem.poster_url}
-            releaseDate={selectedItem.released_date}
+            id={selectedItem?.id!}
+            playlist_id={selectedItem?.playlist_id!}
+            title={selectedItem?.title!}
+            posterURL={selectedItem?.poster_url!}
+            mediaType={selectedItem?.media_type!}
+            duration={selectedItem?.duration!}
+            releaseDate={selectedItem?.released_date!}
             styles={`overflow-y-scroll max-h-400 scrollbar-on-hover`}
           />
         </Submenu>
         {itemName === "watchlist" && (
           <RemoveFromWatchlist
             uid={user?.id!}
-            watchlistItemId={
-              selectedItem.item_key ? selectedItem.item_key : "no-id"
-            }
-            id={selectedItem.id}
+            watchlistItemId={selectedItem?.id!}
+            id={selectedItem?.id!}
           />
         )}
-        {itemName !== "watchlist" && itemName !== "liked" && (
-          <RemoveFromThis
-            uid={user?.id!}
-            itemId={selectedItem.playlist_items_id}
-            playlistId={selectedItem.playlist_id}
-            id={selectedItem.id}
-          />
-        )}
-        {(selectedItem.is_liked === "true" || itemName === "liked") && (
-          <RemovedFromLiked
-            uid={user?.id!}
-            liked_id={selectedItem.liked_id ? selectedItem.liked_id : ""}
-            id={selectedItem.id}
-          />
-        )}
+        <RemoveFromThis
+          uid={user?.id!}
+          itemId={selectedItem?.id!}
+          playlistId={selectedItem?.playlist_id!}
+          id={selectedItem?.id!}
+        />
       </ul>
     </div>
   );
