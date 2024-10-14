@@ -13,6 +13,7 @@ export type STORE_ITEM_TYPE =
   | "GET_USER"
   | "CLEAR_USER"
   | "SET_COLLECTION"
+  | "UPDATE_COLLECTION_ITEM_TOTALITEM"
   | "SET_POPULAR_MOVIE"
   | "SET_TOP_MOVIE"
   | "SET_MOVIE_FULL"
@@ -23,7 +24,6 @@ export type STORE_ITEM_TYPE =
   | "SET_PLAYING_TV"
   | "SET_TV_FULL"
   | "CLEAR_STORE";
-
 
 // export enum ActionEnum {
 //   SET_USER = "SET_USER"

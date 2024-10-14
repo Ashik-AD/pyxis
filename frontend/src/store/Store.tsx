@@ -57,7 +57,7 @@ const reducer: Reducer<Store, StoreAction> = (state, action) => {
       let newWatchlist = [action.payload].concat(state.watchList);
       return {
         ...state,
-        watchList: newWatchlist
+        watchList: newWatchlist,
       };
     }
     case "REMOVE_WATCHLIST_ITEM": {
@@ -85,6 +85,17 @@ const reducer: Reducer<Store, StoreAction> = (state, action) => {
     }
     case "SET_COLLECTION":
       return { ...state, collections: action.payload };
+    case "UPDATE_COLLECTION_ITEM_TOTALITEM": {
+      return {
+        ...state,
+        collections: state.collections?.map((item) => {
+          if (item.playlist_id == action.payload.pid) {
+            item.total_item = action.payload.total_item;
+          }
+          return item;
+        }),
+      };
+    }
     case "SET_POPULAR_MOVIE":
       return { ...state, popularMovie: action.payload };
     case "SET_TOP_MOVIE":
