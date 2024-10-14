@@ -1,20 +1,29 @@
-import { useState, useContext, FC, CSSProperties } from "react";
+import { useState, CSSProperties, ReactNode } from "react";
 import { ax } from "../../../config/default";
-import { StoreContext } from "../../../store/Store";
+import useDispatch from "../../../hooks/useDispatch";
+import useStore from "../../../hooks/useStore";
 import ShowAlert from "../../alert/ShowAlert";
-const CreateNewCollection: FC<PropsType> = ({
+
+type Props = {
+  label?: ReactNode | string | number;
+  title?: string;
+  classNames?: string;
+  handleClick?: (id?: any) => void;
+  styles?: CSSProperties;
+};
+
+const CreateNewCollection = ({
   title,
   label,
   styles,
   classNames,
   handleClick,
-}) => {
+}: Props) => {
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
-  const {
-    store: { user, collections },
-    dispatch,
-  } = useContext(StoreContext);
+  const { user, collections } = useStore();
+  const dispatch = useDispatch();
+
   const handleCreateNewPlaylist = async () => {
     const playlistName = title
       ? title
@@ -34,7 +43,6 @@ const CreateNewCollection: FC<PropsType> = ({
         setSuccess(`New ${playlistName} collection is added`);
       }
     } catch (error) {
-      console.log(error);
       setError("Ops! something went wrong!");
     }
   };
@@ -45,11 +53,11 @@ const CreateNewCollection: FC<PropsType> = ({
   return (
     <>
       <span
-        className={`${classNames}`}
-        style={{ ...styles }}
+        className={`cursor-pointer ${classNames}`}
+        style={styles}
         onClick={handleCreateNewPlaylist}
       >
-        {label ? label : "Add to new collection"}
+        {label || "Add to new collection"}
       </span>
       <ShowAlert
         clearAlert={handleClearMessage}
@@ -59,13 +67,5 @@ const CreateNewCollection: FC<PropsType> = ({
     </>
   );
 };
-
-interface PropsType {
-  label?: string;
-  title?: string;
-  classNames?: string;
-  handleClick?: (id?: any) => void;
-  styles?: CSSProperties;
-}
 
 export default CreateNewCollection;
