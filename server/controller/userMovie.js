@@ -1,6 +1,7 @@
 import fieldLists from "../db/fieldLists.js";
 import User from "../model/user.js";
 import generateId from "../utils/generateId.js";
+
 export const createPlaylist = async (req, res) => {
   const uid = req.params.uid;
   const { playlistName, description } = req.body.data;
@@ -78,10 +79,14 @@ export const addPlaylistItem = async (req, res, next) => {
   const uid = req.params.uid;
   try {
     const { data } = req.body;
-    await User.playlist.addItem({ ...data, uid });
-    res.status(201).send("Successfully added");
+    let totalItemCount = await User.playlist.addItem({ ...data, uid });
+    res.status(200).send({
+      message: "item added successfully",
+      totalItems: totalItemCount,
+    });
   } catch (err) {
-    res.send({ msg: err.message });
+    res.status(400).send({ message: err.message });
+    console.log(err);
   }
 };
 

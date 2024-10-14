@@ -19,8 +19,6 @@ const fieldLists = {
   description: 'description',
   totalItems: 'total_items',
   createdDate: 'create_date',
-  playlistItemsId: 'playlist_items_id',
-  playlistItemName: 'items_name',
   addedDate: 'added_date',
   artistId: 'artist_id',
   artistName: 'artist_name',

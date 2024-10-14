@@ -36,11 +36,10 @@ export const playlistsList = new Schema({
 })
 
 export const playlistItems = new Schema({
-    _id: String,
-    [fld.playlistItemsId]: String,
+    id: String,
     [fld.playlistId]: String,
     [fld.uid]: String,
-    [fld.playlistItemName]: String,
+    [fld.title]: String,
     [fld.mediaType]: String,
     [fld.posterURL]: String,
     [fld.duration]: Number,
@@ -50,7 +49,7 @@ export const playlistItems = new Schema({
 })
 
 export const watchList = new Schema({
-    _id: String,
+    id: String,
     [fld.itemKey]: Number,
     [fld.uid]: String,
     [fld.title]: String,
