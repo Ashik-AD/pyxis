@@ -158,7 +158,7 @@ function Profile({ fullName, avatarURL, email }: ProfileProps) {
         />
         <NavItem
           text="Collections"
-          link="/user/collection"
+          link="/user/collections"
           icon={<BiSolidCollection />}
           classes="p-16 hover-bg-fade:hover"
         />

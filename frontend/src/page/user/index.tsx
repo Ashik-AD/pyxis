@@ -1,10 +1,10 @@
 import { NavLink, Route, Routes } from "react-router-dom";
-import UpdatePassword from "../../components/profile/UpdatePassword";
 import DeleteAccount from "../../components/profile/DeleteAccount";
 import Container from "../../components/layout/container";
 import Like from "../liked/Like";
 import Profile from "../profile/Profile";
 import WatchList from "../watchList/WatchList";
+import Collections from "../collection";
 
 const Users = () => {
   return (
@@ -15,7 +15,7 @@ const Users = () => {
           <Routes>
             <Route caseSensitive path="/profile/*" element={<Profile />} />
             <Route path="/liked" element={<Like />} />
-            <Route path="/collections" element={<UpdatePassword />} />
+            <Route path="/collections/*" element={<Collections />} />
             <Route path="/watch-list" element={<WatchList />} />
             <Route path="/settings" element={<DeleteAccount />} />
           </Routes>
