@@ -147,16 +147,32 @@
   top: 0;
 }
 
+.top-100 {
+  top: 100%;
+}
+
 .right-0 {
   right: 0;
+}
+
+.right-100 {
+  right: 100%;
 }
 
 .bottom-0 {
   bottom: 0;
 }
 
+.bottom-100 {
+  bottom: 100%;
+}
+
 .left-0 {
   left: 0;
+}
+
+.left-100 {
+  left: 100%;
 }
 
 .top-10 {
@@ -280,7 +296,7 @@
   transition: .2s ease;
 }
 
-.visible-on-hover:hover>.content>.child-hover {
+.visible-on-hover:hover .child-hover {
   visibility: visible;
   opacity: 1;
   transition: all .3s linear;
@@ -289,6 +305,10 @@
 .visibility-hidden {
   visibility: hidden;
   z-index: -1;
+}
+
+.visibility-visible {
+  visibility: visible;
 }
 
 .opacity-0 {
