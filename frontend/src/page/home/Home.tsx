@@ -10,9 +10,6 @@ const DiscoverByGenre = React.lazy(() => import("../discover/DiscoverByGenre"));
 const CollectionInfo = React.lazy(
   () => import("../../components/collection/CollectionInfo"),
 );
-const Collections = React.lazy(
-  () => import("../../components/collection/Collections"),
-);
 import { StoreContext } from "../../store/Store";
 import { ax } from "../../config/default";
 import Auth from "../../auth/Auth";
@@ -79,14 +76,6 @@ const Home: FC = () => {
             element={
               <Suspense>
                 <CollectionInfo />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/collection"
-            element={
-              <Suspense>
-                <Collections />
               </Suspense>
             }
           />
