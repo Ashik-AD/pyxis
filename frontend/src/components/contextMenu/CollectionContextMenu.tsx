@@ -1,5 +1,4 @@
-import { FC, useContext } from "react";
-import { StoreContext } from "../../store/Store";
+import { useContext } from "react";
 import DrpItem from "../dropdown/DrpItem";
 import { HiOutlineTrash } from "react-icons/hi";
 import { CgRename } from "react-icons/cg";
@@ -12,12 +11,17 @@ import {
 import { AlertContext } from "../../context/AlertContext";
 import { Link, useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import useStore from "../../hooks/useStore";
+import useDispatch from "../../hooks/useDispatch";
 
-const CollectionContextMenu: FC<PropsType> = ({ uid, collection_id }) => {
-  const {
-    store: { collections },
-    dispatch,
-  } = useContext(StoreContext);
+type Props = {
+  uid: string;
+  collection_id: string;
+};
+
+const CollectionContextMenu = ({ uid, collection_id }: Props) => {
+  const { collections } = useStore();
+  const dispatch = useDispatch();
   const { setAlert } = useContext(AlertContext);
   const location = useLocation();
 
@@ -25,7 +29,7 @@ const CollectionContextMenu: FC<PropsType> = ({ uid, collection_id }) => {
     const { status } = await deleteCollection(uid, collection_id);
     if (status === 200) {
       const newCollection = collections?.filter(
-        (el: any) => el.playlist_id !== collection_id
+        (el: any) => el.playlist_id !== collection_id,
       );
       dispatch({ type: "SET_COLLECTION", payload: newCollection });
     }
@@ -47,9 +51,11 @@ const CollectionContextMenu: FC<PropsType> = ({ uid, collection_id }) => {
       setAlert("Ops something went wrong. Please try again.", "error");
     }
   };
+
   useEffect(() => {
     location.state = {};
   }, []);
+
   return (
     <ul className="font-medium text-xsm sm:text-sm bg-primary color-gray rounded-lg p-10">
       <Link to={"/collection"} state={{ playlist_id: collection_id }}>
@@ -62,14 +68,14 @@ const CollectionContextMenu: FC<PropsType> = ({ uid, collection_id }) => {
       </Link>
       <DrpItem
         icon={<HiOutlineTrash />}
-        text="Delete This"
+        text="Delete"
         classes="gap-10 hover-bg-fade py-6 px-6 rounded-regular"
         iconStyles="text-regular sm:text-lg"
         handleClick={handleDeleteCollection}
       />
       <DrpItem
         icon={<MdOutlineDeleteSweep />}
-        text="Delete All"
+        text="Clear all items"
         classes="gap-10 hover-bg-fade py-6 px-6 rounded-regular"
         iconStyles="text-regular sm:text-lg"
         handleClick={handleRemoveItems}
@@ -77,9 +83,5 @@ const CollectionContextMenu: FC<PropsType> = ({ uid, collection_id }) => {
     </ul>
   );
 };
-interface PropsType {
-  uid: string;
-  collection_id: string;
-}
 
 export default CollectionContextMenu;
