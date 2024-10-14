@@ -1,114 +1,115 @@
-import { FC, useContext, useState } from "react";
+import { AxiosError } from "axios";
+import { useState } from "react";
 import { ax } from "../../config/default";
-import { StoreContext } from "../../store/Store";
+import useDispatch from "../../hooks/useDispatch";
+import useStore from "../../hooks/useStore";
+import useUser from "../../hooks/useUser";
 import Alert from "../alert/Alert";
+import AlertText from "../alert/AlertText";
 import CreateNewCollection from "./item/CreateNewCollection";
 
-const ContextPlaylist: FC<PropTypes> = ({
-  playlistItemId,
-  playlistItemName,
+import { BiRadioCircleMarked } from "react-icons/bi";
+
+type Props = {
+  id: string;
+  title: string;
+  posterURL: string;
+  duration: number;
+  mediaType: "tv" | "movie";
+  releaseDate: Date;
+  playlist_id: string;
+  styles?: string;
+};
+
+const ContextPlaylist = ({
+  id,
+  playlist_id,
+  title,
   posterURL,
   duration,
   releaseDate,
   mediaType,
   styles,
-}) => {
-  const [success, setSuccess] = useState<string | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const {
-    store: { collections, user },
-  } = useContext(StoreContext);
+}: Props) => {
+  const [success, setSuccess] = useState<string>("");
+  const [error, setError] = useState<string>("");
 
-  if (!user) return null;
-  const requestAddItem = async (pid: string) => {
-    const request = await ax.post(`/${user.id}/playlist/add-item`, {
-      data: {
-        playlistId: pid,
-        playlistItemId,
-        playlistItemName,
-        posterURL,
-        duration,
-        releaseDate,
-        mediaType,
-      },
-    });
-    return request;
-  };
+  let { collections } = useStore();
+  let dispatch = useDispatch();
+  let user = useUser();
+
   const handleAddItemToPlaylist = async (pid: string) => {
     try {
-      const addItem = await requestAddItem(pid);
-      if (addItem.status === 200) {
-        setError(addItem.data.msg);
+      let { data } = await ax.post(`/${user?.id}/playlist/add-item`, {
+        data: {
+          id,
+          playlistId: pid,
+          title,
+          posterURL,
+          duration,
+          releaseDate,
+          mediaType,
+        },
+      });
+      setSuccess(`${title} added to your collection`);
+      dispatch({
+        type: "UPDATE_COLLECTION_ITEM_TOTALITEM",
+        payload: { pid, total_item: data.totalItems },
+      });
+    } catch (err) {
+      if (err instanceof AxiosError) {
+        setError(err.response?.data?.message);
         return;
       }
-      setSuccess(`${playlistItemName} added to your collection`);
-    } catch (error) {
-      setError("Cant add item to collection");
+      setError("Can't add item to collection");
     }
   };
-  /**
-   * Create new collection
-   * Add item to collection
-   *
-   * @returns (response as message)
-   *
-   */
 
   const clearInfoState = () => {
-    setSuccess(null);
-    setError(null);
+    setSuccess("");
+    setError("");
   };
 
+  if (!user) return null;
+
   return (
-    <div className={`flex my-20 animation-1 `}>
+    <div className={`flex my-20 animation-1`}>
       <div
         className={`flex flex-col w-full cursor-default py-10 px-6 color-gray rounded-lg shadow-lg ${
           styles && styles
         }`}
-        style={{ background: "#1d1d1d", minWidth: 250 }}
+        style={{ background: "#1d1d1d", width: "max-content" }}
       >
         <CreateNewCollection
-          title={playlistItemName}
+          title={title}
           classNames="flex hover-bg-fade py-10 px-10 font-semibold text-regular"
           handleClick={handleAddItemToPlaylist}
         />
-        <div className="w-full bg-fade" style={{ height: 1 }}></div>
         {collections &&
-          collections.map((el: any) => (
+          collections.map((item) => (
             <span
-              key={el.playlist_id}
-              onClick={() => handleAddItemToPlaylist(el.playlist_id)}
-              className="hover-bg-fade py-10 px-10 text-xsm font-semibold rounded-regular"
-              style={{ textAlign: "left" }}
+              key={item.playlist_id}
+              onClick={() => handleAddItemToPlaylist(item.playlist_id)}
+              className="flex items-center hover-bg-fade py-10 px-10 text-sm font-semibold rounded-regular cursor-pointer"
+              style={{ textAlign: "left", gap: 6 }}
             >
-              {el.playlist_name}
+              <i className="flex">
+                <BiRadioCircleMarked
+                  size={24}
+                  className={`color-success ${playlist_id == item.playlist_id ? "visiblity-visible" : "visibility-hidden"}`}
+                />
+              </i>
+              {item.playlist_name}
             </span>
           ))}
       </div>
       {(error || success) && (
         <Alert handleAlert={clearInfoState}>
-          <div
-            className={`error absolute bottom-20 flex ${
-              success ? "bg-info" : "bg-primary"
-            } color-white py-10 px-20 rounded-lg text-regular animate-fade`}
-            style={{ left: "45%" }}
-          >
-            {success ? success : error}
-          </div>
+          <AlertText type={error ? "warn" : "info"} text={error || success} />
         </Alert>
       )}
     </div>
   );
 };
-
-interface PropTypes {
-  playlistItemId: string | number;
-  playlistItemName: string;
-  posterURL: string;
-  duration: number;
-  mediaType: "tv" | "movie";
-  releaseDate: Date | null;
-  styles?: string | null;
-}
 
 export default ContextPlaylist;
