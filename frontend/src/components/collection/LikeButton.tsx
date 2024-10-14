@@ -1,25 +1,28 @@
+// @TODO - rework on isLiked state
 import { FC, useEffect, useState } from "react";
-import { RiHeart2Fill, RiHeart2Line } from "react-icons/ri";
+import { PiHeart, PiHeartFill } from "react-icons/pi";
 import WithLiked from "../like/WithLiked";
 
 const LikeButton: FC = (props: any) => {
-  const [x, setX] = useState<boolean>();
+  const [like, setLike] = useState<boolean>(props.isLiked);
+
   useEffect(() => {
-    setX(props.isLiked ? true : false);
+    setLike(props.isLiked ? true : false);
   }, [props.isLiked]);
-  return x ? (
-    <RiHeart2Fill
+
+  return like ? (
+    <PiHeartFill
       className="text-medium sm:text-lg color-purple"
       size={24}
       onClick={() => {
-        props.handleLike.remove() && setX(false);
+        props.handleLike.remove() && setLike(false);
         props.handleLikeAfter && props.handleLikeAfter();
       }}
     />
   ) : (
-    <RiHeart2Line
+    <PiHeart
       className="text-medium sm:text-lg"
-      onClick={() => props.handleLike.add() && setX(true)}
+      onClick={() => props.handleLike.add() && setLike(true)}
     />
   );
 };
