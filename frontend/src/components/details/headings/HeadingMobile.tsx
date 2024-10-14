@@ -1,3 +1,4 @@
+// @TODO: -fetch playlist id if item belongs to the collection
 import { FC } from "react";
 import { HeadingPropTypes } from "../../types/Heading.type";
 import WatchListAdd from "../../watchList/WatchListAdd";
@@ -112,10 +113,11 @@ const HeadingMobile: FC<HeadingPropTypes> = (props) => {
                     drpId="drp-collection"
                   >
                     <ContextPlaylist
-                      playlistItemId={id}
-                      playlistItemName={title}
+                      id={id}
+                      playlist_id=""
+                      title={title}
                       posterURL={poster_path ? poster_path : ""}
-                      releaseDate={release_date}
+                      releaseDate={release_date!}
                       duration={runtime}
                       mediaType="movie"
                     />

@@ -1,3 +1,4 @@
+//@TODO: - fetch collection id if the item belongs
 import React, { FC, useEffect, useState } from "react";
 import { IoPlay, IoChevronBack } from "react-icons/io5";
 import { Link } from "react-router-dom";
@@ -145,7 +146,7 @@ const HeadingDesktop: FC<HeadingPropTypes> = (props) => {
                         posterPath={poster_path}
                         title={title}
                         release_date={release_date!!}
-                        media_type="movie"
+                        media_type={type}
                       />
                       |
                       <DropDown
@@ -160,12 +161,13 @@ const HeadingDesktop: FC<HeadingPropTypes> = (props) => {
                         drpId="drp-collection"
                       >
                         <ContextPlaylist
-                          playlistItemId={id}
-                          playlistItemName={title}
+                          id={id}
+                          playlist_id=""
+                          title={title}
                           posterURL={poster_path ? poster_path : ""}
-                          releaseDate={release_date}
+                          releaseDate={release_date!}
                           duration={runtime}
-                          mediaType="movie"
+                          mediaType={type}
                         />
                       </DropDown>
                     </>
