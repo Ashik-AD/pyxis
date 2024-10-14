@@ -1,0 +1,12 @@
+.dropdown__action {
+  .dropdown__action__container {
+    display: none;
+  }
+
+  &:hover .dropdown__action__container {
+    display: block;
+  }
+  &:active .dropdown__action__container {
+    display: block;
+  }
+}
