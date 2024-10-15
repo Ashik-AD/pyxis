@@ -105,12 +105,12 @@ export const removePlaylistItem = async (req, res, next) => {
   const { uid } = req.params;
   try {
     const data = req.body;
-    const remove = await User.playlist.removeItem({
+    const result = await User.playlist.removeItem({
       uid,
       ...data,
     });
-    if (remove) {
-      res.status(201).send("Successful!");
+    if (result) {
+      res.status(200).send({ total_item: result.total_items });
       return;
     }
     res.send("Nothing found");

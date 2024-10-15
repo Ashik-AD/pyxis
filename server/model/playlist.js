@@ -168,9 +168,9 @@ class HandlePlaylist {
       await this.#updateTotalCount({
         uid,
         playlistId,
-        value: +totalCount - 1,
+        value: totalCount - 1,
       });
-      return res;
+      return { total_items: totalCount - 1 };
     }
   };
 
