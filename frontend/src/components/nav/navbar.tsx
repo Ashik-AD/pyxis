@@ -27,7 +27,7 @@ export default function Navbar() {
   let rootObserverRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    function scrollObserver(entires: IntersectionObserverEntry[]) {
+    async function scrollObserver(entires: IntersectionObserverEntry[]) {
       if (entires[0].isIntersecting) {
         navRef.current?.classList.remove(styles.nav_fill);
       } else {
@@ -41,6 +41,11 @@ export default function Navbar() {
     if (rootObserverRef.current) {
       observer.observe(rootObserverRef.current);
     }
+    return () => {
+      if (observer && rootObserverRef?.current) {
+        observer.unobserve(rootObserverRef.current);
+      }
+    };
   }, [navRef.current, rootObserverRef.current]);
 
   return (
