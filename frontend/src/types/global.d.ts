@@ -13,7 +13,7 @@ export type Collection = {
   playlist_name: string;
   playlist_id: string;
   description: string;
-  total_item: number;
+  total_items: number;
   created_date: string;
 };
 
