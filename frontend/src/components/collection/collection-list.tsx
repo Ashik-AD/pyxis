@@ -28,7 +28,7 @@ const CollectionList = () => {
                 uid={user?.id!}
                 playlist_id={collection.playlist_id}
                 playlist_name={collection.playlist_name}
-                totalItem={collection.total_item}
+                totalItem={collection.total_items}
               />
             ))}
         </AlertShow>
