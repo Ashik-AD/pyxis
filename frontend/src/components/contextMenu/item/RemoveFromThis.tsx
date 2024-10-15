@@ -1,29 +1,45 @@
-import { FC, useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { ax } from "../../../config/default";
 import ShowAlert from "../../alert/ShowAlert";
 import { ItemPropsTypes } from "./itemTypes";
 import { CollectionContext } from "../../collection/CollectionItemLists";
-const RemoveFromThis: FC<PropsTypes> = ({
+import useDispatch from "../../../hooks/useDispatch";
+
+interface Props extends ItemPropsTypes {
+  playlistId: string;
+  itemId: string;
+  uid: string;
+}
+
+const RemoveFromThis = ({
   uid,
   playlistId,
   itemId,
   handleClick,
   handleMouseOver,
   id,
-}) => {
-  const ctx = useContext(CollectionContext);
+}: Props) => {
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
+  const ctx = useContext(CollectionContext);
+  const dispatch = useDispatch();
   const handleRemoveItemFromCollection = async () => {
     try {
-      const requestRemove = await ax.delete(`/${uid}/playlist-item/delete`, {
+      const { status, data } = await ax.delete(`/${uid}/playlist-item/delete`, {
         data: {
           playlistId,
           itemsId: itemId,
         },
       });
-      if (requestRemove.status === 201) {
+      if (status == 200) {
         setSuccess("Removed from you this collection");
+        dispatch({
+          type: "UPDATE_COLLECTION_ITEM_TOTALITEM",
+          payload: {
+            pid: playlistId,
+            total_item: data.total_item,
+          },
+        });
         ctx.updateCollection(id);
         return;
       }
@@ -33,10 +49,12 @@ const RemoveFromThis: FC<PropsTypes> = ({
       setError(error);
     }
   };
+
   const clearAlert = () => {
     setSuccess("");
     setError("");
   };
+
   return (
     <div
       className="hover-bg-fade py-10 px-16 rounded-regular"
@@ -51,11 +69,5 @@ const RemoveFromThis: FC<PropsTypes> = ({
     </div>
   );
 };
-
-interface PropsTypes extends ItemPropsTypes {
-  playlistId: string;
-  itemId: string;
-  uid: string;
-}
 
 export default RemoveFromThis;
