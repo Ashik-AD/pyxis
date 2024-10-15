@@ -6,7 +6,9 @@ import {
   PlaylistsList,
   PlayListItems,
   WatchList,
+  Liked,
 } from "../db/mongooseModels.js";
+import fieldLists from "../db/fieldLists.js";
 
 class HandlePlaylist {
   // Fetch all playlist
@@ -36,11 +38,11 @@ class HandlePlaylist {
   };
 
   // Update playlist
+  /**
+   * @param {uid, playlistId, newPlaylist}
+   * this method is used for rename the playlist
+   * */
   updatePlaylist = async ({ uid, playlistId, newPlaylist }) => {
-    /**
-     * @param {uid, playlistId, newPlaylist}
-     * this method is used for rename the playlist
-     * */
     if (!newPlaylist) {
       return;
     }
@@ -120,22 +122,29 @@ class HandlePlaylist {
     });
 
     if (res) {
-      // @TODO: needed optimizations
-      const totalCount = await this.#getTotalItemFromPlaylist({
-        uid,
-        playlistId,
-      });
-      const incTotalCount = await this.#updateTotalCount({
-        uid,
-        playlistId,
-        value: +totalCount + 1,
-      });
-      await this.addRemovePlaylistLikedItems({
-        uid,
-        itemsId: id,
-        isLiked: true,
-      });
-      return incTotalCount;
+      let [totalCount, like] = await Promise.all([
+        await this.#getTotalItemFromPlaylist({
+          uid,
+          playlistId,
+        }),
+        await Liked.findOne({
+          [fieldLists.likedId]: id,
+        }),
+      ]);
+      totalCount += 1;
+      await Promise.all([
+        await this.#updateTotalCount({
+          uid,
+          playlistId,
+          value: totalCount,
+        }),
+        await this.addRemovePlaylistLikedItems({
+          uid,
+          itemId: id,
+          isLiked: like ? true : false,
+        }),
+      ]);
+      return totalCount;
     }
     throw new Error(`Can't add item to playlist`);
   };
@@ -198,7 +207,7 @@ class HandlePlaylist {
     if (!validateQueryParam(uid) || !validateQueryParam(itemId)) {
       throw invalidQueryParamException();
     }
-    const res = Promise.all([
+    const res = await Promise.all([
       await PlayListItems.updateOne(
         { [fld.uid]: uid, [fld.id]: itemId },
         { [fld.isLiked]: isLiked },
@@ -209,7 +218,7 @@ class HandlePlaylist {
       ),
     ]);
 
-    return await res;
+    return res;
   };
 
   #findItem = async ({ playlistId, itemId }) => {
