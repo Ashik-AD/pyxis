@@ -90,7 +90,7 @@ const reducer: Reducer<Store, StoreAction> = (state, action) => {
         ...state,
         collections: state.collections?.map((item) => {
           if (item.playlist_id == action.payload.pid) {
-            item.total_item = action.payload.total_item;
+            item.total_items = action.payload.total_item;
           }
           return item;
         }),
