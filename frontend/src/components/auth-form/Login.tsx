@@ -1,16 +1,13 @@
-import React, { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 import { IoLockClosed, IoMail } from "react-icons/io5";
-import FormFooter from "../../components/form/FormFooter";
 import FormHeader from "../../components/form/FormHeader";
-import FormWrapper from "../../components/form/FormWrapper";
 import Input from "../../components/form/Input";
-import InputGroup from "../../components/form/InputGroup";
 
 import { ax } from "../../config/default";
 import { validateEmail, validatePassword } from "../../utils/ValidateInput";
-import { StoreContext } from "../../store/Store";
 import ShowWaitOverlay from "../../components/form/ShowWaitOverlay";
+import useDispatch from "../../hooks/useDispatch";
+import useUser from "../../hooks/useUser";
 interface UserInputType {
   email: string;
   password: string;
@@ -25,12 +22,10 @@ const Login: React.FC = () => {
     password: "",
     all: "",
   });
-
   const [showLoading, setShowLoading] = useState(false);
+  const user = useUser();
+  const dispatch = useDispatch();
 
-  const { store, dispatch } = useContext(StoreContext);
-
-  const navigate = useNavigate();
   const handleInputChange = (eve: React.FormEvent<HTMLInputElement>) => {
     const { name, value } = eve.currentTarget;
     setUserCredential((prevState) => ({ ...prevState, [name]: value }));
@@ -98,62 +93,52 @@ const Login: React.FC = () => {
       return;
     }
     dispatch({ type: "SET_USER", payload: data.user });
-    navigate("/");
     return;
   };
 
-  if (store.user) {
-    navigate("/");
+  if (user) {
+    return null;
   }
+
   return (
-    <FormWrapper>
-      <form
-        onSubmit={handleFormSubmit}
-        autoComplete="OFF"
-        className="flex flex-col z-2"
+    <form
+      onSubmit={handleFormSubmit}
+      autoComplete="OFF"
+      className="flex flex-col gap-30 z-2"
+    >
+      <FormHeader title="Welcome back" subtitle="Log in to your account" />
+      <Input
+        type="text"
+        name="email"
+        label="Email Address"
+        value={userCredential.email}
+        onInputChange={handleInputChange}
+        handleOnBlur={handleValidateEmail}
+        icon={<IoMail />}
+        error={credentialError.email}
+      />
+      <Input
+        type="password"
+        name="password"
+        label="Password"
+        value={userCredential.password}
+        onInputChange={handleInputChange}
+        handleOnBlur={handleValidatePassword}
+        icon={<IoLockClosed />}
+        error={credentialError.password}
+      />
+      {credentialError.all ? (
+        <p className="color-red text-sm font-semibold">{credentialError.all}</p>
+      ) : (
+        ""
+      )}
+      <button
+        className={`py-10 px-50 font-medium text-medium color-black rounded-xlg border-2 border-gray-light hover-bg-fade cursor-pointer bg-white`}
       >
-        <FormHeader
-          title="Log in to your Account"
-          subtitle="Discover the Movie, TV shows, artist and many more."
-        />
-        <InputGroup classes="w-full">
-          <Input
-            type="text"
-            name="email"
-            label="Email Address"
-            value={userCredential.email}
-            onInputChange={handleInputChange}
-            handleOnBlur={handleValidateEmail}
-            icon={<IoMail />}
-            error={credentialError.email}
-          />
-          <Input
-            type="password"
-            name="password"
-            label="Password"
-            value={userCredential.password}
-            onInputChange={handleInputChange}
-            handleOnBlur={handleValidatePassword}
-            icon={<IoLockClosed />}
-            error={credentialError.password}
-          />
-        </InputGroup>
-        {credentialError.all ? (
-          <p className="color-red text-sm font-semibold">
-            {credentialError.all}
-          </p>
-        ) : (
-          ""
-        )}
-        <span className="flex content-center">
-          <button className="px-50 py-8 my-20 mb-50 color-success text-medium font-semibold rounded-lg">
-            Log in
-          </button>
-        </span>
-        <FormFooter path="/signup" accountStatus="dont" />
-        {showLoading && <ShowWaitOverlay />}
-      </form>
-    </FormWrapper>
+        Log in
+      </button>
+      {showLoading && <ShowWaitOverlay />}
+    </form>
   );
 };
 

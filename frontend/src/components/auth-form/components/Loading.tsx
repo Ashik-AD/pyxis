@@ -1,5 +1,5 @@
 import React from 'react';
-import './Animate.css';
+import './Animate.scss';
 
 const Loading: React.FC<{ success: boolean }> = (props) => {
   return (
