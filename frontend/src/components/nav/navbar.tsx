@@ -20,6 +20,9 @@ import SearchInput from "../search/SearchInput";
 import defaultAvatar from "../../image/default_avatar.jpg";
 
 import styles from "./styles.module.css";
+import { AuthForm } from "../auth-form";
+import useToggle from "../../hooks/useToggle";
+import Modal from "../modal/Modal";
 
 export default function Navbar() {
   const user = useUser();
@@ -69,7 +72,7 @@ export default function Navbar() {
                 {user ? (
                   <Profile fullName={user.full_name} email={user.email} />
                 ) : (
-                  <NavItem text="Log in" link="/login" />
+                  <AuthButtons />
                 )}
               </div>
             </div>
@@ -176,5 +179,30 @@ function Profile({ fullName, avatarURL, email }: ProfileProps) {
         />
       </div>
     </DropDown>
+  );
+}
+
+function AuthButtons() {
+  const { toggle, handleToggle } = useToggle();
+  return (
+    <div className="flex gap-10">
+      <button
+        className="border-0 color-white font-semibold"
+        onClick={handleToggle}
+      >
+        Sing up
+      </button>
+      <button
+        className="border-0 color-white font-semibold"
+        onClick={handleToggle}
+      >
+        Log in
+      </button>
+      {toggle && (
+        <Modal handleClick={handleToggle}>
+          <AuthForm />
+        </Modal>
+      )}
+    </div>
   );
 }
