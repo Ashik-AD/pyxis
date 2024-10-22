@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Link,
   useLocation,
@@ -21,7 +21,6 @@ import defaultAvatar from "../../image/default_avatar.jpg";
 
 import styles from "./styles.module.css";
 import { AuthForm } from "../auth-form";
-import useToggle from "../../hooks/useToggle";
 import Modal from "../modal/Modal";
 
 export default function Navbar() {
@@ -183,7 +182,10 @@ function Profile({ fullName, avatarURL, email }: ProfileProps) {
 }
 
 function AuthButtons() {
-  const { toggle, handleToggle } = useToggle();
+  let [showModal, setShowModal] = useState(false);
+  function handleToggle() {
+    setShowModal((prev) => !prev);
+  }
   return (
     <div className="flex gap-10">
       <button
@@ -198,7 +200,7 @@ function AuthButtons() {
       >
         Log in
       </button>
-      {toggle && (
+      {showModal && (
         <Modal handleClick={handleToggle}>
           <AuthForm />
         </Modal>
