@@ -1,14 +1,15 @@
-import React, { ReactElement, useEffect } from 'react';
-import ReactDOM from 'react-dom';
-const modal = document.getElementById('modal');
+import React, { ReactElement, useEffect } from "react";
+import ReactDOM from "react-dom";
+const modal = document.getElementById("modal");
 
 const Modal: React.FC<PropsTypes> = (props) => {
-  const element = document.createElement('div');
-  element.style.zIndex = '99999';
+  const element = document.createElement("div");
+  element.style.zIndex = "99999";
   useEffect(() => {
     const handleClick = (event: any) => {
+      props.handleClick && props.handleClick();
       if (!props.childClick) {
-        if (event.target.classList.contains('modal-content-wrapper')) {
+        if (event.target.classList.contains("modal-content-wrapper")) {
           modal?.hasChildNodes() && modal?.removeChild(element);
           props.handleClick && props.handleClick();
           return;
@@ -21,11 +22,11 @@ const Modal: React.FC<PropsTypes> = (props) => {
       }
     };
     const className = `modal-content-wrapper flex content-center w-screen h-screen  fixed top-0 left-0 ${
-      props.styles ? props.styles : 'bg-fade'
+      props.styles ? props.styles : "bg-fade"
     }`;
-    element.setAttribute('class', className);
+    element.setAttribute("class", className);
     modal?.appendChild(element);
-    element.addEventListener('click', handleClick);
+    element.addEventListener("click", handleClick);
     return () => {
       if (modal?.hasChildNodes()) {
         modal?.removeChild(element);
