@@ -6,8 +6,7 @@ const Modal: React.FC<PropsTypes> = (props) => {
   const element = document.createElement("div");
   element.style.zIndex = "99999";
   useEffect(() => {
-    const handleClick = (event: any) => {
-      props.handleClick && props.handleClick();
+    let handleClick = (event: any) => {
       if (!props.childClick) {
         if (event.target.classList.contains("modal-content-wrapper")) {
           modal?.hasChildNodes() && modal?.removeChild(element);
@@ -28,6 +27,7 @@ const Modal: React.FC<PropsTypes> = (props) => {
     modal?.appendChild(element);
     element.addEventListener("click", handleClick);
     return () => {
+      element?.removeEventListener("click", handleClick);
       if (modal?.hasChildNodes()) {
         modal?.removeChild(element);
       }
