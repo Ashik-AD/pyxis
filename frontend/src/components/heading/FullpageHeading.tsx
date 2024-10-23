@@ -29,51 +29,56 @@ const FullPageHeading: React.FC<FullPagePropsType> = (props) => {
             "linear-gradient(0deg,rgba(1, 0, 32, 0.75) 20%, #2222226b)",
         }}
       >
-      <div className="w-full">
-        <Container>
-          <div className="info_wrapper flex flex-col sm:flex-row items-center gap-20 w-full ">
-            <div
-              className="hidden sm:visible w-full"
-              style={{ maxWidth: 1350 }}
-            >
-              <div className="grid col-4 w-full pb-50">
-                {/* Title and Date */}
-                <div
-                  className="flex span-3 text-left content-bottom pb-50"
-                  style={{ paddingRight: 20 }}
-                >
-                  <div className="flex flex-col gap-20 lg:gap-40">
-                    <span className="text-heading font-semibold">{title}</span>
-                    <Rating rating={vote_average} />
-                    <p className="font-medium text-sm" style={{ width: "90%" }}>
-                      {desc}
-                    </p>
-                    <div className="flex flex-col gap-60">
-                      <div className="flex gap-20 content-bottom">
-                        <span className="text-small font-medium">
-                          {formatDate(new Date(release_date))}
-                        </span>
-                        <span
-                          className="uppercase font-bold text-msm p-6 rounded-regular px-10"
-                          style={{ background: "#AB075A" }}
-                        >
-                          {media_type}
-                        </span>
-                      </div>
-                      <Link
-                        to={detail_url}
-                        className="color-white align-center text-regular font-semibold gap-10 px-50 py-14 border-1 rounded-xxlg"
-                        style={{ width: "fit-content" }}
+        <div className="w-full">
+          <Container>
+            <div className="info_wrapper flex flex-col sm:flex-row items-center gap-20 w-full ">
+              <div
+                className="hidden sm:visible w-full"
+                style={{ maxWidth: 1350 }}
+              >
+                <div className="grid col-4 w-full pb-50">
+                  {/* Title and Date */}
+                  <div
+                    className="flex span-3 text-left content-bottom pb-50"
+                    style={{ paddingRight: 20 }}
+                  >
+                    <div className="flex flex-col gap-20 lg:gap-40">
+                      <span className="text-heading font-semibold">
+                        {title}
+                      </span>
+                      <Rating rating={vote_average} />
+                      <p
+                        className="font-medium text-sm"
+                        style={{ width: "90%" }}
                       >
-                        View Details
-                      </Link>
+                        {desc}
+                      </p>
+                      <div className="flex flex-col gap-40">
+                        <div className="flex gap-20 content-bottom">
+                          <span className="text-small font-medium">
+                            {formatDate(new Date(release_date))}
+                          </span>
+                          <span
+                            className="uppercase font-bold text-msm p-6 rounded-regular px-10"
+                            style={{ background: "#AB075A" }}
+                          >
+                            {media_type}
+                          </span>
+                        </div>
+                        <Link
+                          to={detail_url}
+                          className="color-white align-center text-regular font-semibold gap-10 px-50 py-14 border-1 rounded-xxlg"
+                          style={{ width: "fit-content" }}
+                        >
+                          View Details
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </Container>
+          </Container>
         </div>
       </div>
       <div

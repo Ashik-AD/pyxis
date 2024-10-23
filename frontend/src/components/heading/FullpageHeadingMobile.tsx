@@ -31,7 +31,7 @@ const FullpageHeadingMobile: FC<PropsType> = ({
           {title}
         </span>
         <p className="color-white text-xsm font-semibold ">
-          {ellipsisText(desc, 130)}
+          {ellipsisText(desc || "", 130)}
         </p>
 
         <div className="flex space-between my-20">

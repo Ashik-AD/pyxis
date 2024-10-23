@@ -5,15 +5,21 @@ import type { WatchListPropsType } from "./watchlist.type";
 
 import useUser from "../../hooks/useUser";
 import useDispatch from "../../hooks/useDispatch";
+import useRenderAuthForm from "../../hooks/useRenderAuthForm";
 
 const WatchListAdd: FC<WatchListPropsType> = (props) => {
   const user = useUser();
   const storeDispatch = useDispatch();
+  const { AuthFormHook, showForm } = useRenderAuthForm();
 
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
 
   const handleWatchListAdd = async () => {
+    if (!user) {
+      showForm();
+      return;
+    }
     try {
       let data = {
         average_vote: props.average_vote,
@@ -53,6 +59,7 @@ const WatchListAdd: FC<WatchListPropsType> = (props) => {
         Add to watchlist
       </button>
       <ShowAlert clearAlert={clearMsg} success={success} error={error} />
+      <AuthFormHook />
     </>
   );
 };
