@@ -47,7 +47,7 @@ class HandleWatchList {
       // Generate ID for the item
       const id = generateId();
       await WatchList.create({
-        _id: id,
+        id: id,
         [fld.itemKey]: item_key,
         [fld.uid]: uid,
         [fld.title]: title,
