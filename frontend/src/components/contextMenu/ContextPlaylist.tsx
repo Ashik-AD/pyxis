@@ -7,7 +7,6 @@ import useUser from "../../hooks/useUser";
 import Alert from "../alert/Alert";
 import AlertText from "../alert/AlertText";
 import CreateNewCollection from "./item/CreateNewCollection";
-
 import { BiRadioCircleMarked } from "react-icons/bi";
 
 type Props = {
@@ -31,12 +30,12 @@ const ContextPlaylist = ({
   mediaType,
   styles,
 }: Props) => {
-  const [success, setSuccess] = useState<string>("");
-  const [error, setError] = useState<string>("");
-
   let { collections } = useStore();
   let dispatch = useDispatch();
   let user = useUser();
+
+  const [success, setSuccess] = useState<string>("");
+  const [error, setError] = useState<string>("");
 
   const handleAddItemToPlaylist = async (pid: string) => {
     try {
@@ -70,8 +69,9 @@ const ContextPlaylist = ({
     setError("");
   };
 
-  if (!user) return null;
-
+  if (!user) {
+      return null
+  }
   return (
     <div className={`flex my-20 animation-1`}>
       <div
